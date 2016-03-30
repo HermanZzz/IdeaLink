@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registry results</title>
+</head>
+<body>
+{% if is_register_success %}
+	<p>
+		Account name : {{ account_name }}, Password : {{ account_password }}
+	</p>
+{% else %}
+	<p>
+		Registry failed.
+	</p>
+{% endif %}
+</body>
+</html>
