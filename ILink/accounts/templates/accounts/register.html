@@ -4,28 +4,38 @@
 	<meta charset="UTF-8">
 	<title>Register Page</title>
 	<link type="text/css" rel="stylesheet" href="/static/css/style.css" />
+	<link type="text/css" rel="stylesheet" href="/static/css/bg.css" />
 	{% load static %}
 	<script src="{% static "js/jquery.min.js" %}" ></script>
 	{% load static %}
 	<script src="{% static "js/register.js" %}"></script>
+	{% load static %}
+	<script src="{% static "js/bg/TweenLite.min.js" %}"></script>
+	{% load static %}
+	<script src="{% static "js/bg/EasePack.min.js" %}"></script>
+	{% load static %}
+	<script src="{% static "js/bg/rAF.js" %}"></script>
+	{% load static %}
+	<script src="{% static "js/bg/star.js.js" %}"></script>
 </head>
-<body>
-	<!-- {% load static %}
-<img src="{% static "me.jpg" %}" alt="My image"/> -->
-	<div class="col-md-6 text-info">
+<body>        
+	<div id="large-header" class="large-header Container" style="position:relative;">
+		<canvas id="demo-canvas"> </canvas>
+	
+	<div class="text-info" style="position:absolute; top:40%; left:2%;">
       <h1>Welcome to ILink Platform <small>version 1.0</small></h1>
       <h4>  &nbsp&nbsp&nbsp&nbsp a ingenious platform for those who have incredible ideas or skills</h4>
       <p align="center"><a class="btn btn-primary btn-lg" role="button">
          Sign In</a>
       </p>
    </div>
-	<div class="container-fluid col-md-6" >
+	<div class="container-fluid" style="position:absolute; top:30%; right:10%" >
 	    <div class="row">
 	        <div class="loginpanel">
 	      <i id="loading" class="hidden fa fa-spinner fa-spin bigicon"></i>
-	            <h2>
+	         <h2>
 	        <span class="fa fa-quote-left "></span> pls Sign Up <span class="fa fa-quote-right "></span>
-	      </h2>
+	         </h2>
 	            <div>
 	            	<form method="post" action="{% url 'accounts:register' %}">
 					{% csrf_token %}
@@ -40,8 +50,11 @@
 	            </div>       
 	   	 </div>
 	</div>
+</div>
+	<!-- {% load static %}
+<img src="{% static "me.jpg" %}" alt="My image"/> -->
 	
 	
-	</form>
 </body>
 </html>
+

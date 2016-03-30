@@ -11,10 +11,21 @@
 	}
 	body{
 		font-family: 'microsoft yahei',Arial,sans-serif;
-		background-color: #222;
+		/*background-color: #222;*/
 		display: flex;
 		align-items:center; /*body里的元素垂直居中*/
 
+	}
+	
+	.large-header {
+		position: relative;
+		width: 100%;
+		background: #333;
+		overflow: hidden;
+		background-size: cover;
+		background-position: center center;
+		z-index: 1;
+		background-image: url('../img/demo-1-bg.jpg');
 	}
 
 	.redborder {
