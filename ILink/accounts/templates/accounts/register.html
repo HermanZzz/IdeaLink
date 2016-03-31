@@ -2,9 +2,10 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Register Page</title>
 	<link type="text/css" rel="stylesheet" href="/static/css/style.css" />
-	<link type="text/css" rel="stylesheet" href="/static/css/bg.css" />
+	<link type="image/x-icon" rel="shortcut icon" href="/static/img/favicon.ico" />
 	{% load static %}
 	<script src="{% static "js/jquery.min.js" %}" ></script>
 	{% load static %}
@@ -16,10 +17,10 @@
 	{% load static %}
 	<script src="{% static "js/bg/rAF.js" %}"></script>
 	{% load static %}
-	<script src="{% static "js/bg/star.js.js" %}"></script>
+	<script src="{% static "js/bg/star.js" %}"></script>
 </head>
 <body>      
-	<div id="large-header" class="large-header Container" style="position:relative;">
+	<div id="large-header" class="large-header container" style="position:relative;">
 		<canvas id="demo-canvas"> </canvas>
 	
 	<div class="text-info" style="position:absolute; top:40%; left:2%;">
@@ -29,7 +30,7 @@
          Sign In</a>
       </p>
    </div>
-	<div class="container-fluid" style="position:absolute; top:27%; right:10%" >
+	<div class="container-fluid" style="position:absolute; top:28%; right:10%" >
 	    <div class="row">
 	        <div class="loginpanel">
 	      <i id="loading" class="hidden fa fa-spinner fa-spin bigicon"></i>
