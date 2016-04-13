@@ -221,13 +221,13 @@ class Project(models.Model) :
 	# Properties & setter
 	@property
 	def project_name(self):
-	    return self.
+	    return self._project_name
 	@project_name.setter
 	def project_name(self , name):
 		self._project_name = name
 	@property
 	def project_description(self):
-	    return self.
+	    return self._project_description
 	@project_description.setter
 	def project_description(self , description):
 		self._project_description = description
