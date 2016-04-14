@@ -5,6 +5,7 @@
   <title>Login Page</title>
   <link type="image/x-icon" rel="shortcut icon" href="/static/img/favicon.ico" />
   <link type="text/css" rel="stylesheet" href="/static/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="/static/sweetalert/sweetalert.css" />
   {% load static %}  
   <script src="{% static "js/jquery.min.js" %}" ></script>
   {% load static %}
@@ -19,8 +20,22 @@
   <script src="{% static "js/bg/EasePack.min.js" %}"></script>
   {% load static %}
   <script src="{% static "js/bg/rAF.js" %}"></script>
+  {% load static %}
+  <script src="{% static "sweetalert/sweetalert.min.js" %}"></script>
 </head>
+
 <body >
+  {% if is_login_success == False %}
+  <script type="text/javascript">
+    swal("Oops...", "Authentication failed!", "error");
+  </script>
+  {% endif%}
+  {% if is_register_success == True %}
+  <script type="text/javascript">
+    swal("Success", "Registration successed!", "success");
+  </script>
+  {% endif%}
+
   <div id="large-header" class="large-header container" style="position:relative;">
     <canvas id="demo-canvas"> </canvas>
     <div class="text-info" style="position:absolute; top:40%; left:2%;">
@@ -29,34 +44,30 @@
           <p align="center"><a class="btn btn-primary btn-lg" role="button">
              Sign Up</a>
           </p>
-       </div>
+    </div>
     <!-- Interactive Login - START -->
     <div class="container-fluid" style="position:absolute; top:28%; right:10%">
         <div class="row">
             <div class="loginpanel">
-          <i id="loading" class="hidden fa fa-spinner fa-spin bigicon"></i>
-                <h2>
-            <span class="fa fa-quote-left "></span> pls Sign In <span class="fa fa-quote-right "></span>
-          </h2>
-                <div>
-                	<form method="post" action="{% url 'accounts:login' %}">
-    				{% csrf_token %}
-                     <input id="_account_name" type="email" placeholder="Email Address" onkeypress="check_value();" name="account_name" autofocus="autofocus">
-    				<input id="_account_password" type="text" placeholder="Password " onkeypress="check_value();" name="account_password">
-
-            <div class="buttonwrapper">
-              <button id="loginbtn" class="btn btn-warning loginbutton">
-                <span class="fa fa-check"></span>
-              </button>
-              <span id="lockbtn" class="fa fa-lock lockbutton redborder"></span>
-            </div>
+            <i id="loading" class="hidden fa fa-spinner fa-spin bigicon"></i>
+            <h2>
+              <span class="fa fa-quote-left "></span> pls Sign In <span class="fa fa-quote-right "></span>
+            </h2>
+              <div>
+          	  <form method="post" action="{% url 'accounts:login' %}">
+    				  {% csrf_token %}
+                <input id="_account_name" type="email" placeholder="Email Address" onkeypress="check_value();" name="account_name" autofocus="autofocus">
+    				    <input id="_account_password" type="text" placeholder="Password " onkeypress="check_value();" name="account_password">
+                <div class="buttonwrapper">
+                  <button id="loginbtn" class="btn btn-warning loginbutton">
+                    <span class="fa fa-check"></span>
+                  </button>
+                  <span id="lockbtn" class="fa fa-lock lockbutton redborder"></span>
                 </div>
+              </div>
             </div>
         </div>
-      
     </div>
   </div>
-
-
 </body>
 </html>

@@ -4,14 +4,8 @@
 	<title>Login results</title>
 </head>
 <body>
-{% if is_login_success %}
-	<p>
-		Login success
-	</p>
-{% else %}
-	<p>
-		Login failed
-	</p>
-{% endif %}
+
+{{ user_session.account_name }}
+
 </body>
 </html>

@@ -6,6 +6,7 @@
 	<title>Register Page</title>
 	<link type="text/css" rel="stylesheet" href="/static/css/style.css" />
 	<link type="image/x-icon" rel="shortcut icon" href="/static/img/favicon.ico" />
+	<link rel="stylesheet" type="text/css" href="/static/sweetalert/sweetalert.css" />
 	{% load static %}
 	<script src="{% static "js/jquery.min.js" %}" ></script>
 	{% load static %}
@@ -16,8 +17,16 @@
 	<script src="{% static "js/bg/EasePack.min.js" %}"></script>
 	{% load static %}
 	<script src="{% static "js/bg/rAF.js" %}"></script>
+	{% load static %}
+  <script src="{% static "sweetalert/sweetalert.min.js" %}"></script>
 </head>
 <body>      
+	{% if is_register_success == False%}
+	<script type="text/javascript">
+    	swal("Oops...", "Registration failed!", "error");
+  	</script>
+  	{% endif%}
+	
 	<div id="large-header" class="large-header container" style="position:relative;">
 		<canvas id="demo-canvas"> </canvas>
 	

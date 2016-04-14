@@ -1,13 +1,11 @@
 from django.shortcuts import render
 
 import hashlib
-import pdb
 
 from .models import Account
 
 def index(request) :
-	return render(request , 'accounts/register.html')
-	#return render(request , 'accounts/login.html')
+	return render(request , 'accounts/login.html')
 
 def register(request) :
 
@@ -20,7 +18,7 @@ def register(request) :
 		if '' == account_name or '' == account_password :
 			raise KeyError('Invalid account')
 	except (KeyError):
-		return render(request , 'accounts/results.html' , {
+		return render(request , 'accounts/register.html' , {
 			'is_register_success' : is_register_success ,
 			})
 
@@ -34,17 +32,15 @@ def register(request) :
 	try :
 		new_account.save()
 	except BaseException  :
-		return render(request , 'accounts/results.html' , {
+		return render(request , 'accounts/register.html' , {
 			'is_register_success' : is_register_success ,
 			})
 
 	# Success		
 	is_register_success = True	
 
-	return render(request , 'accounts/results.html' , {
-		'account_name' : account_name , 
-		'account_password' : account_password ,
-		'is_register_success' : is_register_success ,
+	return render(request , 'accounts/login.html' , {
+		'is_register_success' : True,
 		})
 
 def login(request) :
@@ -58,8 +54,9 @@ def login(request) :
 		if '' == account_name or '' == account_password :
 			raise KeyError('Invalid input')
 	except(KeyError):
-		return render(request , 'accounts/loginresults.html' , {
+		return render(request , 'accounts/login.html' , {
 			'is_login_success' : False,
+			'is_register_success' : False,
 			})
 
 	# Encode account password
@@ -71,15 +68,21 @@ def login(request) :
 	try:
 		account_for_validation = Account.objects.get(_account_name = account_name)
 	except Exception, e:
-		return render(request , 'accounts/loginresults.html' , {
+		return render(request , 'accounts/login.html' , {
 			'is_login_success' : False,
+			'is_register_success' : False,
 			})
 		
 	
 	if account_for_validation :
 		if account_for_validation.account_passwd == account_password :
 			is_login_success = True
-
-	return render(request , 'accounts/loginresults.html' , {
+			return render(request , 'accounts/loginresults.html' , {
 			'is_login_success' : is_login_success,
+			'user_session' : Account.objects.get(_account_name = account_name),
+			})
+
+	return render(request , 'accounts/login.html' , {
+			'is_login_success' : False,
+			'is_register_success' : False,
 			})
