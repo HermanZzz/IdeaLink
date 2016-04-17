@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
+	<title>IdeaLink</title>
+
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/css/font-awesome.min.css">
+
+	<!-- Custom styles for our template -->
+	<link rel="stylesheet" href="/static/css/bootstrap-theme.css" media="screen" >
+	<link rel="stylesheet" href="/static/css/home.css">
+</head>
+
+<body class="home">
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top headroom" >
+		<div class="container">
+			<div class="navbar-header">
+				<!-- Button for smallest screens -->
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 
+				</button>
+				<a class="navbar-brand" href="home.html"><img src="/static/img/logo.png"></a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right">
+					<li class="active"><a href="#">Home</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Team <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="sidebar-left.html">Seek a Team</a></li>
+							<li class="active"><a href="sidebar-right.html">Build a Team</a></li>
+						</ul>
+					</li>
+					<li><a href="user.html">User</a></li>				
+					<li><a href="setting.html">Setting</a></li>
+					<li><a class="btn" href="signin.html">SIGN IN / SIGN UP</a></li>
+				</ul>
+			</div><!--/.nav-collapse -->
+		</div>
+	</div> 
+	<!-- /.navbar -->
+
+	<div id="large-header" class="large-header demo-3">
+		<canvas id="demo-canvas"></canvas>
+		<h1 class="main-title"> <!-- spark brilliant --> ideas</span></h1>
+	</div>
+	<!-- Intro -->
+	<div class="container text-center">
+		<br> <br>
+		<h2 class="thin">The best place to link your idea and power</h2>
+		<p class="text-muted">
+			You got an brilliant idea but don't know how to?<br>
+			You got strong energy but don't konw where to?<br>
+			NO PROBLEM! It's why you are here.
+		</p>
+	</div>
+	<!-- /Intro-->
+		
+	<footer id="footer" class="top-space">
+		<div class="footer2">
+			<div class="container">
+				<div class="row">				
+					<div class="col-md-6 widget">
+						<div class="widget-body">
+							<p class="simplenav" stlye="">
+								<a href="#">Home</a> | 
+								<a href="team.html">Team</a> |
+								<a href="user.html">User</a> |
+								<a href="setting.html">Setting</a> |
+								<b><a href="signup.html">Sign up</a></b>
+							</p>
+						</div>
+					</div>
+				</div> <!-- /row of widgets -->
+			</div>
+		</div>
+	</footer>	
+		
+
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+
+	
+	{% load static %}  
+  	<script src="{% static "js/jquery.min.js" %}" ></script>
+  	{% load static %}  
+  	<script src="{% static "js/home/headroom.min.js" %}" ></script>
+  	{% load static %}  
+  	<script src="{% static "js/home/jQuery.headroom.min.js" %}" ></script>
+	{% load static %}  
+  	<script src="{% static "js/home/template.js" %}" ></script>
+	{% load static %}  
+  	<script src="{% static "js/bootstrap.min.js" %}" ></script>
+  	
+	{% load static %}  
+  	<script src="{% static "js/home/home.js" %}" ></script>
+  	{% load static %}
+  	<script src="{% static "js/bg/TweenLite.min.js" %}"></script>
+  	{% load static %}
+  	<script src="{% static "js/bg/EasePack.min.js" %}"></script>
+  	{% load static %}
+ 	 <script src="{% static "js/bg/rAF.js" %}"></script>
+	
+</body>
+</html>
