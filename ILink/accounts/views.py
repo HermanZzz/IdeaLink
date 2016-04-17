@@ -5,7 +5,7 @@ import hashlib
 from .models import Account
 
 def index(request) :
-	return render(request , 'accounts/home.html')
+	return render(request , 'home.html')
 
 def register(request) :
 
