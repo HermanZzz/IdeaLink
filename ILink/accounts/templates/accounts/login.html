@@ -37,7 +37,7 @@
     <div class="text-info" style="position:absolute; top:40%; left:2%;">
           <h1>Welcome to ILink Platform <small>version 1.0</small></h1>
           <h4>  &nbsp&nbsp&nbsp&nbsp a ingenious platform for those who have incredible ideas or skills</h4>
-          <p align="center"><a class="btn btn-primary btn-lg" role="button">
+          <p align="center"><a class="btn btn-primary btn-lg" role="button" href="register">
              Sign Up</a>
           </p>
     </div>
@@ -53,7 +53,7 @@
           	  <form method="post" action="{% url 'accounts:login' %}">
     				  {% csrf_token %}
                 <input id="_account_name" type="email" placeholder="Email Address" onkeypress="check_value();" name="account_name" autofocus="autofocus">
-    				    <input id="_account_password" type="text" placeholder="Password " onkeypress="check_value();" name="account_password">
+    				    <input id="_account_password" type="password" placeholder="Password " onkeypress="check_value();" name="account_password">
                 <div class="buttonwrapper">
                   <button id="loginbtn" class="btn btn-warning loginbutton">
                     <span class="fa fa-check"></span>

@@ -77,7 +77,7 @@ def login(request) :
 	if account_for_validation :
 		if account_for_validation.account_passwd == account_password :
 			is_login_success = True
-			return render(request , 'accounts/loginresults.html' , {
+			return render(request , 'home.html' , {
 			'is_login_success' : is_login_success,
 			'user_session' : Account.objects.get(_account_name = account_name),
 			})
