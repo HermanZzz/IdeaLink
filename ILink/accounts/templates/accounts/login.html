@@ -21,16 +21,18 @@
 </head>
 
 <body >
-  {% if is_login_success == False %}
-  <script type="text/javascript">
-    swal("Oops...", "Authentication failed!", "error");
-  </script>
-  {% endif%}
-  {% if is_register_success == True %}
-  <script type="text/javascript">
-    swal("Success", "Registration successed!", "success");
-  </script>
-  {% endif%}
+  {% if is_first_time_to_this_page == False %}
+    {% if is_login_success == False %}
+    <script type="text/javascript">
+      swal("Oops...", "Authentication failed!", "error");
+    </script>
+    {% endif%}
+    {% if is_register_success == True %}
+    <script type="text/javascript">
+      swal("Success", "Registration successed!", "success");
+    </script>
+    {% endif%}
+  {% endif %}
 
   <div id="large-header" class="large-header container" style="position:relative;">
     <canvas id="demo-canvas"> </canvas>

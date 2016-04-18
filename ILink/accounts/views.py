@@ -20,6 +20,7 @@ def register(request) :
 	except (KeyError):
 		return render(request , 'accounts/register.html' , {
 			'is_register_success' : is_register_success ,
+			'is_first_time_to_this_page' : True,
 			})
 
 	# Encode account password
@@ -34,6 +35,7 @@ def register(request) :
 	except BaseException  :
 		return render(request , 'accounts/register.html' , {
 			'is_register_success' : is_register_success ,
+			'is_first_time_to_this_page' : False,
 			})
 
 	# Success		
@@ -41,6 +43,7 @@ def register(request) :
 
 	return render(request , 'accounts/login.html' , {
 		'is_register_success' : True,
+		'is_first_time_to_this_page' : False,
 		})
 
 def login(request) :
@@ -57,6 +60,7 @@ def login(request) :
 		return render(request , 'accounts/login.html' , {
 			'is_login_success' : False,
 			'is_register_success' : False,
+			'is_first_time_to_this_page' : True,
 			})
 
 	# Encode account password
@@ -71,6 +75,7 @@ def login(request) :
 		return render(request , 'accounts/login.html' , {
 			'is_login_success' : False,
 			'is_register_success' : False,
+			'is_first_time_to_this_page' : False,
 			})
 		
 	
@@ -85,4 +90,5 @@ def login(request) :
 	return render(request , 'accounts/login.html' , {
 			'is_login_success' : False,
 			'is_register_success' : False,
+			'is_first_time_to_this_page' : False,
 			})

@@ -20,11 +20,13 @@
 	{% load static %}
   <script src="{% static "sweetalert/sweetalert.min.js" %}"></script>
 </head>
-<body>      
-	{% if is_register_success == False%}
-	<script type="text/javascript">
-    	swal("Oops...", "Registration failed!", "error");
-  	</script>
+<body>  
+	{% if is_first_time_to_this_page == False %}    
+		{% if is_register_success == False%}
+		<script type="text/javascript">
+    		swal("Oops...", "Registration failed!", "error");
+  		</script>
+  		{% endif%}
   	{% endif%}
 	
 	<div id="large-header" class="large-header container" style="position:relative;">

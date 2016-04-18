@@ -26,6 +26,7 @@
 				</button>
 				<a class="navbar-brand" href="home.html"><img src="/static/img/logo.png"></a>
 			</div>
+			{% if is_login_success %}
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
 					<li class="active"><a href="#">Home</a></li>
@@ -38,11 +39,24 @@
 					</li>
 					<li><a href="user.html">User</a></li>				
 					<li><a href="setting.html">Setting</a></li>
-					<li><a class="btn" href="login">SIGN IN / SIGN UP</a></li>
+					<!--
+					<li><a class="btn" href="login">SIGN IN / SIGN UP</a></li> 
+					-->
+					<li><a href="#">{{ user_session.account_name}}</li>
+					<li><a class="btn" href="">LOG OUT</a></li>
+
 				</ul>
 			</div><!--/.nav-collapse -->
+			{% else %}
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav pull-right">
+					<li><a class="btn" href="login">SIGN IN / SIGN UP</a></li> 
+				</ul>
+			</div><!--/.nav-collapse -->
+			{% endif %}
 		</div>
 	</div> 
+	
 	<!-- /.navbar -->
 	<header id="head" class="secondary"></header>
 	{% block content %}
