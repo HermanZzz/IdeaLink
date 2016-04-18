@@ -7,6 +7,16 @@ from .models import Account
 def index(request) :
 	return render(request , 'home.html')
 
+def home(request) :
+	return render(request , 'home.html' , {
+			'is_login_success' : True,
+			'user_session' : Account.objects.get(_account_name = request.session['account_name']),
+			})
+
+def logout(request):
+	del request.session['account_name']
+	return render(request , 'home.html')
+
 def register(request) :
 
 	is_register_success = False
@@ -82,6 +92,10 @@ def login(request) :
 	if account_for_validation :
 		if account_for_validation.account_passwd == account_password :
 			is_login_success = True
+			
+			request.session['account_name'] = account_name
+			request.session.SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 			return render(request , 'home.html' , {
 			'is_login_success' : is_login_success,
 			'user_session' : Account.objects.get(_account_name = account_name),
