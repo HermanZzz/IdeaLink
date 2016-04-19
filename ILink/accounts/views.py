@@ -7,6 +7,10 @@ from .models import Account
 def index(request) :
 	return render(request , 'home.html')
 
+def setting(request) :
+	return render(request , 'accounts/setting.html',
+		{'is_login_success' : True})
+
 def home(request) :
 	return render(request , 'home.html' , {
 			'is_login_success' : True,

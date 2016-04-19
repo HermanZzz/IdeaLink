@@ -33,15 +33,12 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Team <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="sidebar-left.html">Seek a Team</a></li>
-							<li class="active"><a href="sidebar-right.html">Build a Team</a></li>
+							<li><a href="#">Seek a Team</a></li>
+							<li class="active"><a href="#">Build a Team</a></li>
 						</ul>
 					</li>
-					<li><a href="setting.html">Setting</a></li>
-					<li><a href="user.html">{{ user_session.account_name}}</a></li>	
-					<!--
-					<li><a class="btn" href="login">SIGN IN / SIGN UP</a></li> 
-					-->
+					<li><a href={% url 'accounts:setting' %}>Setting</a></li>
+					<li><a href="#">{{ user_session.account_name}}</a></li>	
 					<li><a class="btn" href="{% url 'accounts:logout' %}">LOG OUT</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
@@ -81,11 +78,11 @@
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="simplenav" stlye="">
-								<a href="#">Home</a> | 
-								<a href="team.html">Team</a> |
-								<a href="user.html">User</a> |
-								<a href="setting.html">Setting</a> |
-								<b><a href="signup.html">Sign up</a></b>
+								<a href={% url 'accounts:home' %} >Home</a> | 
+								<a href="#">Team</a> |
+								<a href="#">User</a> |
+								<a href={% url 'accounts:setting' %} >Setting</a> |
+								<b><a href={% url 'accounts:register'%}>Sign up</a></b>
 							</p>
 						</div>
 					</div>

@@ -3,9 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Login Page</title>
+
+  <link rel="stylesheet" href="/static/sweetalert/sweetalert.css" />
   <link type="image/x-icon" rel="shortcut icon" href="/static/img/favicon.ico" />
-  <link type="text/css" rel="stylesheet" href="/static/css/style.css" />
-  <link rel="stylesheet" type="text/css" href="/static/sweetalert/sweetalert.css" />
+  <link rel="stylesheet" href="/static/css/style.css" />
+
   {% load static %}  
   <script src="{% static "js/jquery.min.js" %}" ></script>
   {% load static %}
@@ -23,21 +25,20 @@
 <body >
   {% if is_first_time_to_this_page == False %}
     {% if is_login_success == False %}
-    <script type="text/javascript">
+    <script>
       swal("Oops...", "Authentication failed!", "error");
     </script>
     {% endif%}
     {% if is_register_success == True %}
-    <script type="text/javascript">
+    <script>
       swal("Success", "Registration successed!", "success");
     </script>
     {% endif%}
   {% endif %}
-
   <div id="large-header" class="large-header container" style="position:relative;">
     <canvas id="demo-canvas"> </canvas>
     <div class="text-info" style="position:absolute; top:40%; left:2%;">
-          <h1>Welcome to ILink Platform <small>version 1.0</small></h1>
+          <h1>Welcome to <a href={% url 'accounts:index' %}>ILink Platform </a><small>version 1.0</small></h1>
           <h4>  &nbsp&nbsp&nbsp&nbsp a ingenious platform for those who have incredible ideas or skills</h4>
           <p align="center"><a class="btn btn-primary btn-lg" role="button" href="{% url 'accounts:register' %}">
              Sign Up</a>

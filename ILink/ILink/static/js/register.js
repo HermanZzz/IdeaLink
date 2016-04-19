@@ -1,3 +1,4 @@
+
 /* 定义一个检查数据的方法 */
 function check_value(){
   //判断用户输入的用户名和密码不为空
@@ -10,12 +11,15 @@ function check_value(){
 }
 
 /* 定义登录按钮出现后点击登录按钮 */
-$(function(){
+$(function(){   
   $('#loginbtn').click(function(){
     //定义回调方法
     $('#loading').removeClass('hidden');//点击登录按钮触发“加载中效果”
   });   
-  
+
+  $('#_account_name').focus(check_value);
+  $('#_account_password').focus(check_value);
+
 
 
     var width, height, largeHeader, canvas, ctx, points, target, animateHeader = true;
@@ -201,5 +205,4 @@ $(function(){
     }
     
 });
-
 

@@ -23,7 +23,7 @@
 <body>  
 	{% if is_first_time_to_this_page == False %}    
 		{% if is_register_success == False%}
-		<script type="text/javascript">
+		<script >
     		swal("Oops...", "Registration failed!", "error");
   		</script>
   		{% endif%}
@@ -33,7 +33,7 @@
 		<canvas id="demo-canvas"> </canvas>
 	
 	<div class="text-info" style="position:absolute; top:40%; left:2%;">
-      <h1>Welcome to ILink Platform <small>version 1.0</small></h1>
+      <h1>Welcome to <a href={% url 'accounts:index' %}> ILink Platform</a> <small>version 1.0</small></h1>
       <h4>  &nbsp&nbsp&nbsp&nbsp a ingenious platform for those who have incredible ideas or skills</h4>
       <p align="center"><a class="btn btn-primary btn-lg" role="button" href="{% url 'accounts:login'%}">
          Sign In</a>
@@ -61,10 +61,6 @@
 	   	 </div>
 	</div>
 </div>
-	<!-- {% load static %}
-<img src="{% static "me.jpg" %}" alt="My image"/> -->
-	
-	
 </body>
 </html>
 
