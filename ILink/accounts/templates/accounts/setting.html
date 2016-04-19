@@ -2,6 +2,102 @@
 
 {% block content %}
 
-<div class="container"></div>	
+<div class="container">
+	<div class="row">
+		<div class="span2 col-md-3 col-md-offset-1">
+			<ul class="nav nav-pills nav-stacked"> 
+				<li class="active"><a href="#">Basic info</a></li>
+				<li><a href="#">Skill</a></li> 
+				<li><a href="#">Experience</a></li> 
+				<li><a href="#">Contact</a></li> 
+			</ul>
+		</div>
+		<div class="col-md-8 ">
+			<form class="form-horizontal">
+			    <fieldset>
+			      <div id="legend" class="">
+			        <legend class="">User</legend>
+			      </div>
+    			<div class="control-group">
+		          <!-- Text input-->
+		          <label class="control-label" for="input01">Name</label>
+		          <div class="controls">
+		            <input type="text" placeholder="placeholder" class="input-xlarge">
+		            <p class="help-block">blabla...</p>
+		          </div>
+		        </div>
+
+    			<div class="control-group">
+       			   <label class="control-label">Gender</label>
+         		  <div class="controls">
+					 <!-- Multiple Radios -->
+	          		  <label class="radio">
+	             		 <input type="radio" value="Option one" name="group" checked="checked">Male
+	            	  </label>
+	           		  <label class="radio">
+	              		<input type="radio" value="Option two" name="group">Female
+	           		  </label>
+	           		  <p class="help-block"></p>
+          		  </div>
+
+          		</div>
+
+          		<div class="control-group">
+         		 	<label class="control-label">Hobbies</label>
+         		 	 <!-- Multiple Checkboxes -->
+		          	<div class="controls">
+			            <label class="checkbox inline">
+			              <input type="checkbox" value="1"> 1
+			            </label>
+			            <label class="checkbox inline">
+			              <input type="checkbox" value="2"> 2
+			            </label>
+			            <label class="checkbox inline">
+			              <input type="checkbox" value="3"> 3
+			            </label>
+			            <p class="help-block"></p>
+		         	</div>
+		         </div>
+
+		         <div class="control-group">
+			          <!-- Select Basic -->
+			          <label class="control-label">Select - Basic</label>
+			          <div class="controls">
+			            <select class="input-xlarge">
+			              <option>Enter</option>
+			              <option>Your</option>
+			              <option>Options</option>
+			              <option>Here!</option>
+			            </select>
+			            <p class="help-block"></p>
+			          </div>
+			      </div>
+
+    			 <div class="control-group">
+		          <!-- Textarea -->
+		          <label class="control-label">Textarea</label>
+		          <div class="controls">
+		            <div class="textarea">
+		                  <textarea type="" class=""> </textarea>
+		            </div>
+		            <p class="help-block"></p>
+		          </div>
+		        </div>
+
+			     <div class="control-group">
+			          <label class="control-label"> </label>
+			          <!-- Button -->
+			          <div class="controls">
+			            <button class="btn btn-success">Submit</button>
+			          </div>
+			          <p class="help-block"></p>
+			     </div>
+			 </fieldset>
+			 </form>
+
+
+		</div>
+	</div>
+</div>
 
 {% endblock %}
