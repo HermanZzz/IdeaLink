@@ -52,4 +52,4 @@ Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ```
 
-Congratulations！ You can now open it by enter `//127.0.0.1:8000/` in your browser.
+Congratulations! You can now open it by entering `//127.0.0.1:8000/` in your browser.
