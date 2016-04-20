@@ -1,6 +1,8 @@
 # ILinkProj
 SITP Project
 
+##Documentation
+[Requirements Document](https://github.com/HermanZzz/ILinkProj/blob/Dev/doc/Documentation.md)
 
 ##Getting Started
 
