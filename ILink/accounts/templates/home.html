@@ -73,6 +73,8 @@
 	{% load static %}  
   	<script src="{% static "js/home/home.js" %}" ></script>
 	{% endblock %}
+
+	
 	<footer id="footer" class="top-space">
 		<div class="footer2">
 			<div class="container">
@@ -80,10 +82,12 @@
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="simplenav" stlye="">
+								{% if is_login_success %}
 								<a href={% url 'accounts:home' %} >Home</a> | 
 								<a href="#">Team</a> |
 								<a href="#">User</a> |
 								<a href={% url 'accounts:setting' %} >Setting</a> |
+								{% endif %}
 								<b><a href={% url 'accounts:register'%}>Sign up</a></b>
 							</p>
 						</div>
@@ -92,7 +96,7 @@
 			</div>
 		</div>
 	</footer>	
-		
+    
 
 	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 

@@ -8,8 +8,10 @@ def index(request) :
 	return render(request , 'home.html')
 
 def setting(request) :
-	return render(request , 'accounts/setting.html',
-		{'is_login_success' : True})
+	return render(request , 'accounts/setting.html',{
+		'is_login_success' : True,
+		'user_session' : Account.objects.get(_account_name = request.session['account_name'])
+		})
 
 def home(request) :
 	return render(request , 'home.html' , {

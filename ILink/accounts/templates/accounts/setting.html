@@ -1,14 +1,13 @@
 {% extends 'home.html' %}
 
 {% block content %}
-
+<br/>
 <div class="container">
 	<div class="row">
 		<div class="span2 col-md-3 col-md-offset-1">
 			<ul class="nav nav-pills nav-stacked"> 
 				<li class="active"><a href="#">Basic info</a></li>
-				<li><a href="#">Skill</a></li> 
-				<li><a href="#">Experience</a></li> 
+				<li><a href="#">Skill &amp; Experience</a></li> 
 				<li><a href="#">Contact</a></li> 
 			</ul>
 		</div>
@@ -32,28 +31,35 @@
          		  <div class="controls">
 					 <!-- Multiple Radios -->
 	          		  <label class="radio">
-	             		 <input type="radio" value="Option one" name="group" checked="checked">Male
+	             		 <input type="radio" value="Option one" name="gender" checked="checked">Male
 	            	  </label>
 	           		  <label class="radio">
-	              		<input type="radio" value="Option two" name="group">Female
+	              		<input type="radio" value="Option two" name="gender">Female
 	           		  </label>
 	           		  <p class="help-block"></p>
           		  </div>
+          		</div>
 
+				 <div class="control-group">
+       			   <label class="control-label">Birthday</label>
+         		  <div class="controls">
+					<input id="birthday" type="date" value="1990-01-01"/>
+	           		  <p class="help-block"></p>
+          		  </div>
           		</div>
 
           		<div class="control-group">
-         		 	<label class="control-label">Hobbies</label>
-         		 	 <!-- Multiple Checkboxes -->
+         		 	<label class="control-label">Education</label>
+         		 	 <!-- Multiple Radios -->
 		          	<div class="controls">
-			            <label class="checkbox inline">
-			              <input type="checkbox" value="1"> 1
+			            <label class="radio">
+			              <input type="radio" value="Option one" name="education"> Junior College Student
 			            </label>
-			            <label class="checkbox inline">
-			              <input type="checkbox" value="2"> 2
+			            <label class="radio">
+			              <input type="radio" value="Option two" name="education"> Undergraduate 
 			            </label>
-			            <label class="checkbox inline">
-			              <input type="checkbox" value="3"> 3
+			            <label class="radio"> 
+			              <input type="radio" value="Option three" name="education"> Postgraduate 
 			            </label>
 			            <p class="help-block"></p>
 		         	</div>
