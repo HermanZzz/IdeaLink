@@ -13,6 +13,19 @@ def setting(request) :
 		'user_session' : Account.objects.get(_account_name = request.session['account_name'])
 		})
 
+def settingContact(request) :
+	return render(request , 'accounts/setting/contact.html',{
+		'is_login_success' : True,
+		'user_session' : Account.objects.get(_account_name = request.session['account_name'])
+		})
+
+def settingExperience(request) :
+	return render(request , 'accounts/setting/experience.html',{
+		'is_login_success' : True,
+		'user_session' : Account.objects.get(_account_name = request.session['account_name'])
+		})
+	
+
 def home(request) :
 	return render(request , 'home.html' , {
 			'is_login_success' : True,

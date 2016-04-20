@@ -10,5 +10,7 @@ urlpatterns = [
 	url(r'^login$' , views.login , name = 'login') ,
 	url(r'^home$' , views.home , name='home'),
 	url(r'^index$' , views.logout , name='logout'),
-	url(r'^setting$' , views.setting , name='setting')
+	url(r'^setting$' , views.setting , name='setting'),
+	url(r'^setting/contact$' , views.settingContact , name='settingContact'),
+	url(r'^setting/experience$' , views.settingExperience , name='settingExperience')
 ]
