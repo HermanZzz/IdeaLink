@@ -122,5 +122,4 @@
 
         this.init = init;
     }
-    
 })();
