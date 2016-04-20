@@ -7,19 +7,6 @@
   <link rel="stylesheet" href="/static/sweetalert/sweetalert.css" />
   <link type="image/x-icon" rel="shortcut icon" href="/static/img/favicon.ico" />
   <link rel="stylesheet" href="/static/css/style.css" />
-
-  {% load static %}  
-  <script src="{% static "js/jquery.min.js" %}" ></script>
-  {% load static %}
-  <script src="{% static "js/register.js" %}"></script>
-  {% load static %}
-  <script src="{% static "js/bg/TweenLite.min.js" %}"></script>
-  {% load static %}
-  <script src="{% static "js/bg/EasePack.min.js" %}"></script>
-  {% load static %}
-  <script src="{% static "js/bg/rAF.js" %}"></script>
-  {% load static %}
-  <script src="{% static "sweetalert/sweetalert.min.js" %}"></script>
 </head>
 
 <body >
@@ -37,7 +24,7 @@
   {% endif %}
   <div id="large-header" class="large-header container" style="position:relative;">
     <canvas id="demo-canvas"> </canvas>
-    <div class="text-info" style="position:absolute; top:40%; left:2%;">
+    <div class="text-info" style="position:absolute; top:40%; left:4%;">
           <h1>Welcome to <a href={% url 'accounts:index' %}>ILink Platform </a><small>version 1.0</small></h1>
           <h4>  &nbsp&nbsp&nbsp&nbsp a ingenious platform for those who have incredible ideas or skills</h4>
           <p align="center"><a class="btn btn-primary btn-lg" role="button" href="{% url 'accounts:register' %}">
@@ -68,5 +55,19 @@
         </div>
     </div>
   </div>
+
+  {% load static %}  
+  <script src="{% static "js/jquery.min.js" %}" ></script>
+  {% load static %}
+  <script src="{% static "js/register.js" %}"></script>
+  {% load static %}
+  <script src="{% static "js/bg/TweenLite.min.js" %}"></script>
+  {% load static %}
+  <script src="{% static "js/bg/EasePack.min.js" %}"></script>
+  {% load static %}
+  <script src="{% static "js/bg/rAF.js" %}"></script>
+  {% load static %}
+  <script src="{% static "sweetalert/sweetalert.min.js" %}"></script>
+
 </body>
 </html>
