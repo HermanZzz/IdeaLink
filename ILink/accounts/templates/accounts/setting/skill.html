@@ -1,0 +1,108 @@
+{% extends 'home.html' %}
+{% block head %}
+<link href="/static/css/bootstrap-slider.min.css" rel="stylesheet">
+<style type='text/css'>
+.slider-handle.custom {
+background: transparent none;
+}
+</style>
+{% endblock %}
+
+
+
+{% block content %}
+<header id="head" class="secondary"></header>
+<br/>
+<div class="container">
+	<div class="row">
+		<div class="span2 col-md-3 col-md-offset-1">
+			<ul class="nav nav-pills nav-stacked"> 
+				<li><a href={% url 'accounts:setting' %}>Profile</a></li>
+				<li class="active"><a href={% url 'accounts:settingSkill' %}>Skill</a></li> 
+				<li><a href={% url 'accounts:settingExperience' %}>Experience</a></li> 
+				<li><a href={% url 'accounts:settingContact' %}>Contact</a></li> 
+			</ul>
+		</div>
+		<div class="col-md-7 ">
+		      <table class="table table-hover">
+				   <caption></caption>
+				   <thead>
+				      <tr>
+				         <th>Skill</th>
+				         <th>Proficiency</th>
+				      </tr>
+				   </thead>
+				   <tbody>
+				      <tr>
+				         <td>JAVA</td>
+				         <td>8</td>
+				      </tr>
+				   </tbody>
+				   <tbody>
+				      <tr>
+				         <td>Perl</td>
+				         <td>7</td>
+				      </tr>
+				   </tbody>
+				</table>
+			</div>
+
+	<form class="form-horizontal">
+	  <fieldset>
+		<a class="btn " type="button" data-toggle="collapse" data-target="#addExperience" aria-expanded="false" aria-controls="addExperience">
+		  Add Skill
+		</a>
+		<div class="collapse" id="addExperience">
+ 		 <div class="well">
+
+    		<div class="control-group">
+	      <!-- Text input-->
+		      <label class="control-label" for="input01">Skill</label>
+		      <div class="controls">
+		        <input type="text" placeholder="placeholder" class="input-xlarge form-control">
+		        <p class="help-block"> </p>
+		        <p class="help-block"> </p>
+		      </div>
+	 	    </div>
+		   
+		    <div class="control-group">
+	      <!-- Text input-->
+		      <label class="control-label" for="input01">Proficiency</label>
+		      <div class="controls">
+				<input id="proficiency" data-slider-handle="custom" type="text" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="6"/>
+			  </div>
+		    
+		    </div>
+
+
+		     <div class="control-group">
+		          <label class="control-label"> </label>
+		          <!-- Button -->
+		          <div class="controls">
+		            <button class="btn btn-success">+</button>
+		          </div>
+		          <p class="help-block"></p>
+		     </div>
+		 </div>
+		</div>
+		
+	 </fieldset>
+	 </form>
+	</div>
+</div>
+{% endblock %}
+
+
+{% block js %}
+
+{% load static %}
+<script src="{% static "js/bootstrap-slider.min.js" %}"></script>
+
+<script type='text/javascript'>
+    	$(document).ready(function() {
+	        $("#proficiency").slider({
+	tooltip: 'always'
+});
+	    })
+</script>
+{% endblock %}

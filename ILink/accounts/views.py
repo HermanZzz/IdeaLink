@@ -25,6 +25,11 @@ def settingExperience(request) :
 		'user_session' : Account.objects.get(_account_name = request.session['account_name'])
 		})
 	
+def settingSkill(request) :
+	return render(request , 'accounts/setting/skill.html',{
+		'is_login_success' : True,
+		'user_session' : Account.objects.get(_account_name = request.session['account_name'])
+		})
 
 def home(request) :
 	return render(request , 'home.html' , {

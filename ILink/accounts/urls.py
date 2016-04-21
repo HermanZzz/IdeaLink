@@ -12,5 +12,6 @@ urlpatterns = [
 	url(r'^index$' , views.logout , name='logout'),
 	url(r'^setting$' , views.setting , name='setting'),
 	url(r'^setting/contact$' , views.settingContact , name='settingContact'),
-	url(r'^setting/experience$' , views.settingExperience , name='settingExperience')
+	url(r'^setting/experience$' , views.settingExperience , name='settingExperience'),
+	url(r'^setting/skill$' , views.settingSkill , name='settingSkill')
 ]
