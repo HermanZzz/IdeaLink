@@ -7,30 +7,32 @@
 	<div class="row">
 		<div class="span2 col-md-3 col-md-offset-1">
 			<ul class="nav nav-pills nav-stacked"> 
-				<li class="active"><a href={% url 'accounts:setting' %}>Basic info</a></li>
-				<li><a href="#">Skill</a></li> 
+				<li class="active"><a href={% url 'accounts:setting' %}>Profile</a></li>
+				<li><a href={% url 'accounts:settingSkill' %}>Skill</a></li> 
 				<li><a href={% url 'accounts:settingExperience' %}>Experience</a></li> 
 				<li><a href={% url 'accounts:settingContact' %}>Contact</a></li> 
 			</ul>
 		</div>
-		<div class="col-md-8 ">
+		<div class="col-md-7 ">
+
 			<form class="form-horizontal">
 			    <fieldset>
 			      <div id="legend" class="">
-			        <legend class="">User</legend>
+			        <legend class="">{{ user_session.account_name }}</legend>
 			      </div>
+			   <div class="well">
     			<div class="control-group">
 		          <!-- Text input-->
 		          <label class="control-label" for="input01">Name</label>
 		          <div class="controls">
-		            <input type="text" placeholder="placeholder" class="input-xlarge">
-		            <p class="help-block">blabla...</p>
+		            <input type="text" placeholder="placeholder" class="input-xlarge form-control">
+		            <p class="help-block"></p>
 		          </div>
 		        </div>
 
     			<div class="control-group">
        			   <label class="control-label">Gender</label>
-         		  <div class="controls">
+         		  <div class="controls ">
 					 <!-- Multiple Radios -->
 	          		  <label class="radio">
 	             		 <input type="radio" value="Option one" name="gender" checked="checked">Male
@@ -45,7 +47,7 @@
 				 <div class="control-group">
        			   <label class="control-label">Birthday</label>
          		  <div class="controls">
-					<input id="birthday" type="date" value="1990-01-01"/>
+					<input id="birthday" type="date" value="1990-01-01" class="form-control"/>
 	           		  <p class="help-block"></p>
           		  </div>
           		</div>
@@ -71,7 +73,7 @@
 			          <!-- Select Basic -->
 			          <label class="control-label">Select - Basic</label>
 			          <div class="controls">
-			            <select class="input-xlarge">
+			            <select class="input-xlarge form-control">
 			              <option>Enter</option>
 			              <option>Your</option>
 			              <option>Options</option>
@@ -86,7 +88,7 @@
 		          <label class="control-label">Textarea</label>
 		          <div class="controls">
 		            <div class="textarea">
-		                  <textarea type="" class=""> </textarea>
+		                  <textarea type="" class="form-control"> </textarea>
 		            </div>
 		            <p class="help-block"></p>
 		          </div>
@@ -100,12 +102,12 @@
 			          </div>
 			          <p class="help-block"></p>
 			     </div>
+			 </div>
 			 </fieldset>
 			 </form>
-
-
 		</div>
 	</div>
+
 </div>
 
 {% endblock %}
