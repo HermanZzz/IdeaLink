@@ -45,7 +45,7 @@
 					</li>
 					<li><a id="setting" href={% url 'accounts:setting' %}>Setting</a></li>
 					<li><a href="#">{{ user_session.account_name}}</a></li>	
-					<li><a class="btn" href="{% url 'accounts:logout' %}">LOG OUT</a></li>
+					<li><a class="btn" href={% url 'accounts:logout' %}>LOG OUT</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
 			{% else %}
@@ -90,10 +90,12 @@
 								{% if is_login_success %}
 								<a href={% url 'accounts:home' %} >Home</a> | 
 								<a href="#">Team</a> |
-								<a href="#">User</a> |
-								<a id="setting" href={% url 'accounts:setting' %} >Setting</a> |
-								{% endif %}
+								<a id="setting" href={% url 'accounts:setting' %} >Setting</a> 
+								|
+								<a id="logout" href={% url 'accounts:logout' %} >Logout</a> 
+								{% else %}
 								<b><a href={% url 'accounts:register'%}>Sign up</a></b>
+								{% endif %}
 							</p>
 						</div>
 					</div>

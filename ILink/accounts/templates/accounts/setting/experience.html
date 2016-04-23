@@ -1,5 +1,9 @@
 {% extends 'home.html' %}
 
+{% block head %}
+<link href="/static/css/timePicker.css" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
 <header id="head" class="secondary"></header>
 <br/>
@@ -92,4 +96,11 @@
 	</div>
 </div>
 
+<br/><br/><br/>
+
+{% endblock %}
+
+{% block js %}
+{% load static %}
+<script src="{% static "js/timePicker.js" %}"></script>
 {% endblock %}
