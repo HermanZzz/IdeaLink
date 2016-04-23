@@ -8,23 +8,39 @@ def index(request) :
 	return render(request , 'home.html')
 
 def setting(request) :
+	# validate user session
+	try:
+		account = Account.objects.get(_account_name = request.session['account_name'])
+	except Exception, e:
+		return render(request , 'accounts/login.html' , {
+			'is_login_success' : False,
+			'is_register_success' : False,
+			'is_first_time_to_this_page' : False,
+			})
+
+	# check profile info
+	
+
 	return render(request , 'accounts/setting.html',{
 		'is_login_success' : True,
-		'user_session' : Account.objects.get(_account_name = request.session['account_name'])
+		'user_session' : account
 		})
 
+# Unmodified
 def settingContact(request) :
 	return render(request , 'accounts/setting/contact.html',{
 		'is_login_success' : True,
 		'user_session' : Account.objects.get(_account_name = request.session['account_name'])
 		})
 
+# Unmodified
 def settingExperience(request) :
 	return render(request , 'accounts/setting/experience.html',{
 		'is_login_success' : True,
 		'user_session' : Account.objects.get(_account_name = request.session['account_name'])
 		})
-	
+
+# Unmodified
 def settingSkill(request) :
 	return render(request , 'accounts/setting/skill.html',{
 		'is_login_success' : True,
@@ -32,9 +48,19 @@ def settingSkill(request) :
 		})
 
 def home(request) :
+	# validate user session
+	try:
+		account = Account.objects.get(_account_name = request.session['account_name'])
+	except Exception, e:
+		return render(request , 'accounts/login.html' , {
+			'is_login_success' : False,
+			'is_register_success' : False,
+			'is_first_time_to_this_page' : False,
+			})
+
 	return render(request , 'home.html' , {
 			'is_login_success' : True,
-			'user_session' : Account.objects.get(_account_name = request.session['account_name']),
+			'user_session' : account,
 			})
 
 def logout(request):
