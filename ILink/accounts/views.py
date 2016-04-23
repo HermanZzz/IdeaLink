@@ -7,6 +7,7 @@ from .models import Account
 def index(request) :
 	return render(request , 'home.html')
 
+# Unfinished
 def setting(request) :
 	# validate user session
 	try:
@@ -26,25 +27,105 @@ def setting(request) :
 		'user_session' : account
 		})
 
-# Unmodified
+# Basic function done , need to be updated according to the issue pushed on the github
 def settingContact(request) :
-	return render(request , 'accounts/setting/contact.html',{
-		'is_login_success' : True,
-		'user_session' : Account.objects.get(_account_name = request.session['account_name'])
-		})
+	# validate user session
+	try:
+		account = Account.objects.get(_account_name = request.session['account_name'])
+	except Exception, e:
+		return render(request , 'accounts/login.html' , {
+			'is_login_success' : False,
+			'is_register_success' : False,
+			'is_first_time_to_this_page' : False,
+			})
 
-# Unmodified
-def settingExperience(request) :
+	# Fetch user configuration
+	try:
+		job_title = request.POST['title']
+		start_date = request.POST['start']
+		end_date = request.POST['end']
+		job_description = request.POST['description']
+
+		account.experience_set.create(_job_title = job_title , _description = job_description , 
+			_start_date = start_date , _end_date = end_date)
+	except Exception, e:
+		# representation page
+		return render(request , 'accounts/setting/experience.html',{
+		'is_login_success' : True,
+		'user_session' : account,
+		'user_experience_list' : account.experience_set.all(),
+		})	
+	
 	return render(request , 'accounts/setting/experience.html',{
 		'is_login_success' : True,
-		'user_session' : Account.objects.get(_account_name = request.session['account_name'])
+		'user_session' : account,
+		'user_experience_list' : account.experience_set.all(),
 		})
 
-# Unmodified
+# Basic function done , need to be updated according to the issue pushed on the github
+def settingExperience(request) :
+	# validate user session
+	try:
+		account = Account.objects.get(_account_name = request.session['account_name'])
+	except Exception, e:
+		return render(request , 'accounts/login.html' , {
+			'is_login_success' : False,
+			'is_register_success' : False,
+			'is_first_time_to_this_page' : False,
+			})
+
+	# Fetch user configuration
+	try:
+		job_title = request.POST['title']
+		start_date = request.POST['start']
+		end_date = request.POST['end']
+		job_description = request.POST['description']
+
+		account.experience_set.create(_job_title = job_title , _description = job_description , 
+			_start_date = start_date , _end_date = end_date)
+	except Exception, e:
+		# representation page
+		return render(request , 'accounts/setting/experience.html',{
+		'is_login_success' : True,
+		'user_session' : account,
+		'user_experience_list' : account.experience_set.all(),
+		})	
+	
+	return render(request , 'accounts/setting/experience.html',{
+		'is_login_success' : True,
+		'user_session' : account,
+		'user_experience_list' : account.experience_set.all(),
+		})
+
+# Basic function done , need to be updated according to the issue pushed on the github
 def settingSkill(request) :
+	# validate user session
+	try:
+		account = Account.objects.get(_account_name = request.session['account_name'])
+	except Exception, e:
+		return render(request , 'accounts/login.html' , {
+			'is_login_success' : False,
+			'is_register_success' : False,
+			'is_first_time_to_this_page' : False,
+			})
+
+	# Fetch user configuration
+	try:
+		skill_type = request.POST['skill_type']
+		skill_description = request.POST['skill_description']
+		account.skill_set.create(_skill_type = skill_type , _skill_description = skill_description)
+	except Exception, e:
+		# representation page
+		return render(request , 'accounts/setting/skill.html',{
+		'is_login_success' : True,
+		'user_session' : account,
+		'user_skill_list' : account.skill_set.all(),
+		})	
+	
 	return render(request , 'accounts/setting/skill.html',{
 		'is_login_success' : True,
-		'user_session' : Account.objects.get(_account_name = request.session['account_name'])
+		'user_session' : account,
+		'user_skill_list' : account.skill_set.all(),
 		})
 
 def home(request) :

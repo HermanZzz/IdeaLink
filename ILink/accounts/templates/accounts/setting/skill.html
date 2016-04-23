@@ -29,25 +29,22 @@ background: transparent none;
 				   <thead>
 				      <tr>
 				         <th>Skill</th>
-				         <th>Proficiency</th>
+				         <th>Description</th>
 				      </tr>
 				   </thead>
 				   <tbody>
-				      <tr>
-				         <td>JAVA</td>
-				         <td>8</td>
-				      </tr>
-				   </tbody>
-				   <tbody>
-				      <tr>
-				         <td>Perl</td>
-				         <td>7</td>
-				      </tr>
+				   {% for skill in user_skill_list %}
+				   <tr>
+				   		<td>{{ skill.skill_type }}</td>
+				   		<td>{{ skill.skill_description }}</td>
+				   </tr>
+				   {% endfor %}
 				   </tbody>
 				</table>
-			</div>
+		</div>
 
-	<form class="form-horizontal">
+	<form class="form-horizontal" action="{% url 'accounts:settingSkill' %}" method="POST">
+	{% csrf_token %}
 	  <fieldset>
 		<a class="btn " type="button" data-toggle="collapse" data-target="#addExperience" aria-expanded="false" aria-controls="addExperience">
 		  Add Skill
@@ -59,7 +56,7 @@ background: transparent none;
 	      <!-- Text input-->
 		      <label class="control-label" for="input01">Skill</label>
 		      <div class="controls">
-		        <input type="text" placeholder="placeholder" class="input-xlarge form-control">
+		        <input type="text" id = "_skill_type" name = "skill_type" placeholder="skill type" class="input-xlarge form-control">
 		        <p class="help-block"> </p>
 		        <p class="help-block"> </p>
 		      </div>
@@ -67,11 +64,10 @@ background: transparent none;
 		   
 		    <div class="control-group">
 	      <!-- Text input-->
-		      <label class="control-label" for="input01">Proficiency</label>
+		      <label class="control-label" for="input01">Description</label>
 		      <div class="controls">
-				<input id="proficiency" data-slider-handle="custom" type="text" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="6"/>
+				<input id="_skill_description" name = "skill_description" type="text" placeholder="skill description" />
 			  </div>
-		    
 		    </div>
 
 

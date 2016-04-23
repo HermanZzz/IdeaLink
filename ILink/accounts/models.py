@@ -203,7 +203,7 @@ class Skill(models.Model) :
 
 	# Representations
 	def __str__(self) :
-		return 'Skill:' + self._skill_type + ' of account :' + account.account_name
+		return 'Skill:' + self._skill_type + ' of account :' + self.account.account_name
 	__repr__ = __str__
 
 # Projects info , many to one relation to Account

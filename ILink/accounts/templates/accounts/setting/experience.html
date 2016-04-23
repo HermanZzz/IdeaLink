@@ -24,22 +24,18 @@
 				      </tr>
 				   </thead>
 				   <tbody>
+				   {% for experience in user_experience_list %}
 				      <tr>
-				         <td>Boss</td>
-				         <td>1234.12.1-1234.12.2</td>
-				         <td>blablabla</td>
+				         <td>{{experience.job_title}}</td>
+				         <td>{{experience.start_date}} - {{experience.end_date}}</td>
+				         <td>{{experience.description}}</td>
 				      </tr>
-				   </tbody>
-				   <tbody>
-				      <tr>
-				         <td>hhhh</td>
-				         <td>1234.12.1-1234.12.2</td>
-				         <td>blablabla</td>
-				      </tr>
+				    {% endfor %}
 				   </tbody>
 				</table>
 
-	<form class="form-horizontal">
+	<form class="form-horizontal" action="{% url 'accounts:settingExperience'%}" method="POST">
+	{% csrf_token %}
 	  <fieldset>
 		<a class="btn " type="button" data-toggle="collapse" data-target="#addExperience" aria-expanded="false" aria-controls="addExperience">
 		  Add Experience
@@ -49,9 +45,9 @@
 
     		<div class="control-group">
 	      <!-- Text input-->
-		      <label class="control-label" for="input01">Job Title</label>
+		      <label class="control-label" for="input01">Title</label>
 		      <div class="controls">
-		        <input type="text" placeholder="placeholder" class="input-xlarge form-control">
+		        <input type="text" name = "title" placeholder="placeholder" class="input-xlarge form-control">
 		        <p class="help-block"> </p>
 		      </div>
 		    </div>
@@ -59,9 +55,9 @@
 			 <div class="control-group">
 				   <label class="control-label">Duration</label>
 				  <div class="controls">
-				<input id="startTime" type="date" class="form-control"/>
+				<input id="startTime" name = "start" type="date" class="form-control"/>
 				<p class="help-block" style="text-align:center;">to</p>
-				<input id="endTime" type="date" class="form-control"/>
+				<input id="endTime" name = "end" type="date" class="form-control"/>
 		   		  <p class="help-block"></p>
 				  </div>
 				</div>
@@ -71,7 +67,7 @@
 		      <label class="control-label">Description</label>
 		      <div class="controls">
 		        <div class="textarea">
-		              <textarea type="" class="form-control"> </textarea>
+		              <textarea name = "description" type="" class="form-control"> </textarea>
 		        </div>
 		        <p class="help-block"></p>
 		      </div>
