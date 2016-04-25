@@ -8,7 +8,7 @@ SITP Project
 
 ###Install Python
 
-Python version 2.X is preffered preffered, download from [python.org](https://www.python.org/downloads/).
+Python version 2.X is preffered, download from [python.org](https://www.python.org/downloads/).
 
 Then, you can verify that Python is installed by typing `python` from your shell; you should see something like:
 
