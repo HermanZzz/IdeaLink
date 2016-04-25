@@ -29,6 +29,7 @@ background: transparent none;
 				   <thead>
 				      <tr>
 				         <th>Skill</th>
+				         <th>Proficiency</th>
 				         <th>Description</th>
 				      </tr>
 				   </thead>
@@ -62,11 +63,20 @@ background: transparent none;
 		      </div>
 	 	    </div>
 		   
+		   <div class="control-group">
+ 	      <!-- Text input-->
+ 		      <label class="control-label" for="input01">Proficiency</label>
+ 			  <div class="controls">
+ 				<input id="proficiency" data-slider-handle="custom" type="text" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="6"/>
+ 			  </div>
+ 		    
+ 		    </div>
+
 		    <div class="control-group">
 	      <!-- Text input-->
 		      <label class="control-label" for="input01">Description</label>
-		      <div class="controls">
-				<input id="_skill_description" name = "skill_description" type="text" placeholder="skill description" />
+		      <div class="textarea">
+				<textarea id="_skill_description" name = "skill_description" type="" placeholder="skill description" class="form-control" /></textarea>
 			  </div>
 		    </div>
 
