@@ -59,9 +59,16 @@
 			 <div class="control-group">
 				   <label class="control-label">Duration</label>
 				  <div class="controls">
-				<input id="startTime" name = "start" type="date" class="form-control"/>
-				<p class="help-block" style="text-align:center;">to</p>
-				<input id="endTime" name = "end" type="date" class="form-control"/>
+				<div id='wrapper'>
+ 						 <select class='custom-date form-control' name='select'>
+ 					      <option value='7'>7 Days</option>
+ 					      <option value='30'>30 Days</option>
+ 					      <option selected='selected' value='90'>90 Days</option>
+ 					      <option value='180'>180 Days</option>
+ 					      <option value='365'>365 Days</option>
+ 					      <option value='custom'>Custom</option>
+ 					    </select>
+ 					</div>
 		   		  <p class="help-block"></p>
 				  </div>
 				</div>
