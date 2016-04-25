@@ -175,6 +175,7 @@ class Skill(models.Model) :
 	)
 
 	_skill_type = models.CharField(max_length=30)
+	_skill_proficiency = models.IntegerField()
 	_skill_description = models.TextField()
 
 	# Properties & setter
@@ -185,6 +186,12 @@ class Skill(models.Model) :
 	def skill_type(self , skill) :
 		self._skill_type = skill
 	@property
+	def _skill_proficiency(self):
+	    return self._skill_proficiency
+	@_skill_proficiency.setter
+	def _skill_proficiency(self , proficiency) :
+		self._skill_proficiency = proficiency
+	@property
 	def skill_description(self):
 	    return self._skill_description
 	@skill_description.setter
@@ -192,13 +199,15 @@ class Skill(models.Model) :
 		self._skill_description = description
 
 	@classmethod
-	def create(cls , account , skill_type , skill_description):
-		skill = cls(account = account_name , _skill_type = skill_type , _skill_description = skill_description)
+	def create(cls , account , skill_type , skill_proficiency , skill_description):
+		skill = cls(account = account_name , _skill_type = skill_type ,
+			_skill_proficiency = skill_proficiency, _skill_description = skill_description)
 		return skill
 
 	# properties update
-	def update_skill(skill_type , skill_description) :
+	def update_skill(skill_type , skill_proficiency , skill_description) :
 		self._skill_type = skill_type
+		self._skill_proficiency = skill_proficiency
 		self._skill_description = skill_description
 
 	# Representations

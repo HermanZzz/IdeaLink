@@ -37,6 +37,7 @@ background: transparent none;
 				   {% for skill in user_skill_list %}
 				   <tr>
 				   		<td>{{ skill.skill_type }}</td>
+						<td>{{ skill.skill_proficiency }}</td>
 				   		<td>{{ skill.skill_description }}</td>
 				   </tr>
 				   {% endfor %}
@@ -67,7 +68,7 @@ background: transparent none;
 	 	      <!-- Text input-->
 	 		      <label class="control-label" for="input01">Proficiency</label>
 	 			  <div class="controls">
-	 				<input id="proficiency" data-slider-handle="custom" type="text" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="6"/>
+	 				<input id="proficiency" name="skill_proficiency" data-slider-handle="custom" type="text" data-slider-min="1" data-slider-max="10" data-slider-step="1" data-slider-value="6"/>
 	 			  </div>
 	 		    
 	 		    </div>

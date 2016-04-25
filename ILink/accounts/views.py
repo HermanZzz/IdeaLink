@@ -112,8 +112,9 @@ def settingSkill(request) :
 	# Fetch user configuration
 	try:
 		skill_type = request.POST['skill_type']
+		skill_proficiency = request.POST['skill_proficiency']
 		skill_description = request.POST['skill_description']
-		account.skill_set.create(_skill_type = skill_type , _skill_description = skill_description)
+		account.skill_set.create(_skill_type = skill_type , _skill_proficiency=skill_proficiency , _skill_description = skill_description)
 	except Exception, e:
 		# representation page
 		return render(request , 'accounts/setting/skill.html',{
