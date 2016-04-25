@@ -42,60 +42,62 @@ background: transparent none;
 				   {% endfor %}
 				   </tbody>
 				</table>
-		</div>
-
-	<form class="form-horizontal" action="{% url 'accounts:settingSkill' %}" method="POST">
-	{% csrf_token %}
-	  <fieldset>
-		<a class="btn " type="button" data-toggle="collapse" data-target="#addExperience" aria-expanded="false" aria-controls="addExperience">
-		  Add Skill
-		</a>
-		<div class="collapse" id="addExperience">
- 		 <div class="well">
-
-    		<div class="control-group">
-	      <!-- Text input-->
-		      <label class="control-label" for="input01">Skill</label>
-		      <div class="controls">
-		        <input type="text" id = "_skill_type" name = "skill_type" placeholder="skill type" class="input-xlarge form-control">
-		        <p class="help-block"> </p>
-		        <p class="help-block"> </p>
-		      </div>
-	 	    </div>
-		   
-		   <div class="control-group">
- 	      <!-- Text input-->
- 		      <label class="control-label" for="input01">Proficiency</label>
- 			  <div class="controls">
- 				<input id="proficiency" data-slider-handle="custom" type="text" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="6"/>
- 			  </div>
- 		    
- 		    </div>
-
-		    <div class="control-group">
-	      <!-- Text input-->
-		      <label class="control-label" for="input01">Description</label>
-		      <div class="textarea">
-				<textarea id="_skill_description" name = "skill_description" type="" placeholder="skill description" class="form-control" /></textarea>
-			  </div>
-		    </div>
-
-
-		     <div class="control-group">
-		          <label class="control-label"> </label>
-		          <!-- Button -->
-		          <div class="controls">
-		            <button class="btn btn-success">+</button>
-		          </div>
-		          <p class="help-block"></p>
-		     </div>
-		 </div>
-		</div>
 		
-	 </fieldset>
-	 </form>
+
+		<form class="form-horizontal" action="{% url 'accounts:settingSkill' %}" method="POST">
+		{% csrf_token %}
+		  <fieldset>
+			<a class="btn " type="button" data-toggle="collapse" data-target="#addExperience" aria-expanded="false" aria-controls="addExperience">
+			  Add Skill
+			</a>
+			<div class="collapse" id="addExperience">
+	 		 <div class="well">
+
+	    		<div class="control-group">
+		      <!-- Text input-->
+			      <label class="control-label" for="input01">Skill</label>
+			      <div class="controls">
+			        <input type="text" id = "_skill_type" name = "skill_type" placeholder="skill type" class="input-xlarge form-control">
+			        <p class="help-block"> </p>
+			        <p class="help-block"> </p>
+			      </div>
+		 	    </div>
+			   
+			   <div class="control-group">
+	 	      <!-- Text input-->
+	 		      <label class="control-label" for="input01">Proficiency</label>
+	 			  <div class="controls">
+	 				<input id="proficiency" data-slider-handle="custom" type="text" data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="6"/>
+	 			  </div>
+	 		    
+	 		    </div>
+
+			    <div class="control-group">
+		      <!-- Text input-->
+			      <label class="control-label" for="input01">Description</label>
+			      <div class="textarea">
+					<textarea id="_skill_description" name = "skill_description" type="" placeholder="skill description" class="form-control" /></textarea>
+				  </div>
+			    </div>
+
+
+			     <div class="control-group">
+			          <label class="control-label"> </label>
+			          <!-- Button -->
+			          <div class="controls">
+			            <button class="btn btn-success">+</button>
+			          </div>
+			          <p class="help-block"></p>
+			     </div>
+			 </div>
+			</div>
+			
+		 </fieldset>
+		 </form>
+		</div>
 	</div>
 </div>
+<br/><br/><br/>
 {% endblock %}
 
 
