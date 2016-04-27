@@ -1,5 +1,9 @@
 {% extends 'home.html' %}
 
+{% block head %}
+ <link href="/static/bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+{% endblock %}
+
 {% block content %}
 <header id="head" class="secondary"></header>
 <br/>
@@ -25,7 +29,7 @@
 		          <!-- Text input-->
 		          <label class="control-label" for="input01">Name</label>
 		          <div class="controls">
-		            <input type="text" placeholder="placeholder" class="input-xlarge form-control">
+		            <input type="text" placeholder="placeholder" class="input-xlarge form-control ">
 		            <p class="help-block"></p>
 		          </div>
 		        </div>
@@ -44,13 +48,14 @@
           		  </div>
           		</div>
 
-				 <div class="control-group">
-       			   <label class="control-label">Birthday</label>
-         		  <div class="controls">
-					<input id="birthday" type="date" value="1990-01-01" class="form-control"/>
-	           		  <p class="help-block"></p>
-          		  </div>
-          		</div>
+          		<div class="control-group">
+	                <label for="dtp_input2" class="control-label">Birthday</label>
+	                <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+	                    <input id="birthday" class="form-control" size="16" type="text" value="" readonly>
+	                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+	                </div>
+					<p class="help-block"></p>
+          	 	 </div>			
 
           		<div class="control-group">
          		 	<label class="control-label">Education</label>
@@ -110,4 +115,22 @@
 
 </div>
 
+{% endblock %}
+
+{% block js %}
+{% load static %}
+<script src="{% static "bootstrap/js/bootstrap-datetimepicker.js" %}"></script>
+
+<script type="text/javascript">
+	$('.form_date').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+		autoclose: 1,
+		todayHighlight: 1,
+		startView: 2,
+		minView: 2,
+		forceParse: 0
+    });
+</script>
 {% endblock %}
