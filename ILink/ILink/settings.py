@@ -128,4 +128,5 @@ STATICFILES_DIRS = (
     ('img',os.path.join(STATIC_ROOT,'img').replace('\\','/') ),
     ('sweetalert',os.path.join(STATIC_ROOT,'sweetalert').replace('\\','/') ),
     ('upload',os.path.join(STATIC_ROOT,'upload').replace('\\','/') ),
+    ('bootstrap',os.path.join(STATIC_ROOT,'bootstrap').replace('\\','/') ),
 )

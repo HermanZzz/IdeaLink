@@ -1,6 +1,6 @@
 {% extends 'home.html' %}
 {% block head %}
-<link href="/static/css/bootstrap-slider.min.css" rel="stylesheet">
+<link href="/static/bootstrap/css/bootstrap-slider.min.css" rel="stylesheet">
 <style type='text/css'>
 .slider-handle.custom {
 background: transparent none;
@@ -105,7 +105,7 @@ background: transparent none;
 {% block js %}
 
 {% load static %}
-<script src="{% static "js/bootstrap-slider.min.js" %}"></script>
+<script src="{% static "bootstrap/js/bootstrap-slider.min.js" %}"></script>
 
 <script type='text/javascript'>
     	$(document).ready(function() {
