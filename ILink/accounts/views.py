@@ -50,13 +50,13 @@ def settingContact(request) :
 			_start_date = start_date , _end_date = end_date)
 	except Exception, e:
 		# representation page
-		return render(request , 'accounts/setting/experience.html',{
+		return render(request , 'accounts/setting/contact.html',{
 		'is_login_success' : True,
 		'user_session' : account,
 		'user_experience_list' : account.experience_set.all(),
 		})	
 	
-	return render(request , 'accounts/setting/experience.html',{
+	return render(request , 'accounts/setting/contact.html',{
 		'is_login_success' : True,
 		'user_session' : account,
 		'user_experience_list' : account.experience_set.all(),
