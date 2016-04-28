@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 
 import hashlib
 
@@ -128,6 +129,24 @@ def settingSkill(request) :
 		'user_session' : account,
 		'user_skill_list' : account.skill_set.all(),
 		})
+
+def deleteSkill(request , skill_type):
+	# validate user session
+	try:
+		account = Account.objects.get(_account_name = request.session['account_name'])
+	except Exception, e:
+		return render(request , 'accounts/login.html' , {
+			'is_login_success' : False,
+			'is_register_success' : False,
+			'is_first_time_to_this_page' : False,
+			})
+
+	# Delete
+	skill_for_delete = account.skill_set.filter(_skill_type = skill_type)
+	for skill in skill_for_delete :
+		skill.delete()
+
+	return HttpResponseRedirect('/accounts/setting/skill')
 
 def home(request) :
 	# validate user session

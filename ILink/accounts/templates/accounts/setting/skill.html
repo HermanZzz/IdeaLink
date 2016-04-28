@@ -43,7 +43,7 @@ background: transparent none;
 						<td>{{ skill.skill_proficiency }}</td>
 				   		<td>{{ skill.skill_description }}</td>
 				   		<td style="text-align:center;">
-				   			<a href="#">
+				   			<a href={% url 'accounts:deleteSkill' skill.skill_type %}>
   								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 							</a>
 						</td>
@@ -76,7 +76,7 @@ background: transparent none;
 	 	      <!-- Text input-->
 	 		      <label class="control-label" for="input01">Proficiency</label>
 	 			  <div class="controls">
-	 				<input id="proficiency" name="skill_proficiency" data-slider-handle="custom" type="text" data-slider-min="1" data-slider-max="10" data-slider-step="1" data-slider-value="6"/>
+	 				<input id="proficiency" name="skill_proficiency" data-slider-handle="custom" type="text" data-slider-min="1" data-slider-max="10" data-slider-step="1" data-slider-value="5"/>
 	 			  </div>
 	 		    
 	 		    </div>
