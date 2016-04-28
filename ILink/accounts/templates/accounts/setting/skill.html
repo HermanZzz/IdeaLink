@@ -8,8 +8,6 @@ background: transparent none;
 </style>
 {% endblock %}
 
-
-
 {% block content %}
 <header id="head" class="secondary"></header>
 <br/>
@@ -24,21 +22,31 @@ background: transparent none;
 			</ul>
 		</div>
 		<div class="col-md-7 ">
-		      <table class="table table-hover">
+		      <table class="table table-hover ">
 				   <caption></caption>
-				   <thead>
+				   <thead >
 				      <tr>
 				         <th>Skill</th>
 				         <th>Proficiency</th>
 				         <th>Description</th>
 				      </tr>
 				   </thead>
+
+				   <tbody>
+			
+				   </tbody>
+
 				   <tbody>
 				   {% for skill in user_skill_list %}
 				   <tr>
 				   		<td>{{ skill.skill_type }}</td>
 						<td>{{ skill.skill_proficiency }}</td>
 				   		<td>{{ skill.skill_description }}</td>
+				   		<td style="text-align:center;">
+				   			<a href="#">
+  								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+							</a>
+						</td>
 				   </tr>
 				   {% endfor %}
 				   </tbody>
