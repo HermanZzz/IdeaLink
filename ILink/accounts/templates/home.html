@@ -44,7 +44,7 @@
 							<li><a href="#">My Team</a></li>
 						</ul>
 					</li>
-					<li><a id="setting" href={% url 'accounts:setting' %}>Setting</a></li>
+					<li><a id="setting" href={% url 'accounts:settingProfile' %}>Setting</a></li>
 					<li><a href="#">{{ user_session.account_name}}</a></li>	
 					<li><a class="btn" href={% url 'accounts:logout' %}>LOG OUT</a></li>
 				</ul>
@@ -91,7 +91,7 @@
 								{% if is_login_success %}
 								<a href={% url 'accounts:home' %} >Home</a> | 
 								<a href="#">Team</a> |
-								<a id="setting" href={% url 'accounts:setting' %} >Setting</a> 
+								<a id="setting" href={% url 'accounts:settingProfile' %} >Setting</a> 
 								|
 								<a id="logout" href={% url 'accounts:logout' %} >Logout</a> 
 								{% else %}

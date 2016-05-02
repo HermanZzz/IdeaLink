@@ -9,7 +9,7 @@ def index(request) :
 	return render(request , 'home.html')
 
 # Unfinished
-def setting(request) :
+def settingProfile(request) :
 	# validate user session
 	try:
 		account = Account.objects.get(_account_name = request.session['account_name'])
@@ -23,44 +23,9 @@ def setting(request) :
 	# check profile info
 	
 
-	return render(request , 'accounts/setting.html',{
+	return render(request , 'accounts/setting/profile.html',{
 		'is_login_success' : True,
 		'user_session' : account
-		})
-
-# Basic function done , need to be updated according to the issue pushed on the github
-def settingContact(request) :
-	# validate user session
-	try:
-		account = Account.objects.get(_account_name = request.session['account_name'])
-	except Exception, e:
-		return render(request , 'accounts/login.html' , {
-			'is_login_success' : False,
-			'is_register_success' : False,
-			'is_first_time_to_this_page' : False,
-			})
-
-	# Fetch user configuration
-	try:
-		job_title = request.POST['title']
-		start_date = request.POST['start']
-		end_date = request.POST['end']
-		job_description = request.POST['description']
-
-		account.experience_set.create(_job_title = job_title , _description = job_description , 
-			_start_date = start_date , _end_date = end_date)
-	except Exception, e:
-		# representation page
-		return render(request , 'accounts/setting/contact.html',{
-		'is_login_success' : True,
-		'user_session' : account,
-		'user_experience_list' : account.experience_set.all(),
-		})	
-	
-	return render(request , 'accounts/setting/contact.html',{
-		'is_login_success' : True,
-		'user_session' : account,
-		'user_experience_list' : account.experience_set.all(),
 		})
 
 # Basic function done , need to be updated according to the issue pushed on the github

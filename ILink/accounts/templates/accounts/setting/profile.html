@@ -11,10 +11,9 @@
 	<div class="row">
 		<div class="span2 col-md-3 col-md-offset-1">
 			<ul class="nav nav-pills nav-stacked"> 
-				<li class="active"><a href={% url 'accounts:setting' %}>Profile</a></li>
+				<li class="active"><a href={% url 'accounts:settingProfile' %}>Profile</a></li>
 				<li><a href={% url 'accounts:settingSkill' %}>Skill</a></li> 
 				<li><a href={% url 'accounts:settingExperience' %}>Experience</a></li> 
-				<li><a href={% url 'accounts:settingContact' %}>Contact</a></li> 
 			</ul>
 		</div>
 		<div class="col-md-7 ">
@@ -74,8 +73,7 @@
 		         	</div>
 		         </div>
 
-		         <div class="control-group">
-			          <!-- Select Basic -->
+		         <!-- <div class="control-group">
 			          <label class="control-label">Select - Basic</label>
 			          <div class="controls">
 			            <select class="input-xlarge form-control">
@@ -86,8 +84,25 @@
 			            </select>
 			            <p class="help-block"></p>
 			          </div>
-			      </div>
+			      </div> -->
 
+				<div class="control-group">
+		          <!-- Text input-->
+		          <label class="control-label" for="input01">Cell Phone</label>
+		          <div class="controls">
+		            <input type="tel" placeholder="placeholder" class="input-xlarge form-control">
+		            <p class="help-block"></p>
+		          </div>
+		        </div>
+
+				<div class="control-group">
+		          <!-- Text input-->
+		          <label class="control-label" for="input01">Address</label>
+		          <div class="controls">
+		            <input type="text" placeholder="placeholder" class="input-xlarge form-control">
+		            <p class="help-block"></p>
+		        </div>
+	
     			 <div class="control-group">
 		          <!-- Textarea -->
 		          <label class="control-label">Textarea</label>

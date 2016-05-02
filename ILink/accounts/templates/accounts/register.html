@@ -15,7 +15,7 @@
 	<div id="large-header" class="large-header container" style="position:relative;">
 		<canvas id="demo-canvas"> </canvas>
 	
-	<div class="text-info" style="position:absolute; top:40%; left:4%;">
+	<div class="text-info" style="position:absolute; top:40%; left:5%;">
       <h1>Welcome to <a href={% url 'accounts:index' %}> ILink Platform</a> <small>version 1.0</small></h1>
       <h4>  &nbsp&nbsp&nbsp&nbsp a ingenious platform for those who have incredible ideas or skills</h4>
       <p align="center"><a class="btn btn-primary btn-lg" role="button" href="{% url 'accounts:login'%}">
@@ -27,13 +27,13 @@
 	        <div class="loginpanel">
 	      <i id="loading" class="hidden fa fa-spinner fa-spin bigicon"></i>
 	         <h2>
-	        <span class="fa fa-quote-left "></span> pls Sign Up <span class="fa fa-quote-right "></span>
+	        <span class="fa fa-quote-left "></span> Sign Up <span class="fa fa-quote-right "></span>
 	         </h2>
 	            <div>
 	            	<form method="post" action="{% url 'accounts:register' %}">
 					{% csrf_token %}
 	                <input id="_account_name" type="email" placeholder="Email Address" onkeypress="check_value();" name="account_name" autofocus="autofocus">
-	                <input id="_account_password" type="text" placeholder="Set Password ( ≥6 characters )" onkeypress="check_value();" name="account_password" minlength="6">
+	                <input id="_account_password" type="password" placeholder="Set Password ( ≥6 characters )" onkeypress="check_value();" name="account_password" minlength="6">
 			        <div class="buttonwrapper">
 			          <button id="loginbtn" type="submit" class="btn btn-warning loginbutton">
 			            <span class="fa fa-check"></span>

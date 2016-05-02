@@ -12,10 +12,9 @@
 	<div class="row">
 		<div class="span2 col-md-3 col-md-offset-1">
 			<ul class="nav nav-pills nav-stacked "> 
-				<li><a href={% url 'accounts:setting' %}>Profile</a></li>
+				<li><a href={% url 'accounts:settingProfile' %}>Profile</a></li>
 				<li><a href={% url 'accounts:settingSkill' %}>Skill</a></li> 
 				<li class="active"><a href={% url 'accounts:settingExperience' %}>Experience</a></li> 
-				<li><a href={% url 'accounts:settingContact' %}>Contact</a></li> 
 			</ul>
 		</div>
 		<div class="col-md-7 ">
@@ -82,7 +81,12 @@
 	                <label for="dtp_input2" class="control-label">Start Time</label>
 	                <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
 	                    <input id="startTime" class="form-control" size="16" type="text" value="" >
-	                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+	                    <span class="input-group-addon">
+	                    	<span class="glyphicon glyphicon-remove"></span>
+	                    </span>
+	                    <span class="input-group-addon">
+	            		    <span class="glyphicon glyphicon-calendar"></span>
+	            		</span>
 	                </div>
 					<p class="help-block"></p>
           	 	 </div>			
@@ -91,7 +95,12 @@
 	                <label for="dtp_input2" class="control-label">End Time</label>
 	                <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
 	                    <input id="endTime" class="form-control" size="16" type="text" value="" >
-	                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+	                     <span class="input-group-addon">
+	                    	<span class="glyphicon glyphicon-remove"></span>
+	                    </span>
+	                    <span class="input-group-addon">
+	            		    <span class="glyphicon glyphicon-calendar"></span>
+	            		</span>
 	                </div>
 					<p class="help-block"></p>
           	 	 </div>			
