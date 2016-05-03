@@ -8,7 +8,7 @@
 {% block content %}
 <header id="head" class="secondary"></header>
 <br/>
-<div class="container">
+<div class="container" >
 	<div class="row">
 		<div class="span2 col-md-3 col-md-offset-1">
 			<ul class="nav nav-pills nav-stacked "> 
@@ -28,6 +28,10 @@
 				      </tr>
 				   </thead>
 				   <tbody>
+				   	<tr>
+				   		<td>
+				   		</td>
+				   	</tr>
 				   {% for experience in user_experience_list %}
 				      <tr>
 				         <td>{{experience.job_title}}</td>
@@ -43,10 +47,13 @@
 				   </tbody>
 				</table>
 
+				<br/><br/><br/>	
+				<br/><br/><br/>
+
 	<form class="form-horizontal" action="{% url 'accounts:settingExperience'%}" method="POST">
 	{% csrf_token %}
 	  <fieldset>
-		<a class="btn " type="button" data-toggle="collapse" data-target="#addExperience" aria-expanded="false" aria-controls="addExperience">
+		<a class="btn " type="button" data-toggle="collapse" data-target="#addExperience" aria-expanded="false" aria-controls="addExperience" style="position: relative;left:33%;">
 		  Add Experience
 		</a>
 		<div class="collapse" id="addExperience">
@@ -79,7 +86,7 @@
 				</div> -->
 				<div class="control-group">
 	                <label for="dtp_input2" class="control-label">Start Time</label>
-	                <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+	                <div class="input-group date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
 	                    <input id="startTime" class="form-control" size="16" type="text" value="" >
 	                    <span class="input-group-addon">
 	                    	<span class="glyphicon glyphicon-remove"></span>
@@ -93,7 +100,7 @@
 
 			<div class="control-group">
 	                <label for="dtp_input2" class="control-label">End Time</label>
-	                <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+	                <div class="input-group date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
 	                    <input id="endTime" class="form-control" size="16" type="text" value="" >
 	                     <span class="input-group-addon">
 	                    	<span class="glyphicon glyphicon-remove"></span>
@@ -135,9 +142,9 @@
 	</div>
 </div>
 
-<br/><br/><br/>
-
+<br/><br/><br/>	<br/><br/><br/>	<br/><br/><br/>
 {% endblock %}
+
 
 {% block js %}
 {% load static %}

@@ -46,12 +46,14 @@ background: transparent none;
 				   {% endfor %}
 				   </tbody>
 				</table>
-		
+
+		<br/><br/><br/>	
+		<br/><br/><br/>
 
 		<form class="form-horizontal" action="{% url 'accounts:settingSkill' %}" method="POST">
 		{% csrf_token %}
 		  <fieldset>
-			<a class="btn " type="button" data-toggle="collapse" data-target="#addExperience" aria-expanded="false" aria-controls="addExperience">
+			<a class="btn " type="button" data-toggle="collapse" data-target="#addExperience" aria-expanded="false" aria-controls="addExperience" style="position: relative;left:35%;">
 			  Add Skill
 			</a>
 			<div class="collapse" id="addExperience">
@@ -101,7 +103,7 @@ background: transparent none;
 		</div>
 	</div>
 </div>
-<br/><br/><br/>
+<br/><br/><br/> <br/><br/><br/> <br/><br/><br/>
 {% endblock %}
 
 
