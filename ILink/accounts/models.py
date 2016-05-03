@@ -9,6 +9,7 @@ class Account(models.Model):
 	Account informations for users
 
 	"""
+	# Account info for register & login
 	_account_name = models.CharField(max_length = 30 , unique = True )
 	_account_passwd = models.CharField(max_length = 50)
 	_account_register_date = models.DateField()
@@ -41,7 +42,6 @@ class Account(models.Model):
 		return account_info
 	__repr__ = __str__
 
-
 # Contact info , one to one relation to user account
 class ContactInfo(models.Model) :
 	'''
@@ -56,10 +56,12 @@ class ContactInfo(models.Model) :
 		primary_key=True,
 	)
 
-	_contactinfo_name = models.CharField(max_length=30)
-	_contactinfo_cellphone = models.CharField(max_length=20)
-	_contactinfo_email = models.CharField(max_length=30)
-	_contactinfo_birthdate = models.DateField()
+	_contactinfo_name = models.CharField(max_length=30, blank=True)
+	_contactinfo_cellphone = models.CharField(max_length=20 , blank=True)
+	_contactinfo_birthdate = models.CharField(max_length=50,blank=True)
+	_contactinfo_gender = models.CharField(max_length=30 , blank=True)
+	_contactinfo_address = models.CharField(max_length=50 , blank=True)
+	_contactinfo_description = models.CharField(max_length = 140 ,blank=True)
 
 	# Properties & setter
 	@property
@@ -75,30 +77,47 @@ class ContactInfo(models.Model) :
 	def contactinfo_cellphone(self , phonenum) :
 		self._contactinfo_cellphone = phonenum
 	@property
-	def contactinfo_email(self):
-	    return self._contactinfo_email
-	@contactinfo_email.setter
-	def contactinfo_email(self , email) :
-		self._contactinfo_email = email
-	@property
 	def contactinfo_birthdate(self):
 	    return self._contactinfo_birthdate
 	@contactinfo_birthdate.setter
 	def contactinfo_birthdate(self , birthdate) :
 		self._contactinfo_birthdate = birthdate
+	@property
+	def contactinfo_gender(self):
+	    return self._contactinfo_gender
+	@contactinfo_gender.setter
+	def contactinfo_gender(self , gender):
+		self._contactinfo_gender = gender
+	@property
+	def contactinfo_address(self):
+	    return self._contactinfo_address
+	@contactinfo_address.setter
+	def contactinfo_address(self,  addr):
+		self._contactinfo_address = addr
+	@property
+	def contactinfo_description(self):
+	    return self._contactinfo_description
+	@contactinfo_description.setter
+	def contactinfo_description(self , description):
+		self._contactinfo_description = description
 
 	@classmethod
-	def create(cls , account, name , phonenum , email , birthdate) :
+	def create(cls , account, name , phonenum  , birthdate,
+		gender , address , description) :
 		contact_info = cls(account = account , _contactinfo_name = name , _contactinfo_cellphone = phonenum , 
-			_contactinfo_email = email , _contactinfo_birthdate = birthdate)
+			_contactinfo_birthdate = birthdate , _contactinfo_gender = gender ,
+			_contactinfo_address = address , _contactinfo_description = description)
 		return contact_info
 
 	# properties update
-	def update_contact_info(name , phonenum , email , birthdate) :
+	def update_contact_info(self , name , phonenum ,  birthdate ,
+		gender , address , description) :
 		self._contactinfo_name = name
 		self._contactinfo_cellphone = phonenum
-		self._contactinfo_email = email
 		self._contactinfo_birthdate = birthdate
+		self._contactinfo_gender = gender
+		self._contactinfo_address = address
+		self._contactinfo_description = description
 
 	# Representations
 	def __str__(self) :
@@ -165,7 +184,6 @@ class Experience(models.Model) :
 	def __str__(self) :
 		return 'Experience of :' + self._job_title + ' for account:' + account.account_name
 	__repr__ = __str__
-	
 	
 # Skills info , many to one relation to Account
 class Skill(models.Model) :

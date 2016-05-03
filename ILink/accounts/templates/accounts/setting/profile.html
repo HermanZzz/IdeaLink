@@ -18,7 +18,8 @@
 		</div>
 		<div class="col-md-7 ">
 
-			<form class="form-horizontal">
+			<form class="form-horizontal" action="{% url 'accounts:settingProfile' %}" method="POST">
+			{% csrf_token %}
 			    <fieldset>
 			      <div id="legend" class="">
 			        <legend class="">{{ user_session.account_name }}</legend>
@@ -28,7 +29,7 @@
 		          <!-- Text input-->
 		          <label class="control-label" for="input01">Name</label>
 		          <div class="controls">
-		            <input type="text" placeholder="placeholder" class="input-xlarge form-control ">
+		            <input name = "username" type="text" placeholder="User Name" class="input-xlarge form-control " value="{{ contactinfo.contactinfo_name }}">
 		            <p class="help-block"></p>
 		          </div>
 		        </div>
@@ -37,20 +38,30 @@
        			   <label class="control-label">Gender</label>
          		  <div class="controls ">
 					 <!-- Multiple Radios -->
+					 {% if contactinfo.contactinfo_gender == 'Male' %}
 	          		  <label class="radio">
-	             		 <input type="radio" value="Option one" name="gender" checked="checked">Male
+	             		 <input type="radio" name = "gender" value="Option one" name="gender" checked="checked">Male
 	            	  </label>
 	           		  <label class="radio">
-	              		<input type="radio" value="Option two" name="gender">Female
+	              		<input type="radio" name = "gender" value="Option two" name="gender">Female
 	           		  </label>
 	           		  <p class="help-block"></p>
+	           		 {% else %}
+	           		 <label class="radio">
+	             		 <input type="radio" name = "gender" value="Option one" name="gender" >Male
+	            	  </label>
+	           		  <label class="radio">
+	              		<input type="radio" name = "gender" value="Option two" name="gender" checked="checked">Female
+	           		  </label>
+	           		  <p class="help-block"></p>
+	           		 {% endif%}
           		  </div>
           		</div>
 
           		<div class="control-group">
 	                <label for="dtp_input2" class="control-label">Birthday</label>
 	                <div class="input-group date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-	                    <input id="birthday" class="form-control" size="16" type="text" value="">
+	                    <input id="birthday" name = "birthdate" class="form-control" size="16" type="text" value="{{ contactinfo.contactinfo_birthdate}}">
 	                    <span class="input-group-addon">
 	                    	<span class="glyphicon glyphicon-remove"></span>
 	                    </span>
@@ -61,28 +72,11 @@
 					<p class="help-block"></p>
           	 	 </div>			
 
-          		<div class="control-group">
-         		 	<label class="control-label">Education</label>
-         		 	 <!-- Multiple Radios -->
-		          	<div class="controls">
-			            <label class="radio">
-			              <input type="radio" value="Option one" name="education"> Junior College Student
-			            </label>
-			            <label class="radio">
-			              <input type="radio" value="Option two" name="education"> Undergraduate 
-			            </label>
-			            <label class="radio"> 
-			              <input type="radio" value="Option three" name="education"> Postgraduate 
-			            </label>
-			            <p class="help-block"></p>
-		         	</div>
-		         </div>
-
 				<div class="control-group">
 		          <!-- Text input-->
 		          <label class="control-label" for="input01">Cell Phone</label>
 		          <div class="controls">
-		            <input type="tel" placeholder="placeholder" class="input-xlarge form-control">
+		            <input type="tel" name = "cellphone" placeholder="Cell phone" class="input-xlarge form-control" value="{{ contactinfo.contactinfo_cellphone }}">
 		            <p class="help-block"></p>
 		          </div>
 		        </div>
@@ -91,7 +85,7 @@
 		          <!-- Text input-->
 		          <label class="control-label" for="input01">Address</label>
 		          <div class="controls">
-		            <input type="text" placeholder="placeholder" class="input-xlarge form-control">
+		            <input type="text" name="address" placeholder="Address" class="input-xlarge form-control" value="{{ contactinfo.contactinfo_address }}">
 		            <p class="help-block"></p>
 		        </div>
 	
@@ -100,7 +94,7 @@
 		          <label class="control-label">Description</label>
 		          <div class="controls">
 		            <div class="textarea">
-		                  <textarea type="" class="form-control"> </textarea>
+		            	<input type="text" name="description" placeholder="Description" class="input-xlarge form-control" value="{{ contactinfo.contactinfo_description }}">
 		            </div>
 		            <p class="help-block"></p>
 		          </div>

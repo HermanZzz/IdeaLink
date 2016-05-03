@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect
 import hashlib
 import datetime
 
-from .models import Account
+from .models import Account , ContactInfo
 
 def index(request) :
 	return render(request , 'home.html')
@@ -21,15 +21,46 @@ def settingProfile(request) :
 			'is_first_time_to_this_page' : False,
 			})
 
+	#import pdb; pdb.set_trace()
+
+	if not hasattr(account , 'contactinfo') :
+		ContactInfo.objects.create( account = account ,
+			_contactinfo_name = '' , _contactinfo_gender = '' ,
+			_contactinfo_birthdate = datetime.datetime.today() , _contactinfo_education = '' ,
+			_contactinfo_cellphone = '' , _contactinfo_address = '' , 
+			_contactinfo_description = '')
+
 	# check profile info
+	try:
+		user_name = request.POST['username']
+		if request.POST['gender'] == 'Option one' :
+			user_gender = 'Male'
+		else :
+			user_gender = 'Female'
+		user_birthdate = request.POST['birthdate']
+		user_cellphone = request.POST['cellphone']
+		user_address = request.POST['address']
+		user_description = request.POST['description']
+
+		account.contactinfo.update_contact_info(user_name , user_cellphone ,
+			user_birthdate , user_gender , user_address , user_description)
+		account.contactinfo.save()
+
+	except Exception, e:
+		return render(request , 'accounts/setting/profile.html',{
+		'is_login_success' : True,
+		'user_session' : account,
+		'contactinfo' : account.contactinfo
+		})
+		
 	
 
 	return render(request , 'accounts/setting/profile.html',{
 		'is_login_success' : True,
-		'user_session' : account
+		'user_session' : account,
+		'contactinfo' : account.contactinfo
 		})
 
-# Basic function done , need to be updated according to the issue pushed on the github
 def settingExperience(request) :
 	# validate user session
 	try:
@@ -43,7 +74,6 @@ def settingExperience(request) :
 
 	# Fetch user configuration
 	try:
-		#import pdb; pdb.set_trace()
 		job_title = request.POST['title']
 		start_date = datetime.datetime.strptime(request.POST['startDate'] , '%d-%m-%Y')
 		end_date = datetime.datetime.strptime(request.POST['endDate'] , '%d-%m-%Y')
@@ -83,7 +113,6 @@ def deleteExperience(request , experience_id):
 
 	return HttpResponseRedirect('/accounts/setting/experience')
 
-# Basic function done , need to be updated according to the issue pushed on the github
 def settingSkill(request) :
 	# validate user session
 	try:
