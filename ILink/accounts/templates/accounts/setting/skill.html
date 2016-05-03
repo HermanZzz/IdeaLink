@@ -38,7 +38,7 @@ background: transparent none;
 						<td>{{ skill.skill_proficiency }}</td>
 				   		<td>{{ skill.skill_description }}</td>
 				   		<td style="text-align:center;">
-				   			<a href={% url 'accounts:deleteSkill' skill.skill_type %}>
+				   			<a href={% url 'accounts:deleteSkill' skill.id %}>
   								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 							</a>
 						</td>

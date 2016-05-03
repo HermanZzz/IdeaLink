@@ -38,7 +38,7 @@
 				         <td>{{experience.start_date}} - {{experience.end_date}}</td>
 				         <td>{{experience.description}}</td>
 				         <td style="text-align:center;">
-				   			<a href="#">
+				   			<a href={% url 'accounts:deleteExperience' experience.id %}>
   								<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 							</a>
 						</td>
@@ -63,7 +63,7 @@
 	      <!-- Text input-->
 		      <label class="control-label" for="input01">Title</label>
 		      <div class="controls">
-		        <input type="text" name = "title" placeholder="placeholder" class="input-xlarge form-control">
+		        <input type="text" name = "title" placeholder="title" class="input-xlarge form-control">
 		        <p class="help-block"> </p>
 		      </div>
 		    </div>
@@ -87,7 +87,7 @@
 				<div class="control-group">
 	                <label for="dtp_input2" class="control-label">Start Time</label>
 	                <div class="input-group date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-	                    <input id="startTime" class="form-control" size="16" type="text" value="" >
+	                    <input id="startTime" name = "startDate" class="form-control" size="16" type="text" value="" >
 	                    <span class="input-group-addon">
 	                    	<span class="glyphicon glyphicon-remove"></span>
 	                    </span>
@@ -101,7 +101,7 @@
 			<div class="control-group">
 	                <label for="dtp_input2" class="control-label">End Time</label>
 	                <div class="input-group date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-	                    <input id="endTime" class="form-control" size="16" type="text" value="" >
+	                    <input id="endTime" name = "endDate" class="form-control" size="16" type="text" value="" >
 	                     <span class="input-group-addon">
 	                    	<span class="glyphicon glyphicon-remove"></span>
 	                    </span>

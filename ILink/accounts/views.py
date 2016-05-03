@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
 import hashlib
+import datetime
 
 from .models import Account
 
@@ -42,9 +43,10 @@ def settingExperience(request) :
 
 	# Fetch user configuration
 	try:
+		#import pdb; pdb.set_trace()
 		job_title = request.POST['title']
-		start_date = request.POST['start']
-		end_date = request.POST['end']
+		start_date = datetime.datetime.strptime(request.POST['startDate'] , '%d-%m-%Y')
+		end_date = datetime.datetime.strptime(request.POST['endDate'] , '%d-%m-%Y')
 		job_description = request.POST['description']
 
 		account.experience_set.create(_job_title = job_title , _description = job_description , 
@@ -54,14 +56,32 @@ def settingExperience(request) :
 		return render(request , 'accounts/setting/experience.html',{
 		'is_login_success' : True,
 		'user_session' : account,
-		'user_experience_list' : account.experience_set.all(),
+		'user_experience_list' : account.experience_set.all().order_by('-_start_date'),
 		})	
 	
 	return render(request , 'accounts/setting/experience.html',{
 		'is_login_success' : True,
 		'user_session' : account,
-		'user_experience_list' : account.experience_set.all(),
+		'user_experience_list' : account.experience_set.all().order_by('-_start_date'),
 		})
+
+def deleteExperience(request , experience_id):
+	# validate user session
+	try:
+		account = Account.objects.get(_account_name = request.session['account_name'])
+	except Exception, e:
+		return render(request , 'accounts/login.html' , {
+			'is_login_success' : False,
+			'is_register_success' : False,
+			'is_first_time_to_this_page' : False,
+			})
+
+	# Delete
+	experience_for_delete = account.experience_set.filter(id = experience_id)
+	for experience in experience_for_delete :
+		experience.delete()
+
+	return HttpResponseRedirect('/accounts/setting/experience')
 
 # Basic function done , need to be updated according to the issue pushed on the github
 def settingSkill(request) :
@@ -86,16 +106,16 @@ def settingSkill(request) :
 		return render(request , 'accounts/setting/skill.html',{
 		'is_login_success' : True,
 		'user_session' : account,
-		'user_skill_list' : account.skill_set.all(),
+		'user_skill_list' : account.skill_set.all().order_by('-_skill_proficiency'),
 		})	
 	
 	return render(request , 'accounts/setting/skill.html',{
 		'is_login_success' : True,
 		'user_session' : account,
-		'user_skill_list' : account.skill_set.all(),
+		'user_skill_list' : account.skill_set.all().order_by('-_skill_proficiency'),
 		})
 
-def deleteSkill(request , skill_type):
+def deleteSkill(request , skill_id):
 	# validate user session
 	try:
 		account = Account.objects.get(_account_name = request.session['account_name'])
@@ -107,7 +127,7 @@ def deleteSkill(request , skill_type):
 			})
 
 	# Delete
-	skill_for_delete = account.skill_set.filter(_skill_type = skill_type)
+	skill_for_delete = account.skill_set.filter(id = skill_id)
 	for skill in skill_for_delete :
 		skill.delete()
 

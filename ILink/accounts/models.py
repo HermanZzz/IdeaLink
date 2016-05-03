@@ -117,10 +117,10 @@ class Experience(models.Model) :
 		on_delete = models.CASCADE
 	)
 
-	_job_title = models.CharField(max_length=30)
-	_description = models.TextField()
-	_start_date = models.DateField()
-	_end_date = models.DateField()
+	_job_title = models.CharField(max_length=30 , default='Null')
+	_description = models.TextField(default='Null')
+	_start_date = models.DateField(blank=True)
+	_end_date = models.DateField(blank=True)
 
 	# Properties & setter
 	@property
@@ -174,9 +174,9 @@ class Skill(models.Model) :
 		on_delete = models.CASCADE
 	)
 
-	_skill_type = models.CharField(max_length=30)
+	_skill_type = models.CharField(max_length=30 , default='Null')
 	_skill_proficiency = models.IntegerField(default=5)
-	_skill_description = models.TextField()
+	_skill_description = models.TextField(default='Null')
 
 	# Properties & setter
 	@property

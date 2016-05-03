@@ -12,6 +12,7 @@ urlpatterns = [
 	url(r'^index$' , views.logout , name='logout'),
 	url(r'^setting$' , views.settingProfile , name='settingProfile'),
 	url(r'^setting/experience$' , views.settingExperience , name='settingExperience'),
+	url(r'^setting/experience/(?P<experience_id>[0-9]*)$' , views.deleteExperience , name = 'deleteExperience'),
 	url(r'^setting/skill$' , views.settingSkill , name='settingSkill'),
-	url(r'^setting/skill/(?P<skill_type>\w+)$' , views.deleteSkill , name='deleteSkill'),
+	url(r'^setting/skill/(?P<skill_id>[0-9]*)$' , views.deleteSkill , name='deleteSkill'),
 ]
