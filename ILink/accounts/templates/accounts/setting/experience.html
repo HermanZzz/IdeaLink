@@ -11,14 +11,14 @@
 <div class="container" >
 	<div class="row">
 		<div class="span2 col-md-3 col-md-offset-1">
-			<ul class="nav nav-pills nav-stacked "> 
+			<ul class="nav nav-pills nav-stacked"> 
 				<li><a href={% url 'accounts:settingProfile' %}>Profile</a></li>
 				<li><a href={% url 'accounts:settingSkill' %}>Skill</a></li> 
 				<li class="active"><a href={% url 'accounts:settingExperience' %}>Experience</a></li> 
 			</ul>
 		</div>
-		<div class="col-md-7 ">
-		      <table class="table table-hover">
+		<div class="col-md-7">
+		      <table class="table table-hover ">
 				   <caption></caption>
 				   <thead>
 				      <tr>
@@ -28,10 +28,6 @@
 				      </tr>
 				   </thead>
 				   <tbody>
-				   	<tr>
-				   		<td>
-				   		</td>
-				   	</tr>
 				   {% for experience in user_experience_list %}
 				      <tr>
 				         <td>{{experience.job_title}}</td>
@@ -47,8 +43,7 @@
 				   </tbody>
 				</table>
 
-				<br/><br/><br/>	
-				<br/><br/><br/>
+				<br/><br/>
 
 	<form class="form-horizontal" action="{% url 'accounts:settingExperience'%}" method="POST">
 	{% csrf_token %}
@@ -87,7 +82,7 @@
 				<div class="control-group">
 	                <label for="dtp_input2" class="control-label">Start Time</label>
 	                <div class="input-group date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-	                    <input id="startTime" name = "startDate" class="form-control" size="16" type="text" value="" >
+	                    <input id="startTime" name = "startDate" class="form-control" size="16" type="text" value="" readonly>
 	                    <span class="input-group-addon">
 	                    	<span class="glyphicon glyphicon-remove"></span>
 	                    </span>
@@ -101,7 +96,7 @@
 			<div class="control-group">
 	                <label for="dtp_input2" class="control-label">End Time</label>
 	                <div class="input-group date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-	                    <input id="endTime" name = "endDate" class="form-control" size="16" type="text" value="" >
+	                    <input id="endTime" name = "endDate" class="form-control" size="16" type="text" value="" readonly>
 	                     <span class="input-group-addon">
 	                    	<span class="glyphicon glyphicon-remove"></span>
 	                    </span>
@@ -137,13 +132,45 @@
 	 </fieldset>
 	 </form>
 
-
 		</div>
 	</div>
 </div>
 
-<br/><br/><br/>	<br/><br/><br/>	<br/><br/><br/>
+
 {% endblock %}
+
+
+{% block footer %}
+	<footer id="footer" class="top-space">
+	  <nav class="navbar-default navbar-fixed-bottom">
+		<div class="footer2">
+			<div class="container">
+				<div class="row">				
+					<div class="col-md-6 widget">
+						<div class="widget-body">
+							<p class="simplenav" stlye="">
+								{% if is_login_success %}
+								<a href={% url 'accounts:home' %} >Home</a> | 
+								<a href="#">Project</a> |
+								<a id="setting" href={% url 'accounts:settingProfile' %} >Setting</a> 
+								|
+								<a id="logout" href={% url 'accounts:logout' %} >Logout</a> 
+								{% else %}
+								<b><a href={% url 'accounts:register'%}>Sign up</a></b>
+								{% endif %}
+								| 
+								<a href="javascript:scroll(0,0)">
+								<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+								</a>
+							</p>
+						</div>
+					</div>
+				</div> <!-- /row of widgets -->
+			</div>
+		</div>
+	 </nav>
+	</footer>	
+	{% endblock %}
 
 
 {% block js %}

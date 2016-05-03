@@ -47,8 +47,7 @@ background: transparent none;
 				   </tbody>
 				</table>
 
-		<br/><br/><br/>	
-		<br/><br/><br/>
+		<br/><br/>
 
 		<form class="form-horizontal" action="{% url 'accounts:settingSkill' %}" method="POST">
 		{% csrf_token %}
@@ -103,9 +102,40 @@ background: transparent none;
 		</div>
 	</div>
 </div>
-<br/><br/><br/> <br/><br/><br/> <br/><br/><br/>
+
 {% endblock %}
 
+{% block footer %}
+	<footer id="footer" class="top-space">
+	  <nav class="navbar-default navbar-fixed-bottom">
+		<div class="footer2">
+			<div class="container">
+				<div class="row">				
+					<div class="col-md-6 widget">
+						<div class="widget-body">
+							<p class="simplenav" stlye="">
+								{% if is_login_success %}
+								<a href={% url 'accounts:home' %} >Home</a> | 
+								<a href="#">Project</a> |
+								<a id="setting" href={% url 'accounts:settingProfile' %} >Setting</a> 
+								|
+								<a id="logout" href={% url 'accounts:logout' %} >Logout</a> 
+								{% else %}
+								<b><a href={% url 'accounts:register'%}>Sign up</a></b>
+								{% endif %}
+								| 
+								<a href="javascript:scroll(0,0)">
+								<span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+								</a>
+							</p>
+						</div>
+					</div>
+				</div> <!-- /row of widgets -->
+			</div>
+		</div>
+	 </nav>
+	</footer>	
+{% endblock %}
 
 {% block js %}
 
