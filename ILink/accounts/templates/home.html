@@ -11,7 +11,8 @@
 	{% endblock %}
 	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="/static/css/home.css">
-
+	
+	<link rel="stylesheet" href="/static/css/projects/avgrund.css">
 
 </head>
 
@@ -37,11 +38,11 @@
 				<ul class="nav navbar-nav pull-right">
 					<li class="active" ><a href="{% url 'accounts:home' %}">Home</a></li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Team <b class="caret"></b></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Project<b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">Seek a Team</a></li>
-							<li class="active"><a href="#">Build a Team</a></li>
-							<li><a href="#">My Team</a></li>
+							<li><a id="find-proj" href="#">Find Project</a></li>
+							<li><a id="create-proj" href="#">Create Project</a></li>
+							<li class="active"><a href="#">My Projects</a></li>
 						</ul>
 					</li>
 					<li><a id="setting" href={% url 'accounts:settingProfile' %}>Setting</a></li>
@@ -91,7 +92,7 @@
 							<p class="simplenav" stlye="">
 								{% if is_login_success %}
 								<a href={% url 'accounts:home' %} >Home</a> | 
-								<a href="#">Team</a> |
+								<a href="#">Project</a> |
 								<a id="setting" href={% url 'accounts:settingProfile' %} >Setting</a> 
 								|
 								<a id="logout" href={% url 'accounts:logout' %} >Logout</a> 
@@ -110,8 +111,78 @@
 		</div>
 	</footer>	
 	{% endblock %}
-	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+
+<!-- create proj -->
+	<div style="display: none;">
+
+		<form class="form-horizontal" id="create-proj-form" action="" method="POST" style="text-align:center;">
 	
+		{% csrf_token %}
+	 	 <fieldset>
+    		<div class="control-group">
+
+	      <!-- Text input-->
+		      <label class="control-label" for="input01">Project Name</label>
+		      <div class="controls">
+		        <input type="text" name = "proj-name" placeholder="project name" class="input-xlarge form-control">
+		        <p class="help-block"> </p>
+		      </div>
+		    </div>
+
+			 <div class="control-group">
+		      <!-- Textarea -->
+		      <label class="control-label">Description</label>
+		      <div class="controls">
+		        <div class="textarea">
+		              <textarea name = "description" type=""  class="form-control"> </textarea>
+		        </div>
+		        <p class="help-block"></p>
+		      </div>
+		    </div>
+
+		     <div class="control-group">
+		          <label class="control-label"> </label>
+		          <!-- Button -->
+		          <div class="controls">
+		            <button class="btn btn-success">+</button>
+		          </div>
+		          <p class="help-block"></p>
+		     </div>
+		 </div>
+		</div>
+	 </fieldset>
+	 </form>
+	</div>
+	
+<!-- find proj -->
+	<div style="display: none;">
+	 <form class="form-horizontal" id="find-proj-form" action="" method="POST" style="text-align:center;">
+		{% csrf_token %}
+	 	 <fieldset>
+    		<div class="control-group">
+	      <!-- Text input-->
+		      <label class="control-label" for="input01">Project Name</label>
+		      <div class="controls">
+		        <input type="text" name = "proj-name" placeholder="project name" class="input-xlarge form-control">
+		        <p class="help-block"> </p>
+		      </div>
+		    </div>
+
+		     <div class="control-group">
+		          <label class="control-label"> </label>
+		          <!-- Button -->
+		          <div class="controls">
+		            <button class="btn btn-success">Search</button>
+		          </div>
+		          <p class="help-block"></p>
+		     </div>
+		 </div>
+		</div>
+	 </fieldset>
+	 </form>
+	</div>
+	
+	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 	{% load static %}  
   	<script src="{% static "js/jquery.min.js" %}" ></script>
   	{% load static %}  
@@ -129,11 +200,29 @@
   	{% load static %}
   	<script src="{% static "js/bg/EasePack.min.js" %}"></script>
   	{% load static %}
- 	 <script src="{% static "js/bg/rAF.js" %}"></script>
+ 	<script src="{% static "js/bg/rAF.js" %}"></script>
 
+ 	{% load static %}
+ 	<script src="{% static "js/projects/jquery.avgrund.js" %}"></script>
   	{% block js %}
   	{% endblock %}
-  	
+  	<script>
+	$(function() {
+		$('#create-proj').avgrund({
+			height: 250,
+			holderClass: 'custom',
+			onBlurContainer: '.container',
+			template: $('#create-proj-form')
+				 	});
+	
+		$('#find-proj').avgrund({
+			height: 180,
+			holderClass: 'custom',
+			onBlurContainer: '.container',
+			template: $('#find-proj-form')
+				 	});
+	});
+	</script>
 	
 </body>
 </html>

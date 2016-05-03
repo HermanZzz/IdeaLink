@@ -61,7 +61,9 @@
           		<div class="control-group">
 	                <label for="dtp_input2" class="control-label">Birthday</label>
 	                <div class="input-group date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
-	                    <input id="birthday" name = "birthdate" class="form-control" size="16" type="text" value="{{ contactinfo.contactinfo_birthdate}}">
+
+	                    <input id="birthday" name = "birthdate" class="form-control" size="16" type="text" value="{{ contactinfo.contactinfo_birthdate}}" readonly>
+	                    
 	                    <span class="input-group-addon">
 	                    	<span class="glyphicon glyphicon-remove"></span>
 	                    </span>
