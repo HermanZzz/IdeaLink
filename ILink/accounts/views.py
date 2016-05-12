@@ -26,7 +26,7 @@ def settingProfile(request) :
 	if not hasattr(account , 'contactinfo') :
 		ContactInfo.objects.create( account = account ,
 			_contactinfo_name = '' , _contactinfo_gender = '' ,
-			_contactinfo_birthdate = datetime.datetime.today() , _contactinfo_education = '' ,
+			_contactinfo_birthdate = datetime.datetime.today() , 
 			_contactinfo_cellphone = '' , _contactinfo_address = '' , 
 			_contactinfo_description = '')
 

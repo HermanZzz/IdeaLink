@@ -181,7 +181,8 @@
 	 </fieldset>
 	 </form>
 	</div>
-	
+	<!-- to top -->
+	<a href="#" onclick="gotoTop();return false;" class="totop"></a>
 	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 	{% load static %}  
   	<script src="{% static "js/jquery.min.js" %}" ></script>
@@ -206,23 +207,7 @@
  	<script src="{% static "js/projects/jquery.avgrund.js" %}"></script>
   	{% block js %}
   	{% endblock %}
-  	<script>
-	$(function() {
-		$('#create-proj').avgrund({
-			height: 250,
-			holderClass: 'custom',
-			onBlurContainer: '.container',
-			template: $('#create-proj-form')
-				 	});
-	
-		$('#find-proj').avgrund({
-			height: 180,
-			holderClass: 'custom',
-			onBlurContainer: '.container',
-			template: $('#find-proj-form')
-				 	});
-	});
-	</script>
+  	
 	
 </body>
 </html>
