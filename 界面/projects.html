@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+
+    <title>IdeaLink-项目管理</title>
+
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link type="image/x-icon" rel="shortcut icon" href="img/favicon.ico" />
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/projects/avgrund.css">
+    <link type="image/x-icon" rel="shortcut icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap-theme.css" media="screen">
+    <!-- Buttons 库的核心文件 -->
+    <link rel="stylesheet" href="css/buttons.css">
+
+    <!-- 当需要使用带下拉菜单的按钮时才需要加载下面的 JavaScript 文件 -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/buttons.js"></script>
+
+    <!-- 只有使用字体图标时才需要加载 Font-Awesome -->
+    <link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/project.css" rel="stylesheet">
+
+
+    <script src="js/project.js"></script>
+    <script type="text/javascript" src="js/icheck.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap-transition.js"></script>
+    <script type="text/javascript" src="js/bootstrap-modal.js"></script>
+    <script type="text/javascript" src="js/jquery.icheck.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jQuery.headroom.min.js"></script>
+    <script type="text/javascript" src="js/headroom.min.js"></script>
+    <script src="js/home/template.js" ></script>
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+
+</head>
+
+<body class="home" >
+
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top headroom" style="height:100px;" >
+    <div class="" >
+        <div class="navbar-header" style="margin-left: 50px">
+            <!-- Button for smallest screens -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" style="margin-top:-1px;" href=/accounts/home ><img src="img/logo.png"></a>
+
+        </div>
+
+        <div class="navbar-collapse collapse" style="margin-right: 50px">
+            <ul class="nav navbar-nav pull-right">
+                <li class="dropdown" ><a href="/accounts/home">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Project<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a id="find-proj" href="#">Find Project</a></li>
+                        <li><a id="create-proj" href="#">Create Project</a></li>
+                        <li class="active"><a href="#">My Projects</a></li>
+                    </ul>
+                </li>
+                <li><a id="settings" href=/accounts/setting>Setting</a></li>
+                <li><a href="#">403969164@qq.com</a></li>
+                <li><a class="btn" href=/accounts/index>LOG OUT</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+
+    </div>
+</div>
+
+<!-- /.navbar -->
+
+
+<div id="large-header" class="container" >
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 ">
+            <div class="col-sm-6 col-lg-3">
+                <h3>-个人项目-</h3>
+            </div>
+            <div class="col-sm-6 col-lg-3">
+            </div>
+            <div class="col-sm-6 col-lg-3">
+            </div>
+            <div class="col-sm-6 col-lg-3"align="center">
+  <span class="button-dropdown button-dropdown-inverse" data-buttons="dropdown">
+    <a href="#" class="button button-inverse" >
+        <i class="fa "></i> 我的分类 <i class="fa fa-caret-down"></i>
+    </a>
+    <ul class="button-dropdown-list is-below">
+        <li><a href="#">全部</a></li>
+        <li class="button-dropdown-divider">
+            <a href="#">分类1</a>
+        </li>
+        <li>
+            <a href="#">分类2</a>
+        </li>
+        <li>
+            <a href="#">分类3</a>
+        </li>
+    </ul>
+  </span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-12 ">
+            <div class="row">
+                <div class="col-lg-3 col-sm-6 ">
+                    <a href="#" class="thumbnail">
+                        <img src="img/1.jpg" alt="">
+                        <p >uml</p>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6 ">
+                    <a href="#" class="thumbnail">
+                        <img src="img/2.jpg" alt="">
+                        <p>软件工程</p>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6 ">
+                    <a href="#" class="thumbnail">
+                        <img src="img/3.jpg" alt="">
+                        <p>Sitp</p>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6 ">
+                    <a href="#" class="thumbnail">
+                        <img src="img/4.jpg" alt="">
+                        <p>uml</p>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6 ">
+                    <a href="#" class="thumbnail">
+                        <img src="img/4.jpg" alt="">
+                        <p>uml</p>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-sm-6 " align="center" >
+
+                    <a id="modal-1" href="#modal-container-1"  class="btn" data-toggle="modal" class="thumbnail" >
+                        <button class="button button-circle button-jumbo"><i class="fa fa-plus"></i></button>
+                        <p>添加一个项目</p>
+                    </a>
+                    <div class="modal fade" id="modal-container-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <img src="img/1.jpg" >
+
+                                </div>
+                                <div class="modal-body">
+                                    <div class="tabbable" id="tabs-299950">
+                                        <ul class="nav nav-tabs">
+                                            <li class="active">
+                                                <a href="#information" data-toggle="tab">项目信息</a>
+                                            </li>
+                                            <li >
+                                                <a href="#members" data-toggle="tab">成员管理</a>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="information">
+                                                <div align="left">
+                                                    <h4 >项目名称</h4></div>
+                                                <input name="key" type="text" id="name" value="项目1" style="height:40px;width:550px"
+                                                       onmouseover=this.focus();this.select();
+                                                       onclick="if(value==defaultValue){value='';this.style.color='#000'}"
+                                                       onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+                                                <div align="left">
+                                                    <h4 >项目信息</h4></div>
+                                                <input name="key" type="text" id="describe" value="请简要描述" style="height:120px;width:550px"
+                                                       onmouseover=this.focus();this.select();
+                                                       onclick="if(value==defaultValue){value='';this.style.color='#000'}"
+                                                       onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+                                            </div>
+                                            <div class="tab-pane " id="members">
+                                                <div align="left">
+                                                    <h4 >邀请成员</h4></div>
+                                                <input name="key" type="text" id="member1" value="输入邮箱/手机号" style="height:40px;width:550px"
+                                                       onmouseover=this.focus();this.select();
+                                                       onclick="if(value==defaultValue){value='';this.style.color='#000'}"
+                                                       onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <script>
+                                        $(function () {
+                                            $('#myTab li:eq(1) a').tab('show');
+                                        });
+                                    </script>
+
+
+
+                                </div>
+
+                                <div class="modal-footer">
+
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="button" class="btn btn-primary">保存</button>
+
+                                </div>
+                            </div></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+<!-- Intro -->
+
+<!-- /Intro-->
+
+
+
+
+<footer id="footer" class="top-space">
+    <div class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 widget">
+                    <div class="widget-body">
+                        <p class="simplenav" stlye="">
+
+                            <a href=/accounts/home >Home</a> |
+                            <a href="#">Project</a> |
+                            <a id="setting" href=/accounts/setting >Setting</a>
+                            |
+                            <a id="logout" href=/accounts/index >Logout</a>
+
+                            |
+                            <a href="javascript:scroll(0,0)">
+                                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div> <!-- /row of widgets -->
+        </div>
+    </div>
+</footer>
+</div>
+
+</body>
+</html>

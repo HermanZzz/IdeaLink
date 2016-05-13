@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+
+    <title>IdeaLink-项目管理</title>
+
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link type="image/x-icon" rel="shortcut icon" href="img/favicon.ico" />
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/projects/avgrund.css">
+    <link type="image/x-icon" rel="shortcut icon" href="img/favicon.ico">
+    <link rel="stylesheet" href="css/bootstrap/css/bootstrap-theme.css" media="screen">
+    <!-- Buttons 库的核心文件 -->
+    <link rel="stylesheet" href="css/buttons.css">
+
+    <!-- 当需要使用带下拉菜单的按钮时才需要加载下面的 JavaScript 文件 -->
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/buttons.js"></script>
+
+    <!-- 只有使用字体图标时才需要加载 Font-Awesome -->
+    <link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/project.css" rel="stylesheet">
+
+
+    <script src="js/project.js"></script>
+    <script type="text/javascript" src="js/icheck.js"></script>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/bootstrap-transition.js"></script>
+    <script type="text/javascript" src="js/bootstrap-modal.js"></script>
+    <script type="text/javascript" src="js/jquery.icheck.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/jQuery.headroom.min.js"></script>
+    <script type="text/javascript" src="js/headroom.min.js"></script>
+    <script src="js/home/template.js" ></script>
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+
+
+</head>
+
+<body class="home" >
+
+<!-- Fixed navbar -->
+<div class="navbar navbar-inverse navbar-fixed-top headroom" style="height:100px;" >
+    <div class="" >
+        <div class="navbar-header" style="margin-left: 50px">
+            <!-- Button for smallest screens -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <a class="navbar-brand" style="margin-top:-1px;" href=/accounts/home ><img src="img/logo.png"></a>
+
+        </div>
+
+        <div class="navbar-collapse collapse" style="margin-right: 50px">
+            <ul class="nav navbar-nav pull-right">
+                <li class="dropdown" ><a href="/accounts/home">Home</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Project<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a id="find-proj" href="#">Find Project</a></li>
+                        <li><a id="create-proj" href="#">Create Project</a></li>
+                        <li class="active"><a href="#">My Projects</a></li>
+                    </ul>
+                </li>
+                <li><a id="settings" href=/accounts/setting>Setting</a></li>
+                <li><a href="#">403969164@qq.com</a></li>
+                <li><a class="btn" href=/accounts/index>LOG OUT</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+
+    </div>
+</div>
+
+<!-- /.navbar -->
+
+
+<div id="large-header" class="container" >
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="" style="height:10px;" ></div>
+
+        </div>
+    <div class="row clearfix">
+        <div class="col-md-2 column" align="left">
+            <span class="button-dropdown button-dropdown-primary" data-buttons="dropdown">
+        <button class="button button-primary button-normal">
+            <i class="fa fa-bars"></i>我的项目
+        </button>
+        <ul class="button-dropdown-list is-below">
+            <li class="button-dropdown-divider"><a href="#"><i class="fa fa-heart-o"></i>项目1</a></li>
+            <li class="button-dropdown-divider"><a href="#"><i class="fa fa-heart-o"></i>项目2</a></li>
+            <li class="button-dropdown-divider" >
+                <a href="#"><i class="fa fa-heart-o"></i>项目3</a>
+            </li>
+        </ul>
+  </span>
+
+        </div>
+        <div class="col-md-8 column">
+
+        </div>
+        <div class="col-md-2 column" align="right">
+            <a id="modal-1" href="#modal-container-1" role="button" class="btn" data-toggle="modal">设置</a>
+            <!--弹出框-->
+            <div class="modal fade" id="modal-container-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <img src="img/1.jpg" >
+
+                        </div>
+                        <div class="modal-body">
+                            <div class="tabbable" id="tabs-299950">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#information" data-toggle="tab">项目信息</a>
+                                    </li>
+                                    <li >
+                                        <a href="#members" data-toggle="tab">成员管理</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="information">
+                                        <div align="left">
+                                        <h4 >项目名称</h4></div>
+                                        <input name="key" type="text" id="name" value="项目1" style="height:40px;width:550px"
+                                               onmouseover=this.focus();this.select();
+                                               onclick="if(value==defaultValue){value='';this.style.color='#000'}"
+                                               onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+                                        <div align="left">
+                                            <h4 >项目信息</h4></div>
+                                        <input name="key" type="text" id="describe" value="请简要描述" style="height:120px;width:550px"
+                                               onmouseover=this.focus();this.select();
+                                               onclick="if(value==defaultValue){value='';this.style.color='#000'}"
+                                               onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+                                    </div>
+                                    <div class="tab-pane " id="members">
+                                        <div align="left">
+                                            <h4 >邀请成员</h4></div>
+                                        <input name="key" type="text" id="member1" value="输入邮箱/手机号" style="height:40px;width:550px"
+                                               onmouseover=this.focus();this.select();
+                                               onclick="if(value==defaultValue){value='';this.style.color='#000'}"
+                                               onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script>
+                                $(function () {
+                                    $('#myTab li:eq(1) a').tab('show');
+                                });
+                            </script>
+
+
+
+                        </div>
+
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                            <button type="button" class="btn btn-primary">保存</button>
+
+                        </div>
+                    </div></div>
+
+            </div>
+            <!--弹出框-->
+        </div>
+    </div>
+        <div class="row ">
+        <div class="clearfix" style="margin-bottom: 10px;"></div><!-- 清除浮动 -->
+        <div class="col-md-4 column" >
+            <div  class="scrum-stage toggler-parent reached-top">
+                <header class="scrum-stage-header ui-sortable-handle">
+                    <div class="stage-name col-lg-10">
+                        待处理
+                    </div>
+                </header>
+
+
+                <ul  id="sortable1" class="droptrue">
+                    <li class="li_style" id="1-1">
+                        <div class="panel panel-default " style="margin-right:10px">
+                            <div class="panel-body-task" >
+                                <div class="checkbox c-checkbox col-lg-10">
+
+                                    <label >
+                                        <input type="checkbox" onclick="checkboxOnclick(this)" value="">
+                                        <span class="fa fa-check"></span>
+                                        <a id="modal-2" href="#modal-container-2" role="button" class="btn_p" data-toggle="modal">任务1</a>
+                                    </label>
+                                    <!--弹出框-->
+                                    <div class="modal fade" id="modal-container-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                    <h4 class="modal-title" id="myModalLabel1">
+                                                        任务名称
+                                                    </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    任务信息
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">保存</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                    <!--弹出框-->
+
+                                </div>
+                                <div class="">
+                                    <a href="#" class="btn" align="right"><i class="fa fa-times"></i></a>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </li>
+                    <li class="li_style" id="1-2">
+                        <div class="panel panel-default " style="margin-right:10px">
+                            <div class="panel-body-task" >
+                                <div class="checkbox c-checkbox col-lg-10">
+
+                                    <label >
+                                        <input type="checkbox" onclick="checkboxOnclick(this)" value="">
+                                        <span class="fa fa-check"></span>
+                                        <a id="modal-3" href="#modal-container-3" role="button" class="btn_p" data-toggle="modal">任务1</a>
+                                    </label>
+                                    <!--弹出框-->
+                                    <div class="modal fade" id="modal-container-3" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                    <h4 class="modal-title" id="myModalLabel2">
+                                                        标题
+                                                    </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    内容...
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">保存</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                                <div class="">
+                                    <a href="#" class="btn" align="right"><i class="fa fa-times"></i></a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <a id="modal-12" href="#modal-container-12" role="button" class="btn" data-toggle="modal">+添加任务</a>
+                <div class="modal fade" id="modal-container-12" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="tabbable" id="tabs-12">
+
+                                    <div class="tab-content">
+                                        <div id="accordion12" class="panel-group">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title"><a class="collapsed" aria-expanded="false" data-toggle="collapse" data-parent="#accordion" href="#collapseOne12">任务信息</a>
+                                                    </h4>
+                                                </div>
+                                                <div style="height: 0px;" aria-expanded="false" id="collapseOne12" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+                                                        <div class="tab-pane active" id="information12">
+                                                            <h4>任务名称</h4>
+                                                            <input name="key" type="text" id="name12" value="任务1" style="height:40px;width:550px"
+                                                                   onmouseover=this.focus();this.select();
+                                                                   onclick="if(value==defaultValue){value='';this.style.color='#000'}"
+                                                                   onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+                                                            <h4>任务描述</h4>
+                                                            <input name="key" type="text" id="describe12" value="请简要描述" style="height:120px;width:550px"
+                                                                   onmouseover=this.focus();this.select();
+                                                                   onclick="if(value==defaultValue){value='';this.style.color='#000'}"
+                                                                   onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title"><a aria-expanded="false" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo13">成员信息</a>
+                                                    </h4>
+                                                </div>
+                                                <div style="height: 0px;" aria-expanded="false" id="collapseTwo13" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+                                                        <div align="left">
+                                                            <h4 >邀请成员</h4></div>
+                                                        <input name="key" type="text" id="member13" value="输入邮箱/手机号" style="height:40px;width:550px"
+                                                               onmouseover=this.focus();this.select();
+                                                               onclick="if(value==defaultValue){value='';this.style.color='#000'}"
+                                                               onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+
+                                <script>
+                                    $(function () {
+                                        $('#myTab li:eq(1) a').tab('show');
+                                    });
+                                </script>
+
+
+
+                            </div>
+
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary">保存</button>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+        <div class="col-md-4 column">
+            <div  class="scrum-stage toggler-parent reached-top">
+                <header class="scrum-stage-header ui-sortable-handle">
+                    <div class="stage-name">
+                        进行中
+                    </div>
+                    <a class="stage-menu-toggler icon icon-clock2 hinted" data-title="添加或编辑任务阶段" data-gta="{action: 'toggle stage menu'}">
+
+                    </a>
+                </header>
+                <ul id="sortable2" class="droptrue">
+                    <li class="li_style" id="2-1">
+                        <div class="panel panel-default " style="margin-right:10px">
+                            <div class="panel-body-task" >
+                                <div class="checkbox c-checkbox col-lg-10">
+
+                                    <label >
+                                        <input type="checkbox" onclick="checkboxOnclick(this)" value="">     <span class="fa fa-check"></span>
+                                        <a id="modal-4" href="#modal-container-4" role="button" class="btn_p" data-toggle="modal">任务1</a>
+                                    </label>
+                                    <div class="modal fade" id="modal-container-4" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                    <h4 class="modal-title" id="myModalLabel3">
+                                                        标题
+                                                    </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    内容...
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">保存</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                                <div class="">
+                                    <a href="#" class="btn" align="right"><i class="fa fa-times"></i></a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </li>
+                    <li class="li_style" id="2-2" >
+                        <div class="panel panel-default " style="margin-right:10px">
+                            <div class="panel-body-task" >
+                                <div class="checkbox c-checkbox col-lg-10">
+
+                                    <label >
+                                        <input type="checkbox" onclick="checkboxOnclick(this)" value="">
+                                        <span class="fa fa-check"></span>
+                                        <a id="modal-5" href="#modal-container-5" role="button" class="btn_p" data-toggle="modal">任务1</a>
+                                    </label>
+                                    <div class="modal fade" id="modal-container-5" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                    <h4 class="modal-title" id="myModalLabel4">
+                                                        标题
+                                                    </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    内容...
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">保存</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="">
+                                    <a href="#" class="btn" align="right"><i class="fa fa-times"></i></a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+                <a id="modal-21" href="#modal-container-21" role="button" class="btn" data-toggle="modal">+添加任务</a>
+                <div class="modal fade" id="modal-container-21" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+
+                            </div>
+                            <div class="modal-body">
+
+
+
+                                <div class="tabbable" id="tabs-21">
+
+                                    <div class="tab-content">
+                                        <div id="accordion" class="panel-group">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title"><a class="collapsed" aria-expanded="false" data-toggle="collapse" data-parent="#accordion" href="#collapseOne21">任务信息</a>
+                                                    </h4>
+                                                </div>
+                                                <div style="height: 0px;" aria-expanded="false" id="collapseOne21" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+                                                        <div class="tab-pane active" id="information21">
+                                                            <h4>任务名称</h4>
+                                                            <input name="key" type="text" id="name21" value="任务1" style="height:40px;width:550px"
+                                                                   onmouseover=this.focus();this.select();
+                                                                   onclick="if(value==defaultValue){value='';this.style.color='#000'}"
+                                                                   onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+                                                            <h4>任务描述</h4>
+                                                            <input name="key" type="text" id="describe21" value="请简要描述" style="height:120px;width:550px"
+                                                                   onmouseover=this.focus();this.select();
+                                                                   onclick="if(value==defaultValue){value='';this.style.color='#000'}"
+                                                                   onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <h4 class="panel-title"><a aria-expanded="false" class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo22">成员信息</a>
+                                                    </h4>
+                                                </div>
+                                                <div style="height: 0px;" aria-expanded="false" id="collapseTwo22" class="panel-collapse collapse">
+                                                    <div class="panel-body">
+                                                        <div align="left">
+                                                            <h4 >邀请成员</h4></div>
+                                                        <input name="key" type="text" id="member" value="输入邮箱/手机号" style="height:40px;width:550px"
+                                                               onmouseover=this.focus();this.select();
+                                                               onclick="if(value==defaultValue){value='';this.style.color='#000'}"
+                                                               onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+
+
+
+                                    </div>
+                                </div>
+
+                                <script>
+                                    $(function () {
+                                        $('#myTab li:eq(1) a').tab('show');
+                                    });
+                                </script>
+
+
+
+                            </div>
+
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary">保存</button>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-4 column">
+            <div  class="scrum-stage toggler-parent reached-top">
+                <header class="scrum-stage-header ui-sortable-handle">
+                    <div class="stage-name">
+                        已完成
+                    </div>
+                    <a class="stage-menu-toggler icon icon-clock2 hinted" data-title="添加或编辑任务阶段" data-gta="{action: 'toggle stage menu'}">
+
+                    </a>
+                </header>
+                <ul  id="sortable3" class="droptrue">
+                    <li class="li_style" id="3-1">
+                        <div class="panel panel-default " style="margin-right:10px">
+                            <div class="panel-body-task" >
+
+                                <div class="checkbox c-checkbox col-lg-10">
+
+                                    <label >
+                                        <input type="checkbox"  value="">
+                                        <span class="fa fa-check"></span>
+                                        <a id="modal-6" href="#modal-container-6" role="button" class="btn_p" data-toggle="modal">任务1</a>
+                                    </label>
+                                    <div class="modal fade" id="modal-container-6" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                    <h4 class="modal-title" id="myModalLabel5">
+                                                        标题
+                                                    </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    内容...
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">保存</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                                <div class="">
+                                    <a href="#" class="btn" align="right"><i class="fa fa-times"></i></a>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </li>
+                    <li class="li_style" id="3-2">
+                        <div class="panel panel-default " style="margin-right:10px" >
+                            <div class="panel-body-task" >
+                                <div class="checkbox c-checkbox col-lg-10">
+
+                                    <label >
+                                        <input type="checkbox"  value="">
+                                        <span class="fa fa-check"></span>
+                                        <a id="modal-7" href="#modal-container-7" role="button" class="btn_p" data-toggle="modal">任务1</a>
+                                    </label>
+                                    <div class="modal fade" id="modal-container-7" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                    <h4 class="modal-title" id="myModalLabel6">
+                                                        题标
+                                                    </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    内容...
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> <button type="button" class="btn btn-primary">保存</button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                                <div class="">
+                                    <a href="#" class="btn" align="right"><i class="fa fa-times"></i></a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
+
+            </div>
+
+
+
+
+
+        </div>
+
+
+        </div>
+</div>
+<!-- Intro -->
+
+<!-- /Intro-->
+
+
+
+
+<footer id="footer" class="top-space">
+    <div class="">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 widget">
+                    <div class="widget-body">
+                        <p class="simplenav" stlye="">
+
+                            <a href=/accounts/home >Home</a> |
+                            <a href="#">Project</a> |
+                            <a id="setting" href=/accounts/setting >Setting</a>
+                            |
+                            <a id="logout" href=/accounts/index >Logout</a>
+
+                            |
+                            <a href="javascript:scroll(0,0)">
+                                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div> <!-- /row of widgets -->
+        </div>
+    </div>
+</footer>
+</div>
+
+</body>
+</html>
