@@ -50,107 +50,73 @@
                         <i class="fa fa-circle fa-stack-2x"></i>
                         <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
                     </span>
-
-                   <strong class="text-info">UML</strong>
+                    <strong class="text-info">UML <small>1/6</small></strong>
             </a>
         </div>
-        <div class="col-md-4 "align="center" >
-            <a href="#" class="thumbnail">
-                    <span class="fa-stack fa-lg fa-3x">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
-                    </span>
+        
+        <div class="col-md-4" align="center" >
 
-                   <strong class="text-info">UML</strong>
+            <a id="modal-1" href="#modal-container-1"  class="btn" data-toggle="modal" class="thumbnail" >
+                <button class="button button-circle button-jumbo"><i class="fa fa-plus"></i></button>
+                <p>Create A Project</p>
             </a>
-        </div>
-        <div class="col-md-4 "align="center" >
-            <a href="#" class="thumbnail">
-                    <span class="fa-stack fa-lg fa-3x">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
-                    </span>
 
-                   <strong class="text-info">UML</strong>
-            </a>
-        </div>
-        <div class="col-md-4 "align="center" >
-            <a href="#" class="thumbnail">
-                    <span class="fa-stack fa-lg fa-3x">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
-                    </span>
-
-                   <strong class="text-info">UML</strong>
-            </a>
-        </div>
-                <div class="col-md-4" align="center" >
-
-                    <a id="modal-1" href="#modal-container-1"  class="btn" data-toggle="modal" class="thumbnail" >
-                        <button class="button button-circle button-jumbo"><i class="fa fa-plus"></i></button>
-                        <p>Create A Project</p>
-                    </a>
-                    <div class="modal fade" id="modal-container-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                    <img src="img/1.jpg" >
-
-                                </div>
-                                <div class="modal-body">
-                                    <div class="tabbable" id="tabs-299950">
-                                        <ul class="nav nav-tabs">
-                                            <li class="active">
-                                                <a href="#information" data-toggle="tab">项目信息</a>
-                                            </li>
-                                            <li >
-                                                <a href="#members" data-toggle="tab">成员管理</a>
-                                            </li>
-                                        </ul>
-                                        <div class="tab-content">
-                                            <div class="tab-pane active" id="information">
-                                                <div align="left">
-                                                    <h4 >项目名称</h4></div>
-                                                <input name="key" type="text" id="name" value="项目1" style="height:40px;width:550px"
-                                                       onmouseover=this.focus();this.select();
-                                                       onclick="if(value==defaultValue){value='';this.style.color='#000'}"
-                                                       onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
-                                                <div align="left">
-                                                    <h4 >项目信息</h4></div>
-                                                <input name="key" type="text" id="describe" value="请简要描述" style="height:120px;width:550px"
-                                                       onmouseover=this.focus();this.select();
-                                                       onclick="if(value==defaultValue){value='';this.style.color='#000'}"
-                                                       onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
-                                            </div>
-                                            <div class="tab-pane " id="members">
-                                                <div align="left">
-                                                    <h4 >邀请成员</h4></div>
-                                                <input name="key" type="text" id="member1" value="输入邮箱/手机号" style="height:40px;width:550px"
-                                                       onmouseover=this.focus();this.select();
-                                                       onclick="if(value==defaultValue){value='';this.style.color='#000'}"
-                                                       onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
-                                            </div>
-                                        </div>
+            <!--弹出框-->
+            <div class="modal fade" id="modal-container-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="tabbable" id="tabs-299950">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#information" data-toggle="tab">Create A Project</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="information">
+                                        <div align="left">
+                                        <h4 >Project Name</h4></div>
+                                        <input name="key" type="text" id="name" value="项目1" style="height:40px;width:550px"
+                                               onmouseover=this.focus();this.select();
+                                               onclick="if(value==defaultValue){value='';this.style.color='#000'}"
+                                               onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+                                        <div align="left">
+                                        <h4 >Project Team Size</h4></div>
+                                        <input name="key" type="number" id="name" value="人数" style="height:40px;width:550px"
+                                               onmouseover=this.focus();this.select();
+                                               onclick="if(value==defaultValue){value='';this.style.color='#000'}"
+                                               onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+                                        <div align="left">
+                                            <h4 >Details</h4></div>
+                                        <input name="key" type="text" id="describe" value="请简要描述" style="height:120px;width:550px"
+                                               onmouseover=this.focus();this.select();
+                                               onclick="if(value==defaultValue){value='';this.style.color='#000'}"
+                                               onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
                                     </div>
-
-                                    <script>
-                                        $(function () {
-                                            $('#myTab li:eq(1) a').tab('show');
-                                        });
-                                    </script>
-                                </div>
-
-                                <div class="modal-footer">
-
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                                    <button type="button" class="btn btn-primary">保存</button>
-
                                 </div>
                             </div>
+
+                            <script>
+                                $(function () {
+                                    $('#myTab li:eq(1) a').tab('show');
+                                });
+                            </script>
+                        </div>
+
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Create</button>
+
                         </div>
                     </div>
                 </div>
+            </div>
+            <!--弹出框-->
+        </div>
     </div>
 {% endblock %}
 
