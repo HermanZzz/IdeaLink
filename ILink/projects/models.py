@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from datetime import datetime
 
 from accounts.models import Account
 
@@ -14,17 +15,21 @@ class Project(models.Model) :
 	project_name = models.CharField(max_length=50, unique=True)
 
 	project_description = models.CharField(max_length=140,blank=True)
-	project_start_date = models.DateField()
-	project_expire_date = models.DateField()
+	project_start_date = models.DateField(blank=True)
+	project_expire_date = models.DateField(blank=True)
 	project_status = models.CharField(max_length=20)
 
-	project_owner = models.OneToOneField(Account)
+	project_owner = models.ForeignKey(
+		Account,
+		on_delete=models.CASCADE
+		)
 	project_members = models.ManyToManyField(
 		Account,
 		related_name='%(app_label)s_%(class)s_related')
 
 	@classmethod
 	def create(cls, account, name, description):
+		expire_time = datetime.now() + datetime.timedelta(month=1)
 		return cls(project_owner = account, project_name = name , project_description = description)
 
 
@@ -41,8 +46,8 @@ class Task(models.Model) :
 
 	task_name = models.CharField(max_length=50, unique=True)
 	task_description = models.CharField(max_length=140,blank=True)
-	task_start_date = models.DateField()
-	task_exipre_time = models.IntegerField()
+	task_start_date = models.DateField(blank=True)
+	task_exipre_time = models.IntegerField(blank=True)
 	task_status = models.CharField(max_length=20)
 
 	# members involved in this task , many to many relationship to accounts.Account
