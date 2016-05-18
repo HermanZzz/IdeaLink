@@ -7,4 +7,5 @@ app_name = 'projects'
 urlpatterns = [
 	url(r'^$' , views.myProjects , name = 'myProjects') ,
 	url(r'^projectDetail$' , views.projectDetail , name='projectDetail'),
+	url(r'^quickCreate$' , views.projectQuickCreate , name = 'projectQuickCreate'),
 ]
