@@ -11,8 +11,12 @@
 	{% endblock %}
 	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="/static/css/home.css">
-	
 	<link rel="stylesheet" href="/static/css/projects/avgrund.css">
+	 <link rel="stylesheet" href="/static/css/sweetalert.css" />
+    {% load static %}  
+    <script src="{% static "js/jquery.min.js" %}" ></script>
+    {% load static %}
+    <script src="{% static "js/sweetalert.min.js" %}"></script>
 
 </head>
 
@@ -156,7 +160,7 @@
 	
 <!-- find proj -->
 	<div style="display: none;">
-	 <form class="form-horizontal" id="find-proj-form" action="" method="POST" style="text-align:center;">
+	 <form class="form-horizontal" id="find-proj-form" action={% url 'projects:findProject' %} method="POST" style="text-align:center;">
 		{% csrf_token %}
 	 	 <fieldset>
     		<div class="control-group">
@@ -184,8 +188,6 @@
 	<!-- to top -->
 	<a href="#" onclick="gotoTop();return false;" class="totop"></a>
 	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
-	{% load static %}  
-  	<script src="{% static "js/jquery.min.js" %}" ></script>
   	{% load static %}  
   	<script src="{% static "bootstrap/js/bootstrap.min.js" %}" ></script>
   	{% load static %}  

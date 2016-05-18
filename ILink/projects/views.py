@@ -216,3 +216,36 @@ def delete_member(request, project_id, member_id):
 		return HttpResponseRedirect('/projects/projectDetail/' + project_id)
 	return HttpResponseRedirect('/projects/projectDetail/' + project_id)
 
+def findProject(request):
+	# validate user session
+	try:
+		account = Account.objects.get(_account_name = request.session['account_name'])
+	except Exception, e:
+		return render(request , 'accounts/login.html' , {
+			'is_login_success' : False,
+			'is_register_success' : False,
+			'is_first_time_to_this_page' : False,
+			})
+
+	return render(request , 'projects/findProject.html',{
+		'is_login_success' : True,
+		'user_session' : account,
+		})
+
+def applyProject(request):
+	# validate user session
+	try:
+		account = Account.objects.get(_account_name = request.session['account_name'])
+	except Exception, e:
+		return render(request , 'accounts/login.html' , {
+			'is_login_success' : False,
+			'is_register_success' : False,
+			'is_first_time_to_this_page' : False,
+			})
+
+	return render(request , 'projects/applyProject.html',{
+		'is_login_success' : True,
+		'user_session' : account,
+		})
+	
+
