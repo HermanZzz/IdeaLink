@@ -168,21 +168,11 @@ def projectQuickCreate(request):
 		account.project_set.create(project_name = proj_name , project_description = proj_description , 
 			project_owner = account,project_start_date = datetime.now(), project_expire_date = (datetime.now() + timedelta(days = 30)))
 
-		
 	except Exception, e:
-	
-		return render(request , 'projects/myProjects.html' , {
-			'is_login_success' : True,
-			'press_create' : True,
-			'create_project_succeed' : False,
-			})
-
-	return render(request , 'projects/projectDetail.html',{
-		'is_login_success' : True,
-		'user_session' : account,
-		'press_create' : True,
-		'create_project_succeed' : True,
-		})
+		return HttpResponseRedirect('/projects/myProjects')
+	else :
+		proj = account.project_set.get(project_name = proj_name)
+		return HttpResponseRedirect('/projects/projectDetail/' + str(proj.id))
 
 def add_member(request, project_id):
 	# validate user session
@@ -225,3 +215,4 @@ def delete_member(request, project_id, member_id):
 	except Exception, e:
 		return HttpResponseRedirect('/projects/projectDetail/' + project_id)
 	return HttpResponseRedirect('/projects/projectDetail/' + project_id)
+
