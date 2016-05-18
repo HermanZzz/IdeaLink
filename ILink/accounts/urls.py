@@ -15,4 +15,5 @@ urlpatterns = [
 	url(r'^setting/experience/(?P<experience_id>[0-9]*)$' , views.deleteExperience , name = 'deleteExperience'),
 	url(r'^setting/skill$' , views.settingSkill , name='settingSkill'),
 	url(r'^setting/skill/(?P<skill_id>[0-9]*)$' , views.deleteSkill , name='deleteSkill'),
+	url(r'^resume$' , views.showResume , name='showResume'),
 ]

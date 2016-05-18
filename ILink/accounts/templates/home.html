@@ -46,7 +46,7 @@
 						</ul>
 					</li>
 					<li><a id="setting" href={% url 'accounts:settingProfile' %}>Setting</a></li>
-					<li><a href="#">{{ user_session.account_name}}</a></li>	
+					<li><a href={% url 'accounts:showResume' %}>{{ user_session.account_name}}</a></li>	
 					<li><a class="btn" href={% url 'accounts:logout' %}>LOG OUT</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
