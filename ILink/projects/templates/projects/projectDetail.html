@@ -6,6 +6,8 @@
     <link href="/static/css/projects/project.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/projects/jquery-ui.min.css">
     <link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+
     {% load static %}  
     <script src="{% static "js/jquery.min.js" %}" ></script>
 {% endblock %}
@@ -155,12 +157,36 @@
                                                onmouseover=this.focus();this.select();
                                                onclick="if(value==defaultValue){value='';this.style.color='#000'}"
                                                onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+
+                                        <div align="left">
+                                            <h4 >Deadline</h4></div>
+                                        <div class="input-group date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+
+                                            <input id="deadline" name = "deadline" class="form-control" size="16" type="text" value="" readonly>
+                                            
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </span>
+                                             <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+
+                                        <div align="left">
+                                            <h4 >Statu</h4>
+                                        <select align="left">
+                                          <option>Open</option>
+                                          <option>Full</option>
+                                          <option>Finish</option>
+                                        </select></div>
+
                                         <div align="left">
                                             <h4 >Details</h4></div>
                                         <input name="key" type="text" id="describe" value="请简要描述" style="height:120px;width:550px"
                                                onmouseover=this.focus();this.select();
                                                onclick="if(value==defaultValue){value='';this.style.color='#000'}"
                                                onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -460,5 +486,21 @@
     <script src="{% static "js/projects/icheck.js" %}"></script>
     {% load static %}
     <script src="{% static "js/projects/jquery.icheck.js" %}"></script>
+
+    {% load static %}
+    <script src="{% static "bootstrap/js/bootstrap-datetimepicker.js" %}"></script>
+
+    <script type="text/javascript">
+        $('.form_date').datetimepicker({
+            language:  'fr',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+    </script>
   
 {% endblock %}
