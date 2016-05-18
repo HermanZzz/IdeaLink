@@ -24,16 +24,18 @@
         <div class="col-md-2 column" align="left">
             <span class="button-dropdown button-dropdown-primary" data-buttons="dropdown">
                 <button class="button button-primary button-normal">
-                    <i class="fa fa-bars"></i>Projects
+                    <i class="fa fa-bars"></i>&nbsp&nbsp&nbsp{{ current_project.project_name}}
                 </button>
+                
+                
                 <ul class="button-dropdown-list is-below">
+                {% for project in user_session.project_set.all %}
                     <li class="button-dropdown-divider">
-                        <a href="#"><i class="fa fa-heart-o"></i>Project1</a>
+                        <a href={% url 'projects:projectDetailsById' project.id %}><i class="fa fa-heart-o"></i>{{ project.project_name }}</a>
                     </li>
-                    <li class="button-dropdown-divider">
-                        <a href="#"><i class="fa fa-heart-o"></i>Project2</a>
-                    </li>
+                    {% endfor %}
                 </ul>
+                
             </span>
         </div>
 
@@ -185,6 +187,8 @@
                         Pending
                     </div>
                 </header>
+                
+                {% for task in pending_tasks %}
                 <ul  id="sortable1" class="droptrue">
                     <li class="li_style" id="1-1">
                         <div class="panel panel-default " style="margin-right:10px">
@@ -194,9 +198,9 @@
                                     <label >
                                         <input type="checkbox" onclick="checkboxOnclick(this)" value="">
                                         <span class="fa fa-check"></span>
-                                        <a id="modal-2" href="#modal-task" role="button" class="btn_p" data-toggle="modal">Task 1</a>
+                                        <a id="modal-2" href="#modal-task" role="button" class="btn_p" data-toggle="modal">{{ task.task_name }}</a>
                                     </label>
-                                    <!--弹出框-->
+                                    <!--弹出框--> <!-- Task Details -->
                                     <div class="modal fade" id="modal-task" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -219,14 +223,14 @@
                                     <!--弹出框-->
                                 </div>
                                 <div class="">
-                                    <a href="#" class="btn" align="right"><i class="fa fa-times"></i></a>
+                                    <a href={% url 'projects:deleteTask' current_project.id task.id %} class="btn" align="right"><i class="fa fa-times"></i></a>
                                 </div>
                             </div>
                         </div>
 
                     </li>
-
                 </ul>
+                {% endfor %}
 
                 <a id="modal-12" href="#modal-task-new" role="button" class="btn" data-toggle="modal">+ New Task</a>
                 <div class="modal fade" id="modal-task-new" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -235,27 +239,24 @@
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                             </div>
-                            <div class="modal-body">
 
+                            <form method="POST" action={% url 'projects:createTask' current_project.id %}>
+                            {% csrf_token %}
+                                <div class="modal-body">
                                 <div class="tabbable" id="tabs-12">
-
                                     <div class="tab-content">
                                         <div id="accordion12" class="panel-group">
                                             <div class="panel panel-default">
-                                                <!-- <div class="panel-heading">
-                                                    <h4 class="panel-title"><a class="collapsed" aria-expanded="false" data-toggle="collapse" data-parent="#accordion" href="#collapseOne12">New Task</a>
-                                                    </h4>
-                                                </div> -->
                                                 <div  aria-expanded="false" id="collapseOne12" class="">
                                                     <div class="panel-body">
                                                         <div class="tab-pane active" id="information12">
                                                             <h4>Task Name</h4>
-                                                            <input name="key" type="text" id="name12" value="Task" style="height:40px;width:550px"
+                                                            <input name="task_name" type="text" id="name12" placeholder="New Task" style="height:40px;width:550px"
                                                                    onmouseover=this.focus();this.select();
                                                                    onclick="if(value==defaultValue){value='';this.style.color='#000'}"
                                                                    onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
                                                             <h4>Task Detail</h4>
-                                                            <input name="key" type="text" id="describe12" value="Description" style="height:120px;width:550px"
+                                                            <input name="task_description" type="text" id="describe12" placeholder="Descriptioin" style="height:120px;width:550px"
                                                                    onmouseover=this.focus();this.select();
                                                                    onclick="if(value==defaultValue){value='';this.style.color='#000'}"
                                                                    onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
@@ -273,13 +274,13 @@
                                         $('#myTab li:eq(1) a').tab('show');
                                     });
                                 </script>
-                            </div>
+                                </div>    
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </form>
 
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save</button>
-
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -297,6 +298,8 @@
                     <a class="stage-menu-toggler icon icon-clock2 hinted" data-title="添加或编辑任务阶段" data-gta="{action: 'toggle stage menu'}">
                     </a>
                 </header>
+
+                {% for tasks in underway_tasks %}
                 <ul id="sortable2" class="droptrue">
                     <li class="li_style" id="2-1">
                         <div class="panel panel-default " style="margin-right:10px">
@@ -304,7 +307,7 @@
                                 <div class="checkbox c-checkbox col-md-8">
                                     <label >
                                         <input type="checkbox" onclick="checkboxOnclick(this)" value="">     <span class="fa fa-check"></span>
-                                        <a id="modal-4" href="#modal-task" role="button" class="btn_p" data-toggle="modal">Task 2</a>
+                                        <a id="modal-4" href="#modal-task" role="button" class="btn_p" data-toggle="modal">{{ task.task_name }}</a>
                                     </label>
 
                                     <!--弹出框-->
@@ -337,61 +340,7 @@
                         </div>
                     </li>
                 </ul>
-                <a id="modal-21" href="#modal-task-new2" role="button" class="btn" data-toggle="modal">+ New Task</a>
-                <div class="modal fade" id="modal-task-new2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                            </div>
-                            <div class="modal-body">
-
-                                <div class="tabbable" id="tabs-12">
-
-                                    <div class="tab-content">
-                                        <div id="accordion12" class="panel-group">
-                                            <div class="panel panel-default">
-                                                <!-- <div class="panel-heading">
-                                                    <h4 class="panel-title"><a class="collapsed" aria-expanded="false" data-toggle="collapse" data-parent="#accordion" href="#collapseOne12">New Task</a>
-                                                    </h4>
-                                                </div> -->
-                                                <div  aria-expanded="false" id="collapseOne12" class="">
-                                                    <div class="panel-body">
-                                                        <div class="tab-pane active" id="information12">
-                                                            <h4>Task Name</h4>
-                                                            <input name="key" type="text" id="name12" value="Task" style="height:40px;width:550px"
-                                                                   onmouseover=this.focus();this.select();
-                                                                   onclick="if(value==defaultValue){value='';this.style.color='#000'}"
-                                                                   onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
-                                                            <h4>Task Detail</h4>
-                                                            <input name="key" type="text" id="describe12" value="Description" style="height:120px;width:550px"
-                                                                   onmouseover=this.focus();this.select();
-                                                                   onclick="if(value==defaultValue){value='';this.style.color='#000'}"
-                                                                   onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <script>
-                                    $(function () {
-                                        $('#myTab li:eq(1) a').tab('show');
-                                    });
-                                </script>
-                            </div>
-
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save</button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
 

@@ -47,7 +47,7 @@ class Task(models.Model) :
 	task_name = models.CharField(max_length=50, unique=True)
 	task_description = models.CharField(max_length=140,blank=True)
 	task_start_date = models.DateField(blank=True)
-	task_exipre_time = models.IntegerField(blank=True)
+	task_expire_time = models.DateField(blank=True)
 	task_status = models.CharField(max_length=20)
 
 	# members involved in this task , many to many relationship to accounts.Account
