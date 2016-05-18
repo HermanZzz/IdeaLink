@@ -63,7 +63,7 @@
 
             
             <!--弹出框-->
-            <form class="form-horizontal" id="create-proj-form" action="" method="POST" style="text-align:center;">
+            <form class="form-horizontal" id="create-proj-form" action={% url 'projects:projectQuickCreate' %} method="POST" style="text-align:center;">
                 {% csrf_token %}
                 <fieldset>
                 <div class="modal fade" id="modal-container-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -83,12 +83,12 @@
                                         <div class="tab-pane active" id="information">
                                             <div align="left">
                                             <h4 >Project Name</h4></div>
-                                            <input name="key" type="text" id="name" value="项目1" style="height:40px;width:550px"
+                                            <input name="proj-name" type="text" id="name" placeholder="Project name" style="height:40px;width:550px"
                                                    onclick="if(value==defaultValue){value='';this.style.color='#000'}"
                                                    onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
                                             <div align="left">
                                                 <h4 >Details</h4></div>
-                                            <input name="key" type="text" id="describe" value="请简要描述" style="height:120px;width:550px"
+                                            <input name="description" type="text" id="describe" placeholder="Project description" style="height:120px;width:550px"
                                                    onclick="if(value==defaultValue){value='';this.style.color='#000'}"
                                                    onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
                                         </div>
@@ -105,7 +105,7 @@
                             <div class="modal-footer">
 
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Create</button>
+                                <button type="submit" class="btn btn-primary">Create</button>
 
                             </div>
                         </div>
