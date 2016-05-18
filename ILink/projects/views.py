@@ -61,7 +61,6 @@ def projectsByType(request, type):
 		'target_projects' : target_projects
 		})
 
-
 def projectDetail(request) :
 	# validate user session
 	try:
@@ -89,10 +88,12 @@ def project_details(request , project_id):
 			})
 
 	# Fetch project info
+	# import pdb; pdb.set_trace()
 	current_project = account.project_set.get(id=project_id)
 	pending_tasks = current_project.task_set.filter(task_status = 'Pending')
 	underway_tasks = current_project.task_set.filter(task_status = 'Underway')
 	finished_tasks = current_project.task_set.filter(task_status = 'Finished')
+
 	return render(request , 'projects/projectDetail.html', {
 		'is_login_success' : True,
 		'user_session' : account,
@@ -182,3 +183,45 @@ def projectQuickCreate(request):
 		'press_create' : True,
 		'create_project_succeed' : True,
 		})
+
+def add_member(request, project_id):
+	# validate user session
+	try:
+		account = Account.objects.get(_account_name = request.session['account_name'])
+	except Exception, e:
+		return render(request , 'accounts/login.html' , {
+			'is_login_success' : False,
+			'is_register_success' : False,
+			'is_first_time_to_this_page' : False,
+			})
+
+	# import pdb; pdb.set_trace()
+	# Fetch project info
+	try:
+		current_project = account.project_set.get(id=project_id)
+		member = Account.objects.get(_account_name = request.POST['member_name'])
+		current_project.project_members.add(member)
+	except Exception, e:
+		return HttpResponseRedirect('/projects/projectDetail/' + project_id)
+	return HttpResponseRedirect('/projects/projectDetail/' + project_id)
+
+def delete_member(request, project_id, member_id):
+	# validate user session
+	try:
+		account = Account.objects.get(_account_name = request.session['account_name'])
+	except Exception, e:
+		return render(request , 'accounts/login.html' , {
+			'is_login_success' : False,
+			'is_register_success' : False,
+			'is_first_time_to_this_page' : False,
+			})
+
+	# Fetch project info
+	try:
+		current_project = account.project_set.get(id=project_id)
+		member = Account.objects.get(id=member_id)
+
+		current_project.project_members.remove(member)
+	except Exception, e:
+		return HttpResponseRedirect('/projects/projectDetail/' + project_id)
+	return HttpResponseRedirect('/projects/projectDetail/' + project_id)

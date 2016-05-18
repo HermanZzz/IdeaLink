@@ -68,42 +68,51 @@
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="information">
                                         <div align="left">
-                                        <h4 >Members 1/6</h4></div>
-
+                                            <h4 >Owner</h4>
+                                            <hr/>
+                                            <a href="#">
+                                            <i class="fa fa-user"></i> <a href="#">{{ current_project.project_owner.account_name}}</a>
+                                            </a>
+                                        </div>
+                                        
+                                        <br/>
+                                        <div align="left">
+                                        <h4 >Members</h4>
+                                        </div>
                                         <table class="table table-hover ">
                                             <caption></caption>
                                        <tbody>
                                           <tr>
+                                          {% for member in current_project.project_members.all %}
                                              <td>
                                                 <a href="#">
-                                                     <i class="fa fa-user"></i> <a href="#">Herman
+                                                     <i class="fa fa-user"></i> <a href="#">{{member.account_name}}
                                                  </a>
                                              </td>
                                              <td style="text-align:center;">
-                                                <a href="#">
+                                                <a href={% url 'projects:deleteMember' current_project.id member.id %} >
                                                      <i class="fa  fa-remove"></i>
                                                 </a>
                                             </td>
+                                            {% endfor %}
                                           </tr>
                                        </tbody>
                                     </table>
                                          <div align="left">
                                             <h4 >Add Member</h4>
                                         </div>
-                                        <input name="key" type="text" id="describe" value="e-mail" style="height:40px;width:550px"
+
+                                        <form method="POST" action={% url 'projects:addMember' current_project.id %}>
+                                        {% csrf_token %}
+                                            <input name="member_name" type="text" id="describe" placeholder="Member e-mail" style="height:40px;width:550px"
                                                    onmouseover=this.focus();this.select();
                                                    onclick="if(value==defaultValue){value='';this.style.color='#000'}"
                                                    onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
 
                                             <div align="center">
-                                                 <a href="#">
-                                                    <span class="fa-stack fa-lg fa-2x">
-                                                      <i class="fa fa-circle fa-stack-2x"></i>
-                                                      <i class="fa fa-plus fa-stack-1x fa-inverse"></i>
-                                                    </span>
-                                                 </a>
-                                             </div>
-
+                                                 <input type="submit"/>
+                                             </div>    
+                                        </form>
                                         </div>
 
                                 </div>
@@ -355,6 +364,7 @@
 
                     </a>
                 </header>
+                {% for task in finished_tasks %}
                 <ul  id="sortable3" class="droptrue">
                     <li class="li_style" id="3-1">
                         <div class="panel panel-default " style="margin-right:10px">
@@ -364,7 +374,7 @@
                                     <label >
                                         <input type="checkbox"  value="">
                                         <span class="fa fa-check"></span>
-                                        <a id="modal-6" href="#modal-task" role="button" class="btn_p" data-toggle="modal">Task 3</a>
+                                        <a id="modal-6" href="#modal-task" role="button" class="btn_p" data-toggle="modal">{{task.task_name}}</a>
                                     </label>
                                    <!--弹出框-->
                                     <div class="modal fade" id="modal-task" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -397,6 +407,7 @@
                         </div>
                     </li>
                 </ul>
+                {% endfor %}
             </div>
         </div>
     </div>
