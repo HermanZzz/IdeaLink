@@ -9,12 +9,29 @@
     <link rel="stylesheet" href="/static/css/font-awesome.min.css">
     <!-- 只有使用字体图标时才需要加载 Font-Awesome -->
     <link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/sweetalert.css" />
     {% load static %}  
     <script src="{% static "js/jquery.min.js" %}" ></script>
-
+    {% load static %}
+    <script src="{% static "js/sweetalert.min.js" %}"></script>
 {% endblock %}
 
+
 {% block content %}
+
+{% if press_create == True %}
+    {% if create_project_succeed == False %}
+    <script>
+      swal("Oops...", "Create Project unsuccessfully!", "error");
+    </script>
+    {% endif %}
+    {% if create_project_succeed == True %}
+    <script>
+      swal("Success", "Create project successfully!", "success");
+    </script>
+    {% endif %}
+{% endif %}
+
 <header id="head" class="secondary"></header><br/>
 
 <div id="large-header" class="container" >
@@ -105,8 +122,8 @@
                             <div class="modal-footer">
 
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Create</button>
-
+                                <button id="create-btn" type="submit" class="btn btn-primary">Create</button>
+                                
                             </div>
                         </div>
                     </div>
@@ -150,6 +167,7 @@
     </footer>   
 {% endblock %}
 
+
 {% block js %}
     {% load static %}
     <script src="{% static "bootstrap/js/bootstrap-datetimepicker.js" %}"></script>
@@ -163,5 +181,6 @@
     <script src="{% static "js/projects/icheck.js" %}"></script>
     {% load static %}
     <script src="{% static "js/projects/jquery.icheck.js" %}"></script>
+    
   
 {% endblock %}
