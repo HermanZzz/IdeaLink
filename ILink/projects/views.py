@@ -3,6 +3,7 @@ from datetime import datetime
 from datetime import timedelta
 from accounts.models import Account
 from django.http import HttpResponseRedirect
+from .models import Project
 
 # Create your views here.
 def index(request) :
@@ -27,7 +28,7 @@ def myProjects(request) :
 		'user_session' : account,
 		'press_create' : False,
 		'create_project_succeed' : False,
-		'target_projects' : account.project_set.all()｜account.projects_project_related.all()
+		'target_projects' : account.project_set.all() | Project.objects.filter(project_members__id = account.id)
 		})
 
 def projectsByType(request, type):
@@ -44,13 +45,13 @@ def projectsByType(request, type):
 			})
 
 	if type == 'All' :
-		target_proejcts = account.project_set.all()｜account.projects_project_related.all()
+		target_projects = account.project_set.all() | Project.objects.filter(project_members__id = account.id)
 	elif type == 'Own' :
-		target_proejcts = account.project_set.all()
+		target_projects = account.project_set.all()
 	elif type == 'Member' :
-		target_proejcts = account.projects_project_related.all()
+		target_projects = Project.objects.filter(project_members__id = account.id)	
 	else :
-		target_proejcts = account.project_set.all()｜account.projects_project_related.all()
+		target_projects = account.project_set.all() | Project.objects.filter(project_members__id = account.id)
 
 	return render(request , 'projects/myProjects.html',{
 		'is_login_success' : True,

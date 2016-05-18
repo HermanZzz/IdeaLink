@@ -46,13 +46,13 @@
                     </a>
                     <ul class="button-dropdown-list is-below">
                         <li class="button-dropdown-divider">
-                            <a href="#">All</a>
+                            <a href={% url 'projects:projectsByType' 'All' %}>All</a>
                         </li>
                         <li class="button-dropdown-divider">
-                            <a href="#">Own</a>
+                            <a href={% url 'projects:projectsByType' 'Own' %}>Own</a>
                         </li>
                         <li>
-                            <a href="#">Member</a>
+                            <a href={% url 'projects:projectsByType' 'Member' %}>Member</a>
                         </li>
                     </ul>
                   </span>
