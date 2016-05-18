@@ -42,18 +42,17 @@
             <div class="col-md-offset-3 col-md-3"align="center">
                   <span class="button-dropdown button-dropdown-inverse" data-buttons="dropdown">
                     <a href="#" class="button button-inverse" >
-                        <i class="fa "></i> 我的分类 <i class="fa fa-caret-down"></i>
+                        <i class="fa "></i> Categories <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="button-dropdown-list is-below">
-                        <li><a href="#">全部</a></li>
                         <li class="button-dropdown-divider">
-                            <a href="#">分类1</a>
+                            <a href="#">All</a>
+                        </li>
+                        <li class="button-dropdown-divider">
+                            <a href="#">Own</a>
                         </li>
                         <li>
-                            <a href="#">分类2</a>
-                        </li>
-                        <li>
-                            <a href="#">分类3</a>
+                            <a href="#">Member</a>
                         </li>
                     </ul>
                   </span>
@@ -61,16 +60,17 @@
     </div>
 
     <div class="row">
+        {% for project in target_projects %}
         <div class="col-md-4 "align="center" >
-            <a href={% url 'projects:projectDetail' %} class="thumbnail">
+            <a href={% url 'projects:projectDetailsById' project.id%} class="thumbnail">
                     <span class="fa-stack fa-lg fa-3x">
                         <i class="fa fa-circle fa-stack-2x"></i>
                         <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
                     </span>
-                    <strong class="text-info">UML <small>1/6</small></strong>
+                    <strong class="text-info">{{project.project_name}}</strong>
             </a>
         </div>
-        
+        {% endfor %}    
         <div class="col-md-4" align="center" >
 
             <a id="modal-1" href="#modal-container-1"  class="btn" data-toggle="modal" class="thumbnail" >
@@ -132,6 +132,7 @@
              </form>
             <!--弹出框-->
         </div>
+    
     </div>
 {% endblock %}
 

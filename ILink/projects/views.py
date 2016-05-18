@@ -11,8 +11,6 @@ def index(request) :
 def myProjects(request) :
 	press_create = False
 	create_project_succeed = False
-	# import pdb
-	# pdb.set_trace()
 	# validate user session
 	try:
 		account = Account.objects.get(_account_name = request.session['account_name'])
@@ -29,6 +27,37 @@ def myProjects(request) :
 		'user_session' : account,
 		'press_create' : False,
 		'create_project_succeed' : False,
+		'target_projects' : account.project_set.all()｜account.projects_project_related.all()
+		})
+
+def projectsByType(request, type):
+	press_create = False
+	create_project_succeed = False
+	# validate user session
+	try:
+		account = Account.objects.get(_account_name = request.session['account_name'])
+	except Exception, e:
+		return render(request , 'accounts/login.html' , {	
+			'is_login_success' : False,
+			'is_register_success' : False,
+			'is_first_time_to_this_page' : False,
+			})
+
+	if type == 'All' :
+		target_proejcts = account.project_set.all()｜account.projects_project_related.all()
+	elif type == 'Own' :
+		target_proejcts = account.project_set.all()
+	elif type == 'Member' :
+		target_proejcts = account.projects_project_related.all()
+	else :
+		target_proejcts = account.project_set.all()｜account.projects_project_related.all()
+
+	return render(request , 'projects/myProjects.html',{
+		'is_login_success' : True,
+		'user_session' : account,
+		'press_create' : False,
+		'create_project_succeed' : False,
+		'target_projects' : target_projects
 		})
 
 
@@ -115,8 +144,6 @@ def delete_task(request, project_id, task_id):
 		return HttpResponseRedirect('/projects/projectDetail/' + project_id)
 	return HttpResponseRedirect('/projects/projectDetail/' + project_id)
 	
-
-
 def projectQuickCreate(request):
 	press_create = False
 	create_project_succeed = False
