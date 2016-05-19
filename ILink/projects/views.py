@@ -113,7 +113,7 @@ def project_details(request , project_id):
 
 	# Fetch project info
 	# import pdb; pdb.set_trace()
-	current_project = account.project_set.get(id=project_id)
+	current_project = Project.objects.get(id=project_id)
 	pending_tasks = current_project.task_set.filter(task_status = 'Pending')
 	underway_tasks = current_project.task_set.filter(task_status = 'Underway')
 	finished_tasks = current_project.task_set.filter(task_status = 'Finished')
@@ -139,7 +139,7 @@ def create_task(request, project_id):
 			})
 	# Fetch project info and create new task
 	try:
-		current_project = account.project_set.get(id=project_id)
+		current_project = Project.objects.get(id=project_id)
 
 		task_name = request.POST['task_name']
 		task_description = request.POST['task_description']
@@ -162,7 +162,8 @@ def delete_task(request, project_id, task_id):
 			})
 	# Fetch project info and create new task
 	try:
-		current_project = account.project_set.get(id=project_id)
+		
+		current_project = Project.objects.get(id=project_id)
 		current_task = current_project.task_set.filter(id=task_id)
 		for task in current_task :
 			task.delete()
@@ -190,7 +191,7 @@ def projectQuickCreate(request):
 		proj_description = request.POST['description']
 		
 		account.project_set.create(project_name = proj_name , project_description = proj_description , 
-			project_owner = account,project_start_date = datetime.now(), project_expire_date = (datetime.now()))
+			project_owner = account,project_start_date = datetime.now().strftime('%Y-%m-%d'), project_expire_date = datetime.now().strftime('%Y-%m-%d'))
 
 	except Exception, e:
 		return HttpResponseRedirect('/projects/myProjects')
@@ -299,7 +300,7 @@ def applyProject(request, project_id):
 
 		description = request.POST['description']
 
-		current_project = account.project_set.get(id=project_id)
+		current_project = Project.objects.get(id=project_id)
 
 		# Update
 		current_project.update_project(new_name,description,expire_time,status)
@@ -343,7 +344,7 @@ def change_task(request, project_id, task_id):
 			})
 	# Fetch project info and create new task
 	try:
-		current_project = account.project_set.get(id=project_id)
+		current_project = Project.objects.get(id=project_id)
 		current_task = current_project.task_set.get(id=task_id)
 		
 		if current_task.task_status == 'Pending':
@@ -417,7 +418,7 @@ def deleteApplicant(request, project_id, member_id):
 	try:
 		project_for_delete = Project.objects.get(id=project_id)
 		member_for_delete = Account.objects.get(id=member_id)
-		project_for_delete.project_members.remove(member_for_delete)
+		project_for_delete.project_applicants.remove(member_for_delete)
 
 	except Exception, e:
 		return HttpResponseRedirect('/projects/projectDetail/' + project_id)
