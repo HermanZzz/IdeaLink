@@ -39,7 +39,14 @@
             </span>
         </div>
 
-        <div class="col-md-offset-8 col-md-2 column" align="right">
+        <div class="col-md-offset-8 col-md-4 column" align="right">
+
+        {% if user_session == current_project.project_owner %}
+           <a id="modal-1" href="#modal-team-applicants" role="button" data-toggle="modal">
+                <i class="fa fa-2x fa-users"></i>
+                <strong class="text-info">Applicants</strong>
+            </a>
+        {% endif %}
 
             <a id="modal-1" href="#modal-team-member" role="button" data-toggle="modal">
                 <i class="fa fa-2x fa-users"></i>
@@ -50,6 +57,63 @@
                 <i class="fa fa-2x fa-cog fa-spin"></i>
                 <strong class="text-info">Setting</strong>
             </a> 
+
+            <!--弹出框-->
+            <div class="modal fade" id="modal-team-applicants" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="tabbable" id="tabs-299950">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#information" data-toggle="tab">Applicants</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="information">
+                                        <div align="left"><h4 >Applicants</h4></div>
+                                        <table class="table table-hover ">
+                                            <caption></caption>
+                                        <tbody>
+                                          <tr>
+                                          {% for member in current_project.project_applicants.all %}
+                                             <td>
+                                                <a href={% url 'accounts:showResumeWithID' member.id%}>
+                                                     <i class="fa fa-user"></i> <a href={% url 'accounts:showResumeWithID' member.id%}>{{member.account_name}}
+                                                 </a>
+                                             </td>
+                                             <td style="text-align:center;">
+
+                                                <a href={% url 'projects:addApplicant' current_project.id member.id %} >
+                                                     <i class="fa ">Accept</i>
+                                                </a>
+                                                &nbsp&nbsp&nbsp&nbsp&nbsp
+                                                <a href={% url 'projects:deleteApplicant' current_project.id member.id %} >
+                                                     <i class="fa fa-remove"></i>
+                                                </a>
+
+                                            </td>
+                                            {% endfor %}
+                                          </tr>
+                                        </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <script>
+                                $(function () {
+                                    $('#myTab li:eq(1) a').tab('show');
+                                });
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--弹出框-->
 
             <!--弹出框-->
             <div class="modal fade" id="modal-team-member" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

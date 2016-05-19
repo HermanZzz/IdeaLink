@@ -31,6 +31,30 @@ def myProjects(request) :
 		'target_projects' : account.project_set.all() | Project.objects.filter(project_members__id = account.id)
 		})
 
+def myApplications(request):
+	# validate user session
+	try:
+		account = Account.objects.get(_account_name = request.session['account_name'])
+	
+	except Exception, e:
+		return render(request , 'accounts/login.html' , {	
+			'is_login_success' : False,
+			'is_register_success' : False,
+			'is_first_time_to_this_page' : False,
+			})
+
+
+	# import pdb; pdb.set_trace()
+	result = Project.objects.filter(project_applicants__id = account.id)
+	find_project_success = True
+	return render(request , 'projects/findProject.html',{
+		'is_login_success' : True,
+		'find_project_success' : find_project_success,
+		'user_session' : account,
+		'results' : result
+		})
+
+
 def projectsByType(request, type):
 	press_create = False
 	create_project_succeed = False
@@ -333,3 +357,68 @@ def change_task(request, project_id, task_id):
 		return HttpResponseRedirect('/projects/projectDetail/' + project_id)
 	return HttpResponseRedirect('/projects/projectDetail/' + project_id)
 
+def applyForProject(request, project_id):
+	# validate user session
+	try:
+		account = Account.objects.get(_account_name = request.session['account_name'])
+	except Exception, e:
+		return render(request , 'accounts/login.html' , {
+			'is_login_success' : False,
+			'is_register_success' : False,
+			'is_first_time_to_this_page' : False,
+			})
+
+	try:
+		project_for_apply = Project.objects.get(id=project_id)
+
+		# import pdb; pdb.set_trace()
+		project_for_apply.project_applicants.add(account)
+		project_for_apply.save()
+
+	except Exception, e:
+		return HttpResponseRedirect('/projects/projectsByType/3')
+	
+	return HttpResponseRedirect('/projects/projectsByType/1')
+
+def addApplicant(request, project_id, member_id):
+	# validate user session
+	try:
+		account = Account.objects.get(_account_name = request.session['account_name'])
+	except Exception, e:
+		return render(request , 'accounts/login.html' , {
+			'is_login_success' : False,
+			'is_register_success' : False,
+			'is_first_time_to_this_page' : False,
+			})
+
+	try:
+		# import pdb; pdb.set_trace()
+		project_for_add = Project.objects.get(id=project_id)
+		member_for_add = Account.objects.get(id=member_id)
+		project_for_add.project_members.add(member_for_add)
+		project_for_add.project_applicants.remove(member_for_add)
+
+	except Exception, e:
+		return HttpResponseRedirect('/projects/projectDetail/' + project_id)
+	return HttpResponseRedirect('/projects/projectDetail/' + project_id)
+	
+
+def deleteApplicant(request, project_id, member_id):
+	# validate user session
+	try:
+		account = Account.objects.get(_account_name = request.session['account_name'])
+	except Exception, e:
+		return render(request , 'accounts/login.html' , {
+			'is_login_success' : False,
+			'is_register_success' : False,
+			'is_first_time_to_this_page' : False,
+			})
+
+	try:
+		project_for_delete = Project.objects.get(id=project_id)
+		member_for_delete = Account.objects.get(id=member_id)
+		project_for_delete.project_members.remove(member_for_delete)
+
+	except Exception, e:
+		return HttpResponseRedirect('/projects/projectDetail/' + project_id)
+	return HttpResponseRedirect('/projects/projectDetail/' + project_id)

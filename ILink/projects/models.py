@@ -26,6 +26,9 @@ class Project(models.Model) :
 	project_members = models.ManyToManyField(
 		Account,
 		related_name='%(app_label)s_%(class)s_related')
+	project_applicants = models.ManyToManyField(
+		Account,
+		related_name='%(app_label)s_applicant_related')
 
 	@classmethod
 	def create(cls, account, name, description):
