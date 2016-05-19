@@ -147,7 +147,7 @@ def delete_task(request, project_id, task_id):
 	return HttpResponseRedirect('/projects/projectDetail/' + project_id)
 	
 def projectQuickCreate(request):
-	press_create = False
+	press_create = True
 	create_project_succeed = False
 	# validate user session
 	try:
@@ -216,6 +216,7 @@ def delete_member(request, project_id, member_id):
 	return HttpResponseRedirect('/projects/projectDetail/' + project_id)
 
 def findProject(request):
+	find_project_success=False
 	# validate user session
 	try:
 		account = Account.objects.get(_account_name = request.session['account_name'])
@@ -234,13 +235,15 @@ def findProject(request):
 		# import pdb; pdb.set_trace()
 		result_by_name = Project.objects.filter(project_name__contains = search_key)
 		result = result_by_name.filter(project_status = 'Open')
-
+		if result :
+			find_project_success=True
 		# result_by_tag =
 	except Exception, e:
 		return HttpResponseRedirect('/projects/projectsByType/1')
 
 	return render(request , 'projects/findProject.html',{
 		'is_login_success' : True,
+		'find_project_success' : find_project_success,
 		'user_session' : account,
 		'results' : result
 		})
