@@ -43,10 +43,11 @@
 
         {% if user_session == current_project.project_owner %}
            <a id="modal-1" href="#modal-team-applicants" role="button" data-toggle="modal">
-                <i class="fa fa-2x fa-users"></i>
+                <i class="fa fa-2x fa-magic"></i>
                 <strong class="text-info">Applicants</strong>
             </a>
         {% endif %}
+
 
             <a id="modal-1" href="#modal-team-member" role="button" data-toggle="modal">
                 <i class="fa fa-2x fa-users"></i>
@@ -71,16 +72,19 @@
                                 <ul class="nav nav-tabs">
                                     <li class="active">
                                         <a href="#information" data-toggle="tab">Applicants</a>
+
                                     </li>
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="information">
+
                                         <div align="left"><h4 >Applicants</h4></div>
                                         <table class="table table-hover ">
                                             <caption></caption>
                                         <tbody>
                                           <tr>
                                           {% for member in current_project.project_applicants.all %}
+
                                              <td>
                                                 <a href={% url 'accounts:showResumeWithID' member.id%}>
                                                      <i class="fa fa-user"></i> <a href={% url 'accounts:showResumeWithID' member.id%}>{{member.account_name}}
@@ -89,9 +93,10 @@
                                              <td style="text-align:center;">
 
                                                 <a href={% url 'projects:addApplicant' current_project.id member.id %} >
-                                                     <i class="fa ">Accept</i>
+                                                     <i class="fa fa-check"></i>
                                                 </a>
-                                                &nbsp&nbsp&nbsp&nbsp&nbsp
+                                            </td>
+                                             <td style="text-align:center;">
                                                 <a href={% url 'projects:deleteApplicant' current_project.id member.id %} >
                                                      <i class="fa fa-remove"></i>
                                                 </a>
@@ -104,12 +109,14 @@
                                     </div>
                                 </div>
                             </div>
+
                             <script>
                                 $(function () {
                                     $('#myTab li:eq(1) a').tab('show');
                                 });
                             </script>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -134,10 +141,17 @@
                                     <div class="tab-pane active" id="information">
                                         <div align="left">
                                             <h4 >Owner</h4>
-                                            <hr/>
-                                            <a href={% url 'accounts:showResume' %}>
-                                            <i class="fa fa-user"></i> <a href={% url 'accounts:showResume' %}>{{ current_project.project_owner.account_name}}</a>
-                                            </a>
+                                            
+                                            <table class="table table-hover ">
+                                             
+                                            <tbody>
+                                                <tr><td>
+                                                    <a href={% url 'accounts:showResume' %}>
+                                                    <i class="fa fa-user"></i> <a href={% url 'accounts:showResume' %}>{{ current_project.project_owner.account_name}}</a>
+                                                    </a>
+                                                  </tr></td>
+                                            </tbody>
+                                            </table>
                                         </div>
                                         
                                         <br/>
@@ -165,6 +179,7 @@
                                     </table>
                                          <div align="left">
                                             <h4 >Add Member</h4>
+                                        
                                         </div>
                                         
                                         <form method="POST" action={% url 'projects:addMember' current_project.id %}>
@@ -230,10 +245,10 @@
 
 
                                         <div align="left">
-                                            <h4 >Start Date</h4></div>
+                                            <h4 >Start Date {{current_project.project_start_date}}</h4></div>
                                         <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
 
-                                            <input id="deadline" name = "deadline" class="form-control" size="16" type="text" value={{current_project.project_start_date}} readonly>
+                                            <input id="deadline" name = "deadline" class="form-control" size="16" type="text" value="{{current_project.project_start_date}}" readonly>
                                             
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-remove"></span>
@@ -248,7 +263,7 @@
                                             <h4 >Deadline</h4></div>
                                         <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
 
-                                            <input id="deadline" name = "deadline" class="form-control" size="16" type="text" value={{current_project.project_expire_date}} readonly>
+                                            <input id="deadline" name = "deadline" class="form-control" size="16" type="text" value="{{current_project.project_expire_date}}" readonly>
                                             
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-remove"></span>

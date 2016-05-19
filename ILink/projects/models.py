@@ -15,8 +15,8 @@ class Project(models.Model) :
 	project_name = models.CharField(max_length=50, unique=True)
 
 	project_description = models.CharField(max_length=140,blank=True)
-	project_start_date = models.DateField(blank=True)
-	project_expire_date = models.DateField(blank=True)
+	project_start_date = models.CharField(max_length=50,blank=True)
+	project_expire_date = models.CharField(max_length=50,blank=True)
 	project_status = models.CharField(max_length=20)
 
 	project_owner = models.ForeignKey(
@@ -32,8 +32,8 @@ class Project(models.Model) :
 
 	@classmethod
 	def create(cls, account, name, description):
-		expire_time = datetime.now()
-		return cls(project_owner = account, project_name = name , project_description = description)
+		
+		return cls(project_owner = account, project_name = name , project_description = description,project_expire_time = datetime.now().strftime("%Y-%m-%d"))
 
 	# Modification update
 	def update_project(self,proj_name,proj_description,proj_deadline,proj_status):
