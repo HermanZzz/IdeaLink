@@ -271,7 +271,7 @@
                                 <div class="checkbox c-checkbox col-md-8">
 
                                     <label >
-                                        <input type="checkbox" onclick="checkboxOnclick(this)" value="">
+                                        <input type="checkbox" onclick="location.href='{% url 'projects:changeTask' current_project.id task.id %}';" value="">
                                         <span class="fa fa-check"></span>
                                         <a id="modal-2" href="#modal-task" role="button" class="btn_p" data-toggle="modal">{{ task.task_name }}</a>
                                     </label>
@@ -287,6 +287,9 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     {{task.task_description}}
+                                                </div>
+                                                <div class="modal-body">
+                                                    {{task.task_status}}
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
@@ -381,7 +384,7 @@
                             <div class="panel-body-task" >
                                 <div class="checkbox c-checkbox col-md-8">
                                     <label >
-                                        <input type="checkbox" onclick="checkboxOnclick(this)" value="">     <span class="fa fa-check"></span>
+                                        <input type="checkbox" onclick="location.href='{% url 'projects:changeTask' current_project.id task.id %}';" value="">     <span class="fa fa-check"></span>
                                         <a id="modal-4" href="#modal-task" role="button" class="btn_p" data-toggle="modal">{{ task.task_name }}</a>
                                     </label>
 
@@ -409,7 +412,7 @@
 
                                 </div>
                                 <div class="">
-                                    <a href="#" class="btn" align="right"><i class="fa fa-usertimes"></i></a>
+                                    <a href={% url 'projects:deleteTask' current_project.id task.id %} class="btn" align="right"><i class="fa fa-times"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -466,7 +469,7 @@
                                 </div>
 
                                 <div class="">
-                                    <a href="#" class="btn" align="right"><i class="fa fa-times"></i></a>
+                                    <a href={% url 'projects:deleteTask' current_project.id task.id %} class="btn" align="right"><i class="fa fa-times"></i></a>
                                 </div>
 
                             </div>

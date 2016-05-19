@@ -59,10 +59,13 @@ class Task(models.Model) :
 
 	# members involved in this task , many to many relationship to accounts.Account
 	task_members = models.ManyToManyField(Account)
-
+	
 	@classmethod
 	def create(cls, name, description):
 		return cls(task_name = name, task_description = description)
+	@classmethod
+	def changeStatus(cls, status):
+		return cls(task_status = status)	
 
 
 # Tag information , modified by administrator , many to many relationship to project

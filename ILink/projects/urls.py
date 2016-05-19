@@ -17,4 +17,5 @@ urlpatterns = [
 	url(r'^findProject$' , views.findProject , name = 'findProject'),
 	url(r'^applyProject/(?P<project_id>[0-9]*)$' , views.applyProject , name = 'applyProject'),
 	url(r'^reviewProject/(?P<project_id>[0-9]*)$' , views.reviewProject , name = 'reviewProject'),
+	url(r'^projectDetail/(?P<project_id>[0-9]*)/changeTask/(?P<task_id>[0-9]*)$' , views.change_task , name = 'changeTask'),
 ]
