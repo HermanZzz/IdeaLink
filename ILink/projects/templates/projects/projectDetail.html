@@ -71,8 +71,8 @@
                                         <div align="left">
                                             <h4 >Owner</h4>
                                             <hr/>
-                                            <a href="#">
-                                            <i class="fa fa-user"></i> <a href="#">{{ current_project.project_owner.account_name}}</a>
+                                            <a href={% url 'accounts:showResume' %}>
+                                            <i class="fa fa-user"></i> <a href={% url 'accounts:showResume' %}>{{ current_project.project_owner.account_name}}</a>
                                             </a>
                                         </div>
                                         
@@ -86,8 +86,8 @@
                                           <tr>
                                           {% for member in current_project.project_members.all %}
                                              <td>
-                                                <a href="#">
-                                                     <i class="fa fa-user"></i> <a href="#">{{member.account_name}}
+                                                <a href={% url 'accounts:showResumeWithID' member.id%}>
+                                                     <i class="fa fa-user"></i> <a href={% url 'accounts:showResumeWithID' member.id%}>{{member.account_name}}
                                                  </a>
                                              </td>
                                              <td style="text-align:center;">

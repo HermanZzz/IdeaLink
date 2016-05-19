@@ -12,7 +12,7 @@
 		
 		<div class="col-md-offset-2 col-md-9">
 		      <table class="table ">
-				   <caption>{{ user_session.account_name }}</caption>
+				   <caption>{{ request_user.account_name }}</caption>
 				   <tbody>
 				      <tr class="success">
 				      	<td >
@@ -21,19 +21,19 @@
 				      	<td></td>
 				      </tr>
                       <tr>
-                      	<td>Name: <strong>{{ user_session.contactinfo.contactinfo_name }}</strong></td>
-                     	<td>Gender: <strong>{{ user_session.contactinfo.contactinfo_gender }}</strong></td>
+                      	<td>Name: <strong>{{ request_user.contactinfo.contactinfo_name }}</strong></td>
+                     	<td>Gender: <strong>{{ request_user.contactinfo.contactinfo_gender }}</strong></td>
 				 	  </tr>
 				 	  <tr>
-                      	<td>Birthday:  <strong>{{ user_session.contactinfo.contactinfo_birthdate }}</strong></td>
-                     	<td>Cell Phone:  <strong>{{ user_session.contactinfo.contactinfo_cellphone }}</strong></td>
+                      	<td>Birthday:  <strong>{{ request_user.contactinfo.contactinfo_birthdate }}</strong></td>
+                     	<td>Cell Phone:  <strong>{{ request_user.contactinfo.contactinfo_cellphone }}</strong></td>
 				 	  </tr>
 				 	  <tr>
-                      	<td>Address:  <strong>{{ user_session.contactinfo.contactinfo_address }}</strong></td>
+                      	<td>Address:  <strong>{{ request_user.contactinfo.contactinfo_address }}</strong></td>
                      	<td></td>
 				 	  </tr>
 				 	  <tr>
-                      	<td>Description:  <strong>{{ user_session.contactinfo.contactinfo_description }}</strong></td>
+                      	<td>Description:  <strong>{{ request_user.contactinfo.contactinfo_description }}</strong></td>
                      	<td></td>
 				 	  </tr>
 				 	 </tbody>

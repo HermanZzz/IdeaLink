@@ -286,6 +286,32 @@ def showResume(request) :
 	return render(request , 'accounts/resume.html',{
 		'is_login_success' : True,
 		'user_session' : account,
+		'request_user' : account,
 		'user_skill_list' : account.skill_set.all().order_by('-_skill_proficiency'),
 		'user_experience_list' : account.experience_set.all().order_by('-_start_date'),
 		})
+
+def showResumeWithID(request, account_id):
+	# validate user session
+	try:
+		account = Account.objects.get(_account_name = request.session['account_name'])
+	except Exception, e:
+		return render(request , 'accounts/login.html' , {
+			'is_login_success' : False,
+			'is_register_success' : False,
+			'is_first_time_to_this_page' : False,
+			})
+
+	try:
+		request_account = Account.objects.get(id=account_id)
+	except Exception, e:
+		return HttpResponseRedirect('/accounts/resume')
+
+	return render(request , 'accounts/resume.html',{
+		'is_login_success' : True,
+		'user_session' : account,
+		'request_user' : request_account,
+		'user_skill_list' : request_account.skill_set.all().order_by('-_skill_proficiency'),
+		'user_experience_list' : request_account.experience_set.all().order_by('-_start_date'),
+		})
+	
