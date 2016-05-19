@@ -63,9 +63,8 @@ class Task(models.Model) :
 	@classmethod
 	def create(cls, name, description):
 		return cls(task_name = name, task_description = description)
-	@classmethod
-	def changeStatus(cls, status):
-		return cls(task_status = status)	
+	def change_status(self,status):
+		self.task_status = status
 
 
 # Tag information , modified by administrator , many to many relationship to project

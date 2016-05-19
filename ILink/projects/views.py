@@ -320,13 +320,16 @@ def change_task(request, project_id, task_id):
 	# Fetch project info and create new task
 	try:
 		current_project = account.project_set.get(id=project_id)
-		current_task = current_project.task_set.filter(id=task_id)
+		current_task = current_project.task_set.get(id=task_id)
+		
 		if current_task.task_status == 'Pending':
-			current_task.changeStatus('Underway')
+			current_task.change_status('Underway')
 		elif current_task.task_status == 'Underway':
-			current_task.changeStatus('Finished')
+			current_task.change_status('Finished')
+
+		current_task.save()
 
 	except Exception, e:
 		return HttpResponseRedirect('/projects/projectDetail/' + project_id)
-	return HttpResponseRedirect('/projects/projectDetail1/' + project_id)
+	return HttpResponseRedirect('/projects/projectDetail/' + project_id)
 

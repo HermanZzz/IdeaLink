@@ -377,7 +377,7 @@
                     </a>
                 </header>
 
-                {% for tasks in underway_tasks %}
+                {% for task in underway_tasks %}
                 <ul id="sortable2" class="droptrue">
                     <li class="li_style" id="2-1">
                         <div class="panel panel-default " style="margin-right:10px">
@@ -385,21 +385,21 @@
                                 <div class="checkbox c-checkbox col-md-8">
                                     <label >
                                         <input type="checkbox" onclick="location.href='{% url 'projects:changeTask' current_project.id task.id %}';" value="">     <span class="fa fa-check"></span>
-                                        <a id="modal-4" href="#modal-task" role="button" class="btn_p" data-toggle="modal">{{ task.task_name }}</a>
+                                        <a id="modal-4" href="#modal-task-2" role="button" class="btn_p" data-toggle="modal">{{ task.task_name }}</a>
                                     </label>
 
                                     <!--弹出框-->
-                                    <div class="modal fade" id="modal-task" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal fade" id="modal-task-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
                                                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                                                     <h4 class="modal-title" id="myModalLabel1">
-                                                        {{ tasks.task_name}}
+                                                        {{ task.task_name}}
                                                     </h4>
                                                 </div>
                                                 <div class="modal-body">
-                                                    {{tasks.task_description}}
+                                                    {{task.task_description}}
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
@@ -441,7 +441,7 @@
 
                                 <div class="checkbox c-checkbox col-md-8">
                                     <label >
-                                        <input type="checkbox"  value="">
+                                        <input type="checkbox" onclick="location.href='{% url 'projects:deleteTask' current_project.id task.id %}'" value="">
                                         <span class="fa fa-check"></span>
                                         <a id="modal-6" href="#modal-task" role="button" class="btn_p" data-toggle="modal">{{task.task_name}}</a>
                                     </label>
