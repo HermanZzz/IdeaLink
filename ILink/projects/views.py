@@ -166,7 +166,7 @@ def projectQuickCreate(request):
 		proj_description = request.POST['description']
 		
 		account.project_set.create(project_name = proj_name , project_description = proj_description , 
-			project_owner = account,project_start_date = datetime.now(), project_expire_date = (datetime.now() + timedelta(days = 30)))
+			project_owner = account,project_start_date = datetime.now(), project_expire_date = (datetime.now()))
 
 	except Exception, e:
 		return HttpResponseRedirect('/projects/myProjects')
@@ -185,7 +185,6 @@ def add_member(request, project_id):
 			'is_first_time_to_this_page' : False,
 			})
 
-	# import pdb; pdb.set_trace()
 	# Fetch project info
 	try:
 		current_project = account.project_set.get(id=project_id)
@@ -227,12 +226,65 @@ def findProject(request):
 			'is_first_time_to_this_page' : False,
 			})
 
+	# Fetch user input
+	try:
+		# import pdb; pdb.set_trace()
+		search_key = request.POST['search_key']
+
+		# import pdb; pdb.set_trace()
+		result_by_name = Project.objects.filter(project_name__contains = search_key)
+		result = result_by_name.filter(project_status = 'Open')
+
+		# result_by_tag =
+	except Exception, e:
+		return HttpResponseRedirect('/projects/projectsByType/1')
+
 	return render(request , 'projects/findProject.html',{
 		'is_login_success' : True,
 		'user_session' : account,
+		'results' : result
 		})
 
-def applyProject(request):
+def applyProject(request, project_id):
+	# validate user session
+	try:
+		account = Account.objects.get(_account_name = request.session['account_name'])
+	except Exception, e:
+		return render(request , 'accounts/login.html' , {
+			'is_login_success' : False,
+			'is_register_success' : False,
+			'is_first_time_to_this_page' : False,
+			})
+	# Fetch project info
+	try:
+		
+		new_name = request.POST['proj_name']
+		expire_time = request.POST['deadline']
+		option = request.POST['option']
+		if option == 'option_1' :
+			status = 'Open'
+		elif option == 'option_2':
+			status = 'Undergoing'
+		elif option == 'option_3' :
+			status = 'Closed'
+		else :
+			status = 'Open'
+
+		description = request.POST['description']
+
+		current_project = account.project_set.get(id=project_id)
+
+		# Update
+		current_project.update_project(new_name,description,expire_time,status)
+		
+		# import pdb; pdb.set_trace()
+		current_project.save()
+
+	except Exception, e:
+		return HttpResponseRedirect('/projects/projectDetail/' + project_id)
+	return HttpResponseRedirect('/projects/projectDetail/' + project_id)
+
+def reviewProject(request, project_id):
 	# validate user session
 	try:
 		account = Account.objects.get(_account_name = request.session['account_name'])
@@ -243,9 +295,11 @@ def applyProject(request):
 			'is_first_time_to_this_page' : False,
 			})
 
-	return render(request , 'projects/applyProject.html',{
+	# Fetch project info
+	current_project = Project.objects.get(id=project_id)
+
+	return render(request , 'projects/applyProject.html', {
 		'is_login_success' : True,
 		'user_session' : account,
+		'current_project' : current_project,
 		})
-	
-

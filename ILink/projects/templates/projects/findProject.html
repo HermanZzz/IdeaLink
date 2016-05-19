@@ -26,25 +26,15 @@
 
     <div class="row">
         <div class="col-md-6 col-md-offset-3 "align="center" >
-            <a href={% url 'projects:applyProject' %} class="thumbnail">
+        {% for result in results %}
+            <a href={% url 'projects:reviewProject' result.id %} class="thumbnail">
                     <span class="fa-stack fa-lg fa-3x">
                         <i class="fa fa-circle fa-stack-2x"></i>
                         <i class="fa fa-flag-checkered fa-stack-1x fa-inverse"></i>
                     </span>
-                    <strong class="text-info">proj name1</strong>
+                    <strong class="text-info">{{result.project_name}}</strong>
             </a>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3 "align="center" >
-            <a href="#" class="thumbnail">
-                    <span class="fa-stack fa-lg fa-3x">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-flag-checkered fa-stack-1x fa-inverse"></i>
-                    </span>
-                    <strong class="text-info">proj name2</strong>
-            </a>
+        {% endfor %}
         </div>
     </div>
 

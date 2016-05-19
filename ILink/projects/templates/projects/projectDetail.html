@@ -33,7 +33,7 @@
                     <li class="button-dropdown-divider">
                         <a href={% url 'projects:projectDetailsById' project.id %}><i class="fa fa-heart-o"></i>{{ project.project_name }}</a>
                     </li>
-                    {% endfor %}
+                {% endfor %}
                 </ul>
                 
             </span>
@@ -58,6 +58,7 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                         </div>
+
                         <div class="modal-body">
                             <div class="tabbable" id="tabs-299950">
                                 <ul class="nav nav-tabs">
@@ -101,20 +102,23 @@
                                          <div align="left">
                                             <h4 >Add Member</h4>
                                         </div>
-
+                                        
                                         <form method="POST" action={% url 'projects:addMember' current_project.id %}>
                                         {% csrf_token %}
                                             <input name="member_name" type="text" id="describe" placeholder="Member e-mail" style="height:40px;width:550px"
                                                    onmouseover=this.focus();this.select();
                                                    onclick="if(value==defaultValue){value='';this.style.color='#000'}"
-                                                   onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+                                                   onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />   
+                                        
 
-                                            <div align="center">
-                                                 <input type="submit"/>
-                                             </div>    
-                                        </form>
-                                        </div>
-
+                                            
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <input type="submit" class="btn btn-default" value="Save">
+                                            </div>
+                                        </form>                
+                                        
+                                    </div>
                                 </div>
                             </div>
 
@@ -125,9 +129,8 @@
                             </script>
                         </div>
 
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
+                        
+                        
                     </div>
                 </div>
             </div>
@@ -140,6 +143,11 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                         </div>
+
+
+                        <form method="POST" action={% url 'projects:applyProject' current_project.id %}>
+                        {% csrf_token %}
+                        
                         <div class="modal-body">
                             <div class="tabbable" id="tabs-299950">
                                 <ul class="nav nav-tabs">
@@ -151,16 +159,32 @@
                                     <div class="tab-pane active" id="information">
                                         <div align="left">
                                         <h4 >Project Name</h4></div>
-                                        <input name="key" type="text" id="name" value="项目1" style="height:40px;width:550px"
+                                        <input name="proj_name" type="text" id="name" value={{current_project.project_name}} style="height:40px;width:550px"
                                                onmouseover=this.focus();this.select();
                                                onclick="if(value==defaultValue){value='';this.style.color='#000'}"
                                                onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
 
+
+                                        <div align="left">
+                                            <h4 >Start Date</h4></div>
+                                        <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+
+                                            <input id="deadline" name = "deadline" class="form-control" size="16" type="text" value={{current_project.project_start_date}} readonly>
+                                            
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </span>
+                                             <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+
+
                                         <div align="left">
                                             <h4 >Deadline</h4></div>
-                                        <div class="input-group date form_date" data-date="" data-date-format="dd-mm-yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                                        <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
 
-                                            <input id="deadline" name = "deadline" class="form-control" size="16" type="text" value="" readonly>
+                                            <input id="deadline" name = "deadline" class="form-control" size="16" type="text" value={{current_project.project_expire_date}} readonly>
                                             
                                             <span class="input-group-addon">
                                                 <span class="glyphicon glyphicon-remove"></span>
@@ -171,16 +195,32 @@
                                         </div>
 
                                         <div align="left">
-                                            <h4 >Statu</h4>
-                                        <select align="left">
-                                          <option>Open</option>
-                                          <option>Full</option>
-                                          <option>Finish</option>
-                                        </select></div>
+                                            <h4 >Status</h4>
+                                        <select align="left" name="option">
+                                        {% if current_project.project_status == 'Open' %}
+                                          <option value="option_1" selected="true">Open</option>
+                                        {% else %}
+                                          <option value="option_1">Open</option>
+                                        {% endif %}
+
+                                        {% if current_project.project_status == 'Undergoing' %}
+                                          <option value="option_2" selected="true">Undergoing</option>
+                                        {% else %}
+                                          <option value="option_2">Undergoing</option>
+                                        {% endif %}
+
+                                        {% if current_project.project_status == 'Closed' %}
+                                          <option value="option_3" selected="true">Closed</option>
+                                        {% else %}
+                                          <option value="option_3">Closed</option>
+                                        {% endif %}
+                                          
+                                        </select>
+                                        </div>
 
                                         <div align="left">
                                             <h4 >Details</h4></div>
-                                        <input name="key" type="text" id="describe" value="请简要描述" style="height:120px;width:550px"
+                                        <input name="description" type="text" id="describe" value={{current_project.project_description}} style="height:120px;width:550px"
                                                onmouseover=this.focus();this.select();
                                                onclick="if(value==defaultValue){value='';this.style.color='#000'}"
                                                onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
@@ -199,9 +239,11 @@
                         <div class="modal-footer">
 
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
 
                         </div>
+
+                        </form>
                     </div>
                 </div>
             </div>

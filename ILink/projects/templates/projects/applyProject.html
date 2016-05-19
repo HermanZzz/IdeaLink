@@ -34,20 +34,20 @@
                             <span class="fa-stack fa-lg fa-3x">
                             <i class="fa fa-circle fa-stack-2x"></i>
                             <i class="fa fa-flag-checkered fa-stack-1x fa-inverse"></i>
-                            </span>proj name1
+                            </span>{{current_project.project_name}}
                         </td>
                       </tr>
                       <tr>
-                        <td>Strat Date: <strong></strong></td>
+                        <td>Strat Date: <strong>{{current_project.project_start_date}}</strong></td>
                       </tr>
                       <tr>
-                        <td>Deadline: <strong></strong></td>
+                        <td>Deadline: <strong>{{current_project.project_expire_time}}</strong></td>
                       </tr>
                       <tr>
-                        <td>Statu: <strong></strong></td>
+                        <td>Status: <strong>{{current_project.project_status}}</strong></td>
                       </tr>
                       <tr>
-                        <td>Description: <strong></strong></td>
+                        <td>Description: <strong>{{current_project.project_description}}</strong></td>
                       </tr>
                      </tbody>
                 </table>
@@ -57,7 +57,9 @@
          <div class="row">
             <div class="col-md-offset-4 col-md-4" align="center" >
                 <button class="btn btn-success">APPLY</button>
+                <button class="btn btn-success">BACK</button>
             </div>
+            
          </div>
 
 {% endblock %}

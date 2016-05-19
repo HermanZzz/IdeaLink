@@ -29,8 +29,15 @@ class Project(models.Model) :
 
 	@classmethod
 	def create(cls, account, name, description):
-		expire_time = datetime.now() + datetime.timedelta(month=1)
+		expire_time = datetime.now()
 		return cls(project_owner = account, project_name = name , project_description = description)
+
+	# Modification update
+	def update_project(self,proj_name,proj_description,proj_deadline,proj_status):
+		self.project_name = proj_name
+		self.project_description = proj_description
+		self.project_expire_date = proj_deadline
+		self.project_status = proj_status
 
 
 # Task information , many to one relationship to Project
