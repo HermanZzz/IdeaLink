@@ -249,3 +249,26 @@ def applyProject(request):
 		})
 	
 
+def change_task(request, project_id, task_id):
+	# validate user session
+	try:
+		account = Account.objects.get(_account_name = request.session['account_name'])
+	except Exception, e:
+		return render(request , 'accounts/login.html' , {
+			'is_login_success' : False,
+			'is_register_success' : False,
+			'is_first_time_to_this_page' : False,
+			})
+	# Fetch project info and create new task
+	try:
+		current_project = account.project_set.get(id=project_id)
+		current_task = current_project.task_set.filter(id=task_id)
+		if current_task.task_status == 'Pending':
+			current_task.changeStatus('Underway')
+		elif current_task.task_status == 'Underway':
+			current_task.changeStatus('Finished')
+
+	except Exception, e:
+		return HttpResponseRedirect('/projects/projectDetail/' + project_id)
+	return HttpResponseRedirect('/projects/projectDetail1/' + project_id)
+
