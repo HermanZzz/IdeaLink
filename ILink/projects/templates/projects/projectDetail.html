@@ -41,10 +41,16 @@
 
         <div class="col-md-offset-8 col-md-4 column" align="right">
 
+            <a id="modal-1" href="#modal-team-QR" role="button" data-toggle="modal">
+                <i class="fa fa-2x fa-qrcode"></i>
+                <strong class="text-info">QR Code</strong>
+            </a> 
+           
+
         {% if user_session == current_project.project_owner %}
            <a id="modal-1" href="#modal-team-applicants" role="button" data-toggle="modal">
-                <i class="fa fa-2x fa-magic"></i>
-                <strong class="text-info">Applicants</strong>
+                <i class="fa fa-2x fa-send"></i>
+                <strong class="text-info">Applicant</strong>
             </a>
         {% endif %}
 
@@ -53,12 +59,27 @@
                 <i class="fa fa-2x fa-users"></i>
                 <strong class="text-info">Member</strong>
             </a> 
-
+            |
             <a id="modal-1" href="#modal-container-1" role="button" data-toggle="modal">
                 <i class="fa fa-2x fa-cog fa-spin"></i>
                 <strong class="text-info">Setting</strong>
             </a> 
 
+              <!--弹出框-->
+            <div class="modal fade" id="modal-team-QR" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">     
+                        <div class="modal-body">
+                             <div class="tab-pane active" id="information">
+                                <img src="/static/img/QRCodeTest.jpeg">
+                            </div>
+
+                        </div>
+                    </div>  
+                </div>
+            </div>
+            <!--弹出框-->
+            
             <!--弹出框-->
             <div class="modal fade" id="modal-team-applicants" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -245,7 +266,7 @@
 
 
                                         <div align="left">
-                                            <h4 >Start Date {{current_project.project_start_date}}</h4></div>
+                                            <h4 >Start Date</h4></div>
                                         <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
 
                                             <input id="deadline" name = "deadline" class="form-control" size="16" type="text" value="{{current_project.project_start_date}}" readonly>
@@ -275,7 +296,7 @@
 
                                         <div align="left">
                                             <h4 >Status</h4>
-                                        <select align="left" name="option">
+                                        <select class="form-control" align="left" name="option">
                                         {% if current_project.project_status == 'Open' %}
                                           <option value="option_1" selected="true">Open</option>
                                         {% else %}
@@ -295,6 +316,10 @@
                                         {% endif %}
                                           
                                         </select>
+                                        </div>
+                                        <div align="left">
+                                            <h4 >Wechat Group QR Code</h4>
+                                            <button type="button" class="btn btn-info btn-xs ">Upload</button>
                                         </div>
 
                                         <div align="left">
