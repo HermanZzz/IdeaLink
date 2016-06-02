@@ -1,5 +1,5 @@
-# ILinkProj
-SITP Project
+# IdeaLink
+A Team Cooperation and Task Management Project.
 
 ##Documentation
 [Requirements Document](https://github.com/HermanZzz/ILinkProj/blob/Dev/doc/Documentation.md)
@@ -56,4 +56,5 @@ Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ```
 
-You can now open it by entering `//127.0.0.1:8000/` in your browser.
+You can now open it by entering `//127.0.0.1:8000/account` in your browser.
+
