@@ -1,0 +1,185 @@
+{% extends 'home.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/projects/buttons.css">
+    <link href="/static/css/projects/style.css" rel="stylesheet">
+    <link href="/static/css/projects/project.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/projects/jquery-ui.min.css">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <!-- 只有使用字体图标时才需要加载 Font-Awesome -->
+    <link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    
+{% endblock %}
+
+
+{% block content %}
+
+{% if press_create == True %}
+    {% if create_project_succeed == False %}
+    <script>
+      swal("Oops...", "Create Project unsuccessfully!", "error");
+    </script>
+    {% endif %}
+    {% if create_project_succeed == True %}
+    <script>
+      swal("Success", "Create project successfully!", "success");
+    </script>
+    {% endif %}
+{% endif %}
+
+<header id="head" class="secondary"></header><br/>
+
+<div id="large-header" class="container" >
+    <div class="row">
+            <div class="col-md-6">
+                <h3>-My Projects-</h3>
+            </div>
+            <div class="col-md-offset-3 col-md-3"align="center">
+                  <span class="button-dropdown button-dropdown-inverse" data-buttons="dropdown">
+                    <a href="#" class="button button-inverse" >
+                        <i class="fa "></i> Categories <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="button-dropdown-list is-below">
+                        <li class="button-dropdown-divider">
+                            <a href={% url 'projects:projectsByType' 'All' %}>All</a>
+                        </li>
+                        <li class="button-dropdown-divider">
+                            <a href={% url 'projects:projectsByType' 'Own' %}>Own</a>
+                        </li>
+                        <li>
+                            <a href={% url 'projects:projectsByType' 'Member' %}>Member</a>
+                        </li>
+                    </ul>
+                  </span>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for project in target_projects %}
+        <div class="col-md-4 "align="center" >
+            <a href={% url 'projects:projectDetailsById' project.id%} class="thumbnail">
+                    <span class="fa-stack fa-lg fa-3x">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-flag fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <strong class="text-info">{{project.project_name}}</strong>
+            </a>
+        </div>
+        {% endfor %}    
+        <div class="col-md-4" align="center" >
+
+            <a id="modal-1" href="#modal-container-1"  class="btn" data-toggle="modal" class="thumbnail" >
+                <button class="button button-circle button-jumbo"><i class="fa fa-plus"></i></button>
+                <p>Create A Project</p>
+            </a>
+
+            
+            <!--弹出框-->
+            <form class="form-horizontal" id="create-proj-form" action={% url 'projects:projectQuickCreate' %} method="POST" style="text-align:center;">
+                {% csrf_token %}
+                <fieldset>
+                <div class="modal fade" id="modal-container-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="tabbable" id="tabs-299950">
+                                    <ul class="nav nav-tabs">
+                                        <li class="active">
+                                            <a href="#information" data-toggle="tab">Create A Project</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="information">
+                                            <div align="left">
+                                            <h4 >Project Name</h4></div>
+                                            <input name="proj-name" type="text" id="name" placeholder="Project name" style="height:40px;width:550px"
+                                                   onclick="if(value==defaultValue){value='';this.style.color='#000'}"
+                                                   onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+                                            <div align="left">
+                                                <h4 >Details</h4></div>
+                                            <input name="description" type="text" id="describe" placeholder="Project description" 
+                                                   style="height:120px;width:550px"
+                                                   onclick="if(value==defaultValue){value='';this.style.color='#000'}"
+                                                   onBlur="if(!value){value=defaultValue;this.style.color='#999'}" 
+                                                   style="color:#999" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    $(function () {
+                                        $('#myTab li:eq(1) a').tab('show');
+                                    });
+                                </script>
+                            </div>
+
+                            <div class="modal-footer">
+
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                <button id="create-btn" type="submit" class="btn btn-primary">Create</button>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </fieldset>
+             </form>
+            <!--弹出框-->
+        </div>
+    
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <footer id="footer" class="top-space">
+      <nav class="navbar-default navbar-fixed-bottom">
+        <div class="footer2">
+            <div class="container">
+                <div class="row">               
+                    <div class="col-md-6 widget">
+                        <div class="widget-body">
+                            <p class="simplenav" stlye="">
+                                {% if is_login_success %}
+                                <a href={% url 'accounts:home' %} >Home</a> | 
+                                <a href="#">Project</a> |
+                                <a id="setting" href={% url 'accounts:settingProfile' %} >Setting</a> 
+                                |
+                                <a id="logout" href={% url 'accounts:logout' %} >Logout</a> 
+                                {% else %}
+                                <b><a href={% url 'accounts:register'%}>Sign up</a></b>
+                                {% endif %}
+                                | 
+                                <a href="javascript:scroll(0,0)">
+                                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div> <!-- /row of widgets -->
+            </div>
+        </div>
+     </nav>
+    </footer>   
+{% endblock %}
+
+
+{% block js %}
+    {% load static %}
+    <script src="{% static "bootstrap/js/bootstrap-datetimepicker.js" %}"></script>
+    {% load static %}
+    <script src="{% static "js/projects/jquery-ui.min.js" %}"></script>
+    {% load static %}  
+    <script src="{% static "js/projects/buttons.js" %}"></script>
+    {% load static %}
+    <script src="{% static "js/projects/project.js" %}"></script>
+    {% load static %}
+    <script src="{% static "js/projects/icheck.js" %}"></script>
+    {% load static %}
+    <script src="{% static "js/projects/jquery.icheck.js" %}"></script>
+    
+  
+{% endblock %}

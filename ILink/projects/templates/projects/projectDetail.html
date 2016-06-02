@@ -1,0 +1,653 @@
+{% extends 'home.html' %}
+
+{% block head %}
+    <link rel="stylesheet" href="/static/css/projects/buttons.css">
+    <link href="/static/css/projects/style.css" rel="stylesheet">
+    <link href="/static/css/projects/project.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/projects/jquery-ui.min.css">
+    <link href="http://cdn.bootcss.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+
+{% endblock %}
+
+
+{% block content %}
+<header id="head" class="secondary"></header>
+
+<div id="large-header" class="container" >
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="" style="height:10px;" ></div>
+
+        </div>
+    <div class="row clearfix">
+        <div class="col-md-2 column" align="left">
+            <span class="button-dropdown button-dropdown-primary" data-buttons="dropdown">
+                <button class="button button-primary button-normal">
+                    <i class="fa fa-bars"></i>&nbsp&nbsp&nbsp{{ current_project.project_name}}
+                </button>
+                
+                
+                <ul class="button-dropdown-list is-below">
+                {% for project in user_session.project_set.all %}
+                    <li class="button-dropdown-divider">
+                        <a href={% url 'projects:projectDetailsById' project.id %}><i class="fa fa-heart-o"></i>{{ project.project_name }}</a>
+                    </li>
+                {% endfor %}
+                </ul>
+                
+            </span>
+        </div>
+
+        <div class="col-md-offset-8 col-md-4 column" align="right">
+
+            <a id="modal-1" href="#modal-team-QR" role="button" data-toggle="modal">
+                <i class="fa fa-2x fa-qrcode"></i>
+                <strong class="text-info">QR Code</strong>
+            </a> 
+           
+
+        {% if user_session == current_project.project_owner %}
+           <a id="modal-1" href="#modal-team-applicants" role="button" data-toggle="modal">
+                <i class="fa fa-2x fa-send"></i>
+                <strong class="text-info">Applicant</strong>
+            </a>
+        {% endif %}
+
+
+            <a id="modal-1" href="#modal-team-member" role="button" data-toggle="modal">
+                <i class="fa fa-2x fa-users"></i>
+                <strong class="text-info">Member</strong>
+            </a> 
+            |
+            <a id="modal-1" href="#modal-container-1" role="button" data-toggle="modal">
+                <i class="fa fa-2x fa-cog fa-spin"></i>
+                <strong class="text-info">Setting</strong>
+            </a> 
+
+              <!--弹出框-->
+            <div class="modal fade" id="modal-team-QR" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">     
+                        <div class="modal-body">
+                             <div class="tab-pane active" id="information">
+                                <img src="/static/img/QRCodeTest.jpeg">
+                            </div>
+
+                        </div>
+                    </div>  
+                </div>
+            </div>
+            <!--弹出框-->
+            
+            <!--弹出框-->
+            <div class="modal fade" id="modal-team-applicants" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="tabbable" id="tabs-299950">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#information" data-toggle="tab">Applicants</a>
+
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="information">
+
+                                        <div align="left"><h4 >Applicants</h4></div>
+                                        <table class="table table-hover ">
+                                            <caption></caption>
+                                        <tbody>
+                                          <tr>
+                                          {% for member in current_project.project_applicants.all %}
+
+                                             <td>
+                                                <a href={% url 'accounts:showResumeWithID' member.id%}>
+                                                     <i class="fa fa-user"></i> <a href={% url 'accounts:showResumeWithID' member.id%}>{{member.account_name}}
+                                                 </a>
+                                             </td>
+                                             <td style="text-align:center;">
+
+                                                <a href={% url 'projects:addApplicant' current_project.id member.id %} >
+                                                     <i class="fa fa-check"></i>
+                                                </a>
+                                            </td>
+                                             <td style="text-align:center;">
+                                                <a href={% url 'projects:deleteApplicant' current_project.id member.id %} >
+                                                     <i class="fa fa-remove"></i>
+                                                </a>
+
+                                            </td>
+                                            {% endfor %}
+                                          </tr>
+                                        </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script>
+                                $(function () {
+                                    $('#myTab li:eq(1) a').tab('show');
+                                });
+                            </script>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!--弹出框-->
+
+            <!--弹出框-->
+            <div class="modal fade" id="modal-team-member" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="tabbable" id="tabs-299950">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#information" data-toggle="tab">Team Members</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="information">
+                                        <div align="left">
+                                            <h4 >Owner</h4>
+                                            
+                                            <table class="table table-hover ">
+                                             
+                                            <tbody>
+                                                <tr><td>
+                                                    <a href={% url 'accounts:showResume' %}>
+                                                    <i class="fa fa-user"></i> <a href={% url 'accounts:showResume' %}>{{ current_project.project_owner.account_name}}</a>
+                                                    </a>
+                                                  </tr></td>
+                                            </tbody>
+                                            </table>
+                                        </div>
+                                        
+                                        <br/>
+                                        <div align="left">
+                                        <h4 >Members</h4>
+                                        </div>
+                                        <table class="table table-hover ">
+                                            <caption></caption>
+                                       <tbody>
+                                          <tr>
+                                          {% for member in current_project.project_members.all %}
+                                             <td>
+                                                <a href={% url 'accounts:showResumeWithID' member.id%}>
+                                                     <i class="fa fa-user"></i> <a href={% url 'accounts:showResumeWithID' member.id%}>{{member.account_name}}
+                                                 </a>
+                                             </td>
+                                             <td style="text-align:center;">
+                                                <a href={% url 'projects:deleteMember' current_project.id member.id %} >
+                                                     <i class="fa  fa-remove"></i>
+                                                </a>
+                                            </td>
+                                            {% endfor %}
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                         <div align="left">
+                                            <h4 >Add Member</h4>
+                                        
+                                        </div>
+                                        
+                                        <form method="POST" action={% url 'projects:addMember' current_project.id %}>
+                                        {% csrf_token %}
+                                            <input name="member_name" type="text" id="describe" placeholder="Member e-mail" style="height:40px;width:550px"
+                                                   onmouseover=this.focus();this.select();
+                                                   onclick="if(value==defaultValue){value='';this.style.color='#000'}"
+                                                   onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />   
+                                        
+
+                                            
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                <input type="submit" class="btn btn-default" value="Save">
+                                            </div>
+                                        </form>                
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script>
+                                $(function () {
+                                    $('#myTab li:eq(1) a').tab('show');
+                                });
+                            </script>
+                        </div>
+
+                        
+                        
+                    </div>
+                </div>
+            </div>
+            <!--弹出框-->
+
+            <!--弹出框-->
+            <div class="modal fade" id="modal-container-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        </div>
+
+
+                        <form method="POST" action={% url 'projects:applyProject' current_project.id %}>
+                        {% csrf_token %}
+                        
+                        <div class="modal-body">
+                            <div class="tabbable" id="tabs-299950">
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#information" data-toggle="tab">Project Info</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="information">
+                                        <div align="left">
+                                        <h4 >Project Name</h4></div>
+                                        <input name="proj_name" type="text" id="name" value={{current_project.project_name}} style="height:40px;width:550px"
+                                               onmouseover=this.focus();this.select();
+                                               onclick="if(value==defaultValue){value='';this.style.color='#000'}"
+                                               onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+
+
+                                        <div align="left">
+                                            <h4 >Start Date</h4></div>
+                                        <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+
+                                            <input id="deadline" name = "deadline" class="form-control" size="16" type="text" value="{{current_project.project_start_date}}" readonly>
+                                            
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </span>
+                                             <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+
+
+                                        <div align="left">
+                                            <h4 >Deadline</h4></div>
+                                        <div class="input-group date form_date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+
+                                            <input id="deadline" name = "deadline" class="form-control" size="16" type="text" value="{{current_project.project_expire_date}}" readonly>
+                                            
+                                            <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-remove"></span>
+                                            </span>
+                                             <span class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+
+                                        <div align="left">
+                                            <h4 >Status</h4>
+                                        <select class="form-control" align="left" name="option">
+                                        {% if current_project.project_status == 'Open' %}
+                                          <option value="option_1" selected="true">Open</option>
+                                        {% else %}
+                                          <option value="option_1">Open</option>
+                                        {% endif %}
+
+                                        {% if current_project.project_status == 'Undergoing' %}
+                                          <option value="option_2" selected="true">Undergoing</option>
+                                        {% else %}
+                                          <option value="option_2">Undergoing</option>
+                                        {% endif %}
+
+                                        {% if current_project.project_status == 'Closed' %}
+                                          <option value="option_3" selected="true">Closed</option>
+                                        {% else %}
+                                          <option value="option_3">Closed</option>
+                                        {% endif %}
+                                          
+                                        </select>
+                                        </div>
+                                        <div align="left">
+                                            <h4 >Wechat Group QR Code</h4>
+                                            <button type="button" class="btn btn-info btn-xs ">Upload</button>
+                                        </div>
+
+                                        <div align="left">
+                                            <h4 >Details</h4></div>
+                                        <input name="description" type="text" id="describe" value={{current_project.project_description}} style="height:120px;width:550px"
+                                               onmouseover=this.focus();this.select();
+                                               onclick="if(value==defaultValue){value='';this.style.color='#000'}"
+                                               onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+                                        
+                                    </div>
+                                </div>
+                            </div>
+
+                            <script>
+                                $(function () {
+                                    $('#myTab li:eq(1) a').tab('show');
+                                });
+                            </script>
+                        </div>
+
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save</button>
+
+                        </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--弹出框-->
+
+        </div>
+    </div>
+
+
+    <div class="row ">
+        <div class="clearfix" style="margin-bottom: 10px;"></div><!-- 清除浮动 -->
+        <div class="col-md-4 column" >
+            <div class="scrum-stage toggler-parent reached-top">
+                <header class="scrum-stage-header ui-sortable-handle">
+                    <div class="stage-name col-md-10">
+                        Pending
+                    </div>
+                </header>
+                
+                {% for task in pending_tasks %}
+                <ul  id="sortable1" class="droptrue">
+                    <li class="li_style" id="1-1">
+                        <div class="panel panel-default " style="margin-right:10px">
+                            <div class="panel-body-task" >
+                                <div class="checkbox c-checkbox col-md-8">
+
+                                    <label >
+                                        <input type="checkbox" onclick="location.href='{% url 'projects:changeTask' current_project.id task.id %}';" value="">
+                                        <span class="fa fa-check"></span>
+                                        <a id="modal-2" href="#modal-task" role="button" class="btn_p" data-toggle="modal">{{ task.task_name }}</a>
+                                    </label>
+                                    <!--弹出框--> <!-- Task Details -->
+                                    <div class="modal fade" id="modal-task" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                    <h4 class="modal-title" id="myModalLabel1">
+                                                        {{task.task_name}}
+                                                    </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {{task.task_description}}
+                                                </div>
+                                                <div class="modal-body">
+                                                    {{task.task_status}}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
+                                                    <button type="button" class="btn btn-primary">Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--弹出框-->
+                                </div>
+                                <div class="">
+                                    <a href={% url 'projects:deleteTask' current_project.id task.id %} class="btn" align="right"><i class="fa fa-times"></i></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </li>
+                </ul>
+                {% endfor %}
+
+                <a id="modal-12" href="#modal-task-new" role="button" class="btn" data-toggle="modal">+ New Task</a>
+                <div class="modal fade" id="modal-task-new" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            </div>
+
+                            <form method="POST" action={% url 'projects:createTask' current_project.id %}>
+                            {% csrf_token %}
+                                <div class="modal-body">
+                                <div class="tabbable" id="tabs-12">
+                                    <div class="tab-content">
+                                        <div id="accordion12" class="panel-group">
+                                            <div class="panel panel-default">
+                                                <div  aria-expanded="false" id="collapseOne12" class="">
+                                                    <div class="panel-body">
+                                                        <div class="tab-pane active" id="information12">
+                                                            <h4>Task Name</h4>
+                                                            <input name="task_name" type="text" id="name12" placeholder="New Task" style="height:40px;width:550px"
+                                                                   onmouseover=this.focus();this.select();
+                                                                   onclick="if(value==defaultValue){value='';this.style.color='#000'}"
+                                                                   onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+                                                            <h4>Task Detail</h4>
+                                                            <input name="task_description" type="text" id="describe12" placeholder="Descriptioin" style="height:120px;width:550px"
+                                                                   onmouseover=this.focus();this.select();
+                                                                   onclick="if(value==defaultValue){value='';this.style.color='#000'}"
+                                                                   onBlur="if(!value){value=defaultValue;this.style.color='#999'}" style="color:#999" />
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <script>
+                                    $(function () {
+                                        $('#myTab li:eq(1) a').tab('show');
+                                    });
+                                </script>
+                                </div>    
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Save</button>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-md-4 column">
+            <div  class="scrum-stage toggler-parent reached-top">
+                <header class="scrum-stage-header ui-sortable-handle">
+                    <div class="stage-name">
+                        Underway
+                    </div>
+                    <a class="stage-menu-toggler icon icon-clock2 hinted" data-title="添加或编辑任务阶段" data-gta="{action: 'toggle stage menu'}">
+                    </a>
+                </header>
+
+                {% for task in underway_tasks %}
+                <ul id="sortable2" class="droptrue">
+                    <li class="li_style" id="2-1">
+                        <div class="panel panel-default " style="margin-right:10px">
+                            <div class="panel-body-task" >
+                                <div class="checkbox c-checkbox col-md-8">
+                                    <label >
+                                        <input type="checkbox" onclick="location.href='{% url 'projects:changeTask' current_project.id task.id %}';" value="">     <span class="fa fa-check"></span>
+                                        <a id="modal-4" href="#modal-task-2" role="button" class="btn_p" data-toggle="modal">{{ task.task_name }}</a>
+                                    </label>
+
+                                    <!--弹出框-->
+                                    <div class="modal fade" id="modal-task-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                    <h4 class="modal-title" id="myModalLabel1">
+                                                        {{ task.task_name}}
+                                                    </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {{task.task_description}}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
+                                                    <button type="button" class="btn btn-primary">Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--弹出框-->
+
+                                </div>
+                                <div class="">
+                                    <a href={% url 'projects:deleteTask' current_project.id task.id %} class="btn" align="right"><i class="fa fa-times"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+
+        
+        <div class="col-md-4 column">
+            <div  class="scrum-stage toggler-parent reached-top">
+                <header class="scrum-stage-header ui-sortable-handle">
+                    <div class="stage-name">
+                        Finished
+                    </div>
+                    <a class="stage-menu-toggler icon icon-clock2 hinted" data-title="添加或编辑任务阶段" data-gta="{action: 'toggle stage menu'}">
+
+                    </a>
+                </header>
+                {% for task in finished_tasks %}
+                <ul  id="sortable3" class="droptrue">
+                    <li class="li_style" id="3-1">
+                        <div class="panel panel-default " style="margin-right:10px">
+                            <div class="panel-body-task" >
+
+                                <div class="checkbox c-checkbox col-md-8">
+                                    <label >
+                                        <input type="checkbox" onclick="location.href='{% url 'projects:deleteTask' current_project.id task.id %}'" value="">
+                                        <span class="fa fa-check"></span>
+                                        <a id="modal-6" href="#modal-task" role="button" class="btn_p" data-toggle="modal">{{task.task_name}}</a>
+                                    </label>
+                                   <!--弹出框-->
+                                    <div class="modal fade" id="modal-task" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                    <h4 class="modal-title" id="myModalLabel1">
+                                                        {{task.task_name}}
+                                                    </h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    {{task.task_descriptioin}}
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> 
+                                                    <button type="button" class="btn btn-primary">Save</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--弹出框-->
+                                </div>
+
+                                <div class="">
+                                    <a href={% url 'projects:deleteTask' current_project.id task.id %} class="btn" align="right"><i class="fa fa-times"></i></a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block footer %}
+    <footer id="footer" class="top-space">
+      <nav class="navbar-default navbar-fixed-bottom">
+        <div class="footer2">
+            <div class="container">
+                <div class="row">               
+                    <div class="col-md-6 widget">
+                        <div class="widget-body">
+                            <p class="simplenav" stlye="">
+                                {% if is_login_success %}
+                                <a href={% url 'accounts:home' %} >Home</a> | 
+                                <a href="#">Project</a> |
+                                <a id="setting" href={% url 'accounts:settingProfile' %} >Setting</a> 
+                                |
+                                <a id="logout" href={% url 'accounts:logout' %} >Logout</a> 
+                                {% else %}
+                                <b><a href={% url 'accounts:register'%}>Sign up</a></b>
+                                {% endif %}
+                                | 
+                                <a href="javascript:scroll(0,0)">
+                                <span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div> <!-- /row of widgets -->
+            </div>
+        </div>
+     </nav>
+    </footer>   
+{% endblock %}
+
+{% block js %}
+    {% load static %}
+    <script src="{% static "bootstrap/js/bootstrap-datetimepicker.js" %}"></script>
+    {% load static %}
+    <script src="{% static "js/projects/jquery-ui.min.js" %}"></script>
+    {% load static %}  
+    <script src="{% static "js/projects/buttons.js" %}"></script>
+    {% load static %}
+    <script src="{% static "js/projects/project.js" %}"></script>
+    {% load static %}
+    <script src="{% static "js/projects/icheck.js" %}"></script>
+    {% load static %}
+    <script src="{% static "js/projects/jquery.icheck.js" %}"></script>
+
+    {% load static %}
+    <script src="{% static "bootstrap/js/bootstrap-datetimepicker.js" %}"></script>
+
+    <script type="text/javascript">
+        $('.form_date').datetimepicker({
+            language:  'fr',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+    </script>
+  
+{% endblock %}

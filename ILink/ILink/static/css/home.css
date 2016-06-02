@@ -134,4 +134,20 @@ img.pull-left { margin-right: 10px; }
 		font-size: 3em;
 	}
 
-}	
+}
+
+/*to top*/ 	
+.totop{
+	position:fixed;
+	right:25px;
+	bottom:25px;
+	display:block;
+	width:26px;
+	height:62px;
+	background:url(/static/img/rocket.png) no-repeat 0 0;
+	-webkit-transition: all 0.2s ease-in-out;
+}
+
+.totop:hover{
+	background:url(/static/img/rocket.png) no-repeat 0 -62px;
+}

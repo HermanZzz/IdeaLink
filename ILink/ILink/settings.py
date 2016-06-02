@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts.apps.AccountsConfig',
+    'projects.apps.ProjectsConfig',
 
 ]
 
@@ -129,4 +130,5 @@ STATICFILES_DIRS = (
     ('sweetalert',os.path.join(STATIC_ROOT,'sweetalert').replace('\\','/') ),
     ('upload',os.path.join(STATIC_ROOT,'upload').replace('\\','/') ),
     ('bootstrap',os.path.join(STATIC_ROOT,'bootstrap').replace('\\','/') ),
+    ('fonts',os.path.join(STATIC_ROOT,'fonts').replace('\\','/') ),
 )

@@ -11,8 +11,12 @@
 	{% endblock %}
 	<link rel="stylesheet" href="/static/bootstrap/css/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="/static/css/home.css">
-	
 	<link rel="stylesheet" href="/static/css/projects/avgrund.css">
+	 <link rel="stylesheet" href="/static/css/sweetalert.css" />
+    {% load static %}  
+    <script src="{% static "js/jquery.min.js" %}" ></script>
+    {% load static %}
+    <script src="{% static "js/sweetalert.min.js" %}"></script>
 
 </head>
 
@@ -42,11 +46,12 @@
 						<ul class="dropdown-menu">
 							<li><a id="find-proj" href="#">Find Project</a></li>
 							<li><a id="create-proj" href="#">Create Project</a></li>
-							<li class="active"><a href="#">My Projects</a></li>
+							<li class=""><a href={% url 'projects:myProjects' %}>My Projects</a></li>
+							<li class=""><a href={% url 'projects:myApplications' %}>My Applications</a></li>
 						</ul>
 					</li>
 					<li><a id="setting" href={% url 'accounts:settingProfile' %}>Setting</a></li>
-					<li><a href="#">{{ user_session.account_name}}</a></li>	
+					<li><a href={% url 'accounts:showResume' %}>{{ user_session.account_name}}</a></li>	
 					<li><a class="btn" href={% url 'accounts:logout' %}>LOG OUT</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
@@ -115,7 +120,7 @@
 <!-- create proj -->
 	<div style="display: none;">
 
-		<form class="form-horizontal" id="create-proj-form" action="" method="POST" style="text-align:center;">
+		<form class="form-horizontal" id="create-proj-form" action={% url 'projects:projectQuickCreate' %} method="POST" style="text-align:center;">
 	
 		{% csrf_token %}
 	 	 <fieldset>
@@ -134,7 +139,7 @@
 		      <label class="control-label">Description</label>
 		      <div class="controls">
 		        <div class="textarea">
-		              <textarea name = "description" type=""  class="form-control"> </textarea>
+		              <input name = "description" type="text"  class="form-control"> </input>
 		        </div>
 		        <p class="help-block"></p>
 		      </div>
@@ -156,14 +161,14 @@
 	
 <!-- find proj -->
 	<div style="display: none;">
-	 <form class="form-horizontal" id="find-proj-form" action="" method="POST" style="text-align:center;">
+	 <form class="form-horizontal" id="find-proj-form" action={% url 'projects:findProject' %} method="POST" style="text-align:center;">
 		{% csrf_token %}
 	 	 <fieldset>
     		<div class="control-group">
 	      <!-- Text input-->
 		      <label class="control-label" for="input01">Project Name</label>
 		      <div class="controls">
-		        <input type="text" name = "proj-name" placeholder="project name" class="input-xlarge form-control">
+		        <input type="text" name = "search_key" id="search_key" placeholder="Search Key" class="input-xlarge form-control">
 		        <p class="help-block"> </p>
 		      </div>
 		    </div>
@@ -172,19 +177,16 @@
 		          <label class="control-label"> </label>
 		          <!-- Button -->
 		          <div class="controls">
-		            <button class="btn btn-success">Search</button>
+		            <button type="submit" class="btn btn-success">Search</button>
 		          </div>
 		          <p class="help-block"></p>
 		     </div>
-		 </div>
-		</div>
-	 </fieldset>
+	 	</fieldset>
 	 </form>
 	</div>
-	
+	<!-- to top -->
+	<a href="#" onclick="gotoTop();return false;" class="totop"></a>
 	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
-	{% load static %}  
-  	<script src="{% static "js/jquery.min.js" %}" ></script>
   	{% load static %}  
   	<script src="{% static "bootstrap/js/bootstrap.min.js" %}" ></script>
   	{% load static %}  
@@ -193,7 +195,6 @@
   	<script src="{% static "js/home/jQuery.headroom.min.js" %}" ></script>
 	{% load static %}  
   	<script src="{% static "js/home/template.js" %}" ></script>
-
 
   	{% load static %}
   	<script src="{% static "js/bg/TweenLite.min.js" %}"></script>
@@ -206,23 +207,7 @@
  	<script src="{% static "js/projects/jquery.avgrund.js" %}"></script>
   	{% block js %}
   	{% endblock %}
-  	<script>
-	$(function() {
-		$('#create-proj').avgrund({
-			height: 250,
-			holderClass: 'custom',
-			onBlurContainer: '.container',
-			template: $('#create-proj-form')
-				 	});
-	
-		$('#find-proj').avgrund({
-			height: 180,
-			holderClass: 'custom',
-			onBlurContainer: '.container',
-			template: $('#find-proj-form')
-				 	});
-	});
-	</script>
+  	
 	
 </body>
 </html>
