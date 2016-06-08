@@ -1,5 +1,5 @@
-# ILinkProj
-SITP Project
+# IdeaLink
+A Team Cooperation and Task Management Project.
 
 ##Documentation
 [Requirements Document](https://github.com/HermanZzz/ILinkProj/blob/Dev/doc/Documentation.md)
@@ -38,6 +38,23 @@ To verify that Django can be seen by Python, type `python` from your shell. Then
 
 P.S. You may have another version of Django installed.
 
+####Install Django Suit
+
+1. Install Django Suit by using pip:
+```bash
+	pip install django-suit==0.2.18
+```
+
+2. Then add the 'suit' application to the INSTALLED_APPS setting of your Django project settings.py file:
+
+```bash
+INSTALLED_APPS = (
+    ...
+    'suit',
+    'django.contrib.admin',
+)
+```
+
 ###Run the Server
 
 Open your shell and :
@@ -56,4 +73,5 @@ Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ```
 
-You can now open it by entering `//127.0.0.1:8000/` in your browser.
+You can now open it by entering `//127.0.0.1:8000/account` in your browser.
+

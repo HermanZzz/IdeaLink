@@ -13,6 +13,8 @@ class Account(models.Model):
 	_account_name = models.CharField(max_length = 30 , unique = True )
 	_account_passwd = models.CharField(max_length = 50)
 	_account_register_date = models.DateField()
+	# integer property for sortable
+	order = models.PositiveIntegerField()
 
 	@property
 	def account_name(self):
