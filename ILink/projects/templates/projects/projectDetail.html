@@ -66,12 +66,13 @@
             </a> 
 
               <!--弹出框-->
+            <!-- QR code Example -->
             <div class="modal fade" id="modal-team-QR" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">     
                         <div class="modal-body">
                              <div class="tab-pane active" id="information">
-                                <img src="/static/img/QRCodeTest.jpeg">
+                                <img src="/static/img/{{ user_session.account_name }}.jpeg">
                             </div>
 
                         </div>
@@ -318,8 +319,20 @@
                                         </select>
                                         </div>
                                         <div align="left">
-                                            <h4 >Wechat Group QR Code</h4>
-                                            <button type="button" class="btn btn-info btn-xs ">Upload</button>
+                                            <h4 >Wechat Official QR Code</h4>
+                                            <!-- onclick="window.location.href = {% url 'projects:myProjects' %}"-->
+                                            <button type="button" class="btn btn-info btn-xs " id = 'wechat_login' >Upload</button>
+                                            <div id = 'tmp' style="display:none">
+                                                <img src="/static/img/WechatQRCode.jpeg">
+                                            </div>
+
+                                            <script type="text/javascript"> 
+
+                                                $("button#wechat_login").click(function() {
+                                                    $("#tmp").toggle();
+                                                });
+                                            </script>
+
                                         </div>
 
                                         <div align="left">
@@ -636,6 +649,7 @@
 
     {% load static %}
     <script src="{% static "bootstrap/js/bootstrap-datetimepicker.js" %}"></script>
+
 
     <script type="text/javascript">
         $('.form_date').datetimepicker({

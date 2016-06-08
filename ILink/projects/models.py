@@ -5,6 +5,19 @@ from datetime import datetime
 
 from accounts.models import Account
 
+class WechatQRCode(models.Model) :
+	account = models.OneToOneField(
+		Account,
+		on_delete = models.CASCADE,
+		)
+
+	wechat_openid = models.CharField(max_length=100,primary_key=True)
+	qrcode_url = models.CharField(max_length=100,blank=True)
+
+	@classmethod
+	def create(cls,account,openid):
+		return cls(account = account, wechat_openid = openid)
+
 class Project(models.Model) :
 	"""
 	Project information , many to many relationship to account

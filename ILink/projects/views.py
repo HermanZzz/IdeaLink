@@ -1,11 +1,141 @@
+#-*- coding:utf-8 -*-
+
 from django.shortcuts import render
 from datetime import datetime
+import hashlib
 from datetime import timedelta
 from accounts.models import Account
-from django.http import HttpResponseRedirect
-from .models import Project
+from django.http import HttpResponseRedirect, HttpResponseBadRequest, HttpResponse
+from .models import Project, WechatQRCode
+
+import sys
+import os
+reload(sys)
+sys.setdefaultencoding('utf8')
+
+from django.views.decorators.csrf import csrf_exempt
+from wechat_sdk import WechatConf, WechatBasic
+from wechat_sdk.exceptions import ParseError
+from wechat_sdk.messages import ImageMessage, TextMessage
+
+# Wechat configurations
+conf = WechatConf(
+	token = 'ILinkProjToken',
+	appid = 'wx078801c8b39da1c2',
+	appsecret = '579998602563a35b67d20ab6228e33b3',
+	encrypt_mode = 'save',
+	)
+
 
 # Create your views here.
+@csrf_exempt
+def wechattest(request):
+
+	signature = request.GET.get('signature')
+	timestamp = request.GET.get('timestamp')
+	nonce = request.GET.get('nonce')
+	wechat_instance = WechatBasic(conf = conf)
+
+	if not wechat_instance.check_signature(signature = signature, timestamp = timestamp, nonce = nonce) :
+		return HttpResponseBadRequest('Verify Failed')
+	else :
+		if request.method == 'GET' :
+			response = request.GET.get('echostr', 'err')
+		else :
+			try:
+				wechat_instance.parse_data(request.body)
+				message = wechat_instance.get_message()
+				wechat_user_openid = wechat_instance.message.source
+
+				# res = wechat_instance.create_qrcode({
+				# 		    "expire_seconds": "QR_LIMIT_SCENE", 
+				# 		    "action_name": "QR_SCENE", 
+				# 		    "action_info": {
+				# 		        "scene": {
+				# 		            "scene_id": 123
+				# 		        }
+				# 		    }
+				# 		})
+				
+				# response = wechat_instance.show_qrcode(res['ticket'])
+
+				# with open('tmpfile', 'wb') as fd:
+				#     for chunk in response.iter_content(1024):
+				#         fd.write(chunk)
+				
+
+				if isinstance(message, ImageMessage) :
+					try:
+						link = WechatQRCode.objects.get(wechat_openid = wechat_user_openid)
+						link.qrcode_url = message.picurl
+						link.save()
+						
+						response = wechat_instance.download_media(message.media_id)
+						# import pdb; pdb.set_trace()
+						# filename = os.path.join(os.path.pardir,'/static/img/' + link.account.account_name + '.jpeg')
+
+						with open('ILink/static/img/' + link.account.account_name + '.jpeg', 'wb') as fd :
+							for chunk in response.iter_content(1024) :
+								fd.write(chunk)
+
+
+						reply_text = '二维码上传成功'
+
+					except Exception, e:
+						reply_text = '请先绑定帐号\n\n绑定ILink帐号，请使用 - 为分隔符输入帐号密码\n上传个人微信二维码，请直接发送图片'
+					
+				elif isinstance(message, TextMessage) :
+					content = message.content
+
+					if content.find("-") > -1 :
+						# User varification
+						account, passwd = content.split("-")
+
+						# Encode account password
+						md5 = hashlib.md5()
+						md5.update(passwd.encode('utf-8'))
+						passwd = md5.hexdigest()
+
+						# Account validation
+						try:
+							account_for_validation = Account.objects.get(_account_name = account)
+						except Exception, e:
+							reply_text = '绑定ILink帐号，请使用 - 为分隔符输入帐号密码\n上传个人微信二维码，请直接发送图片'
+							
+						# import pdb; pdb.set_trace()
+						if account_for_validation :
+							if account_for_validation.account_passwd == passwd :
+								try:
+									link = WechatQRCode.objects.get(wechat_openid = wechat_user_openid)
+									link.account = account_for_validation
+									reply_text = '重新绑定ILink帐号成功'
+
+								except Exception, e:
+									newlink = WechatQRCode.create(account = account_for_validation, openid=wechat_user_openid)
+									newlink.save()
+									reply_text = '绑定ILink帐号成功'
+								
+
+							else :
+								reply_text = '绑定ILink帐号验证失败'	
+
+
+					else :
+						reply_text = '绑定ILink帐号，请使用 - 为分隔符输入帐号密码\n上传个人微信二维码，请直接发送图片'
+
+				else :
+					reply_text = '绑定ILink帐号，请使用 - 为分隔符输入帐号密码\n上传个人微信二维码，请直接发送图片'
+
+				response = wechat_instance.response_text(content = reply_text)
+			except ParseError:
+				return HttpResponseBadRequest('Invalid XML data.')
+			
+	return HttpResponse(response, content_type = 'application/xml')
+
+@csrf_exempt
+def wechatredirect(request):
+	pass
+
 def index(request) :
 	return render(request , 'projects/myProjects.html')
 
@@ -112,11 +242,13 @@ def project_details(request , project_id):
 			})
 
 	# Fetch project info
-	# import pdb; pdb.set_trace()
+	import pdb; pdb.set_trace()
 	current_project = Project.objects.get(id=project_id)
 	pending_tasks = current_project.task_set.filter(task_status = 'Pending')
 	underway_tasks = current_project.task_set.filter(task_status = 'Underway')
 	finished_tasks = current_project.task_set.filter(task_status = 'Finished')
+	
+
 
 	return render(request , 'projects/projectDetail.html', {
 		'is_login_success' : True,
@@ -124,7 +256,8 @@ def project_details(request , project_id):
 		'current_project' : current_project,
 		'pending_tasks' : pending_tasks,
 		'underway_tasks' : underway_tasks,
-		'finished_tasks' : finished_tasks
+		'finished_tasks' : finished_tasks,
+		'appid' : conf.appid
 		})
 
 def create_task(request, project_id):

@@ -6,6 +6,8 @@ app_name = 'projects'
 
 urlpatterns = [
 	url(r'^$' , views.myProjects , name = 'myProjects') ,
+	url(r'^wechattest$' , views.wechattest , name = 'wechattest') ,
+	url(r'^wechatredirect$' , views.wechatredirect , name = 'wechatredirect') ,
 	url(r'^myApplications$' , views.myApplications , name = 'myApplications') ,
 	url(r'^projectsByType/(?P<type>\w*)$' , views.projectsByType , name = 'projectsByType') ,
 	url(r'^projectDetail$' , views.projectDetail , name='projectDetail'),
