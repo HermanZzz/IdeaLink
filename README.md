@@ -38,6 +38,23 @@ To verify that Django can be seen by Python, type `python` from your shell. Then
 
 P.S. You may have another version of Django installed.
 
+####Install Django Suit
+
+1. Install Django Suit by using pip:
+```bash
+	pip install django-suit==0.2.18
+```
+
+2. Then add the 'suit' application to the INSTALLED_APPS setting of your Django project settings.py file:
+
+```bash
+INSTALLED_APPS = (
+    ...
+    'suit',
+    'django.contrib.admin',
+)
+```
+
 ###Run the Server
 
 Open your shell and :
