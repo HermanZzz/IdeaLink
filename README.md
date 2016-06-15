@@ -40,12 +40,12 @@ P.S. You may have another version of Django installed.
 
 ####Install Django Suit
 
-1. Install Django Suit by using pip:
+Install Django Suit by using pip:
 ```bash
 	pip install django-suit==0.2.18
 ```
 
-2. Then add the 'suit' application to the INSTALLED_APPS setting of your Django project settings.py file:
+Then add the 'suit' application to the INSTALLED_APPS setting of your Django project settings.py file:
 
 ```bash
 INSTALLED_APPS = (
@@ -53,6 +53,13 @@ INSTALLED_APPS = (
     'suit',
     'django.contrib.admin',
 )
+```
+
+####Install WeChat SDK
+
+Install Wechat SDK by using pip:
+```bash
+	pip install wechat_sdk
 ```
 
 ###Run the Server
