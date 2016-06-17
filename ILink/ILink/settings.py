@@ -134,33 +134,3 @@ STATICFILES_DIRS = (
     ('bootstrap',os.path.join(STATIC_ROOT,'bootstrap').replace('\\','/') ),
     ('fonts',os.path.join(STATIC_ROOT,'fonts').replace('\\','/') ),
 )
-
-SUIT_CONFIG = {
-    'ADMIN_NAME': 'Idea Link Admin',
-    'MENU': (
-
-        # Keep original label and models
-        'sites',
-
-        # Cross-linked models with custom name; 
-        {'label': 'User Settings', 'icon':'icon-cog', 'models': (
-            'auth.user',
-            {'model': 'auth.group', 'label': 'Group'}
-        )},
-
-         # Cross-linked models with custom name; 
-        {'label': 'User Info', 'icon':'icon-user', 'models': (
-            {'model': 'accounts.Account','label': 'Account'},
-            {'model': 'accounts.ContactInfo','label': 'ContactInfo'},
-            {'model': 'accounts.skill', 'label': 'Skill'}
-        )},
-
-       
-        # Separator
-        '-',
-    ),
-
-    'LIST_PER_PAGE': 20
-
-
-}
