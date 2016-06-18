@@ -242,7 +242,7 @@ def project_details(request , project_id):
 			})
 
 	# Fetch project info
-	import pdb; pdb.set_trace()
+	# import pdb; pdb.set_trace()
 	current_project = Project.objects.get(id=project_id)
 	pending_tasks = current_project.task_set.filter(task_status = 'Pending')
 	underway_tasks = current_project.task_set.filter(task_status = 'Underway')
