@@ -55,6 +55,12 @@ class Project(models.Model) :
 		self.project_expire_date = proj_deadline
 		self.project_status = proj_status
 
+	def __str__(self) :
+		project_info = 'Project: ' + self.project_name
+		return project_info
+	__repr__ = __str__	
+
+
 
 # Task information , many to one relationship to Project
 class Task(models.Model) :
@@ -82,6 +88,7 @@ class Task(models.Model) :
 	def change_status(self,status):
 		self.task_status = status
 
+	
 
 # Tag information , modified by administrator , many to many relationship to project
 class Tag(models.Model) :
