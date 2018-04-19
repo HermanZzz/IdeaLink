@@ -1,12 +1,12 @@
 # IdeaLink
 A Team Cooperation and Task Management Project.
 
-##Documentation
+## Documentation
 [Requirements Document](https://github.com/HermanZzz/ILinkProj/blob/Dev/doc/Documentation.md)
 
-##Getting Started
+## Getting Started
 
-###Install Python
+### Install Python
 
 Python version 2.X is preffered, download from [python.org](https://www.python.org/downloads/).
 
@@ -15,13 +15,13 @@ Then, you can verify that Python is installed by typing `python` from your shell
 ```bash
 	Python 2.7.10 (v2.7.10:15c95b7d81dc, May 23 2015, 09:33:12) 
 	[GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
-	Type "help", "copyright", "credits" or "license" for more 	information.
+	Type "help", "copyright", "credits" or "license" for more information.
 	>>> 
 ```
 
 P.S. You may have another version of Python installed.
 
-###Install Django 
+### Install Django 
 
 
 1. Install [pip](https://pip.pypa.io/en/stable/).The easiest way is to use the [standalone pip installer](https://pip.pypa.io/en/latest/installing/#install-pip). 
@@ -38,7 +38,7 @@ To verify that Django can be seen by Python, type `python` from your shell. Then
 
 P.S. You may have another version of Django installed.
 
-####Install Django Suit
+#### Install Django Suit
 
 Install Django Suit by using pip:
 ```bash
@@ -55,14 +55,14 @@ INSTALLED_APPS = (
 )
 ```
 
-####Install WeChat SDK
+#### Install WeChat SDK
 
 Install Wechat SDK by using pip:
 ```bash
 	pip install wechat_sdk
 ```
 
-###Run the Server
+### Run the Server
 
 Open your shell and :
 
